@@ -22,4 +22,18 @@ public enum Typography {
         weight: .semibold,
         lineHeight: 18
     )
+    
+    public static let timer = TextStyle(
+        name: "timer",
+        size: 13,
+        weight: .regular,
+        lineHeight: 16
+    )
+    
+    public static let codeDigit = TextStyle(
+        name: "codeDigit",
+        size: 20,
+        weight: .semibold,
+        lineHeight: 25
+    )
 }

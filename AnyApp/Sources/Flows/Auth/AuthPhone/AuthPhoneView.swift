@@ -90,6 +90,7 @@ final class PhoneTextField: TextField {
         bounds.inset(by: UIEdgeInsets(top: 14, left: 24, bottom: 14, right: frame.width - 44))
     }
     private func configure(placeholder: String) {
+        keyboardType = .numberPad
         var iconView = UIImageView(image: Asset.phone.image)
         iconView.contentMode = .center
         leftView = iconView

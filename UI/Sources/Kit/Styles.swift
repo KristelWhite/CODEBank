@@ -26,6 +26,9 @@ public enum BorderStyle {
 public enum FontStyle {
     case title
     case button
+    case caption2
+    case timer
+    case codeDigit
 }
 
 // Defines shadow properties
@@ -85,6 +88,12 @@ public extension FontStyle {
             return Typography.title
         case .button:
             return Typography.button
+        case .caption2:
+            return Typography.caption2
+        case .timer:
+            return Typography.timer
+        case .codeDigit:
+            return Typography.codeDigit
         }
     }
 }
