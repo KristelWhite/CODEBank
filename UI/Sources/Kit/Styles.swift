@@ -3,23 +3,42 @@ import UIKit
 // Defines background color
 public enum BackgroundStyle {
     case none
-
     case backgroundPrimary
+    case backgroundSecondary
+    case contentPrimary
+    case contentSecondary
+    case contentTertiary
+    case contentAccentPrimary
+    case contentAccentSecondary
+    case contentAccentTertiary
+    
+    case indicatorContentError
+    case indicatorContentSuccess
+    case indicatorcontentDone
+    
+    case primaryButton
+    case backgroundBottomMenu
+    case overlay
+    case calendarPeriod
+    case secondaryButton
 }
 
 // Defines textColor and tintColor
 public enum ForegroundStyle {
     case none
-
-    case contentPrimary
+    case textSecondary
+    case textTertiary
     case textPrimary
 
+    case contentPrimary
     case button
 }
 
 // Defines borderColor
 public enum BorderStyle {
     case none
+    case template
+    
 }
 
 // Defines font
@@ -50,6 +69,36 @@ public extension BackgroundStyle {
             return UIColor.clear
         case .backgroundPrimary:
             return Palette.Surface.backgroundPrimary
+        case .backgroundSecondary:
+            return Palette.Surface.backgroundSecondary
+        case .contentPrimary:
+            return Palette.Content.primary
+        case .contentSecondary:
+            return Palette.Content.secondary
+        case .contentTertiary:
+            return Palette.Content.tertiary
+        case .contentAccentPrimary:
+            return Palette.Content.accentPrimary
+        case .contentAccentSecondary:
+            return Palette.Content.accentSecondary
+        case .contentAccentTertiary:
+            return Palette.Content.accentTertiary
+        case .indicatorContentError:
+            return Palette.IndicatorContent.error
+        case .indicatorContentSuccess:
+            return Palette.IndicatorContent.success
+        case .indicatorcontentDone:
+            return Palette.IndicatorContent.done
+        case .primaryButton:
+            return Palette.Button.buttonPrimary
+        case .backgroundBottomMenu:
+            return Palette.Diffrent.backgroundBottomMenu
+        case .overlay:
+            return Palette.Diffrent.overlay
+        case .calendarPeriod:
+            return Palette.Diffrent.calendarPeriod
+        case .secondaryButton:
+            return Palette.Button.buttonSecondary
         }
     }
 }
@@ -66,6 +115,10 @@ public extension ForegroundStyle {
             return Palette.Text.primary
         case .button:
             return Palette.Button.buttonText
+        case .textSecondary:
+            return Palette.Text.secondary
+        case .textTertiary:
+            return Palette.Text.tertiary
         }
     }
 }
@@ -76,6 +129,8 @@ public extension BorderStyle {
         switch self {
         case .none:
             return UIColor.clear
+        case .template:
+            return UIColor.red
         }
     }
 }

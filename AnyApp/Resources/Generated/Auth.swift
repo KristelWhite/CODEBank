@@ -14,6 +14,10 @@ public enum Entrance {
   public static let enter = Entrance.tr("Auth", "enter", fallback: "Войти")
   /// Телефон
   public static let phone = Entrance.tr("Auth", "phone", fallback: "Телефон")
+  /// Повторить через %@
+  public static func timer(_ p1: Any) -> String {
+    return Entrance.tr("Auth", "timer", String(describing: p1), fallback: "Повторить через %@")
+  }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

@@ -12,11 +12,11 @@ final class AuthOtpView: BackgroundPrimary {
         return label
     }()
     var timerLabel: Label = {
-        var label = Label(text: "Повторить через 2:59", foregroundStyle: .textPrimary, fontStyle: .timer)
+        var label = Label(text: Entrance.timer("2:59"), foregroundStyle: .textPrimary, fontStyle: .timer)
         return label
     }()
     var codeTextFields: [CodeTextField] = []
-    var stackView = HStack(axis: .horizontal, alignment: .center, distribution: .equalSpacing, spacing: 6)
+    var stackView = HStack(axis: .horizontal, alignment: .center, distribution: .fill, spacing: 6)
     var separator: View = {
         var view = View(backgroundStyle: .backgroundPrimary)
         view.snp.makeConstraints { make in
@@ -32,6 +32,7 @@ final class AuthOtpView: BackgroundPrimary {
 //        setupConstraints()
         setupTextFields()
         stackView.insertArrangedSubview(separator, at: 3)
+        stackView.addArrangedSubview(FlexibleSpacer())
         body().embed(in: self)
         actionButton = ButtonPrimary(title: "Авторизоваться")
             .onTap { [weak self] in
