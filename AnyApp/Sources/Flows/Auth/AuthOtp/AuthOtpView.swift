@@ -15,7 +15,7 @@ final class AuthOtpView: BackgroundPrimary {
         var label = Label(text: "Повторить через 2:59", foregroundStyle: .textPrimary, fontStyle: .timer)
         return label
     }()
-    var codeTextFields: [TextField] = []
+    var codeTextFields: [CodeTextField] = []
     var stackView = HStack(axis: .horizontal, alignment: .center, distribution: .equalSpacing, spacing: 6)
     var separator: View = {
         var view = View(backgroundStyle: .backgroundPrimary)
@@ -54,10 +54,12 @@ final class AuthOtpView: BackgroundPrimary {
     
     func setupTextFields() {
         (0..<6).forEach{ _ in
-            let textField = TextField()
+            let textField = CodeTextField()
             textField.delegate = self
-            textField.layer.cornerRadius = 10
-            textField.layer.backgroundColor = CGColor.init(red: 108/255, green: 108/255, blue: 64/255, alpha: 1)
+            textField.layer.cornerRadius = 14
+            textField.layer.masksToBounds = true
+            textField.layer.backgroundColor = .init(red: 64, green: 58, blue: 71, alpha: 1)
+//            textField.layer.backgroundColor = .init(red: 178, green: 178, blue: 178, alpha: 1)
             textField.keyboardType = .numberPad
             textField.textAlignment = .center
             textField.font = UIFont.systemFont(ofSize: 20)
@@ -87,4 +89,53 @@ final class AuthOtpView: BackgroundPrimary {
 
 extension AuthOtpView: UITextFieldDelegate {
     
+}
+
+
+final class CodeTextField: TextField {
+    private var bottomLine = UIView()
+   
+    let activeLineColor = UIColor(red: 108, green: 120, blue: 230, alpha: 1)
+    let inactiveLineColor = UIColor.clear
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupBottomLine()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupBottomLine()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupBottomLine() {
+        bottomLine.backgroundColor = inactiveLineColor
+        addSubview(bottomLine)
+        bottomLine.snp.makeConstraints { make in
+            make.width.equalTo(24)
+            make.height.equalTo(2)
+            make.bottom.equalToSuperview().inset(10)
+            make.centerX.equalToSuperview()
+        }
+        tintColor = .clear
+    }
+// MARK: - Override
+    override func becomeFirstResponder() -> Bool {
+        let becomingActive = super.becomeFirstResponder()
+        if becomingActive {
+            bottomLine.backgroundColor = activeLineColor
+        }
+        return becomingActive
+    }
+    override func resignFirstResponder() -> Bool {
+        let resigningActive = super.resignFirstResponder()
+        if resigningActive {
+            bottomLine.backgroundColor = inactiveLineColor
+        }
+        return resigningActive
+    }
 }
