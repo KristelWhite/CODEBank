@@ -36,4 +36,59 @@ public enum Typography {
         weight: .semibold,
         lineHeight: 25
     )
+
+    public static let largeTitle = TextStyle(
+        name: "largeTitle",
+        size: 28,
+        weight: .medium,
+        lineHeight: 34
+    )
+    public static let subtitle = TextStyle(
+        name: "subtitle",
+        size: 20,
+        weight: .semibold,
+        lineHeight: 25
+    )
+
+    public static let caption1 = TextStyle(
+        name: "caption1",
+        size: 13,
+        weight: .regular,
+        lineHeight: 16
+    )
+    
+    public static let body20 = TextStyle(
+        name: "body20",
+        size: 20,
+        weight: .regular,
+        lineHeight: 25
+    )
+    
+    public static let body17 = TextStyle(
+        name: "body17",
+        size: 17,
+        weight: .medium,
+        lineHeight: 22
+    )
+    
+    public static let body1 = TextStyle(
+        name: "body1",
+        size: 17,
+        weight: .regular,
+        lineHeight: 22
+    )
+    
+    public static let body2 = TextStyle(
+        name: "body2",
+        size: 15,
+        weight: .regular,
+        lineHeight: 20
+    )
+    
+    public static let body15 = TextStyle(
+        name: "body15",
+        size: 15,
+        weight: .semibold,
+        lineHeight: 20
+    )
 }
