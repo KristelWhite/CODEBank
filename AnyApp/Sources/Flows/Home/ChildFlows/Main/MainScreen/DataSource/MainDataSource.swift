@@ -36,10 +36,12 @@ final class MainDataSource {
     // MARK: - Private methods
 
     private func setup() {
-        tableView.contentInsets(.init(top: 16, left: 0, bottom: 92, right: 0))
+        tableView.contentInsets(.init(top: 0, left: 0, bottom: 92, right: 0))
         tableView.registerTemplateCell(forView: TemplateShimmerView.self)
         tableView.registerTemplateCell(forView: TemplateView.self)
         tableView.registerTemplateCell(forView: TemplateHeaderView.self)
+        tableView.registerTemplateCell(forView: TemplateCardView.self)
+        tableView.registerTemplateCell(forView: TemplateAccountView.self)
     }
 
     private func configure() {
@@ -50,9 +52,9 @@ final class MainDataSource {
             case .header(let props):
                 return cellFactory.makeTemplateHeaderCell(for: indexPath, with: props)
             case .account(let props):
-                return cellFactory.makeTemplateCell(for: indexPath, with: props)
+                return cellFactory.makeTemplateAccountCell(for: indexPath, with: props)
             case .card(let props):
-                return cellFactory.makeTemplateCell(for: indexPath, with: props)
+                return cellFactory.makeTemplateCardCell(for: indexPath, with: props)
             case .deposit(let props):
                 return cellFactory.makeTemplateCell(for: indexPath, with: props)
             }

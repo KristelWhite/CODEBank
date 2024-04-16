@@ -17,7 +17,10 @@ final class MainView: BackgroundPrimary {
     }
 
     private func body() -> UIView {
-        tableView
+        VStack {
+            tableView
+        }
+        .layoutMargins(.make(vInsets: 0, hInsets: 16))
     }
 
     private func setupButton() {
@@ -25,6 +28,7 @@ final class MainView: BackgroundPrimary {
         button.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalTo(safeAreaLayoutGuide).inset(24)
+            $0.height.equalTo(52)
         }
         button.onTap { [weak self] in
             self?.onNewProduct?()

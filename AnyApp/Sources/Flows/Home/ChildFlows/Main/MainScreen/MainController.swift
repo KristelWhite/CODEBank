@@ -20,23 +20,11 @@ final class MainController: TemplateViewController<MainView> {
     }
 
     private func configureNavigationItem() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-//        navigationItem.title = "Главная"
-//        var view = View()
-//        var label = Label(text: "Главная", foregroundStyle: .textPrimary, fontStyle: .title)
-        var view = UIView()
-        var label = UILabel()
-        label.font = .systemFont(ofSize: 17, weight: .semibold)
-        label.textColor = .white
-        label.textAlignment = .center
-        view.addSubview(label)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-        }
+//        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "Главная"
+        navigationController?.navigationBar.barTintColor = Palette.Surface.backgroundPrimary
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Palette.Text.primary]
         
-        navigationItem.titleView = view
     }
 
     private func setupBindings() {

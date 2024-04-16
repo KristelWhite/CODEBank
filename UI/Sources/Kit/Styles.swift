@@ -8,9 +8,6 @@ public enum BackgroundStyle {
     case contentPrimary
     case contentSecondary
     case contentTertiary
-    case contentAccentPrimary
-    case contentAccentSecondary
-    case contentAccentTertiary
     
     case indicatorContentError
     case indicatorContentSuccess
@@ -29,9 +26,15 @@ public enum ForegroundStyle {
     case textSecondary
     case textTertiary
     case textPrimary
+    
+    case contentAccentPrimary
+    case contentAccentSecondary
+    case contentAccentTertiary
 
     case contentPrimary
     case button
+    
+    case contentSecondary
 }
 
 // Defines borderColor
@@ -85,12 +88,6 @@ public extension BackgroundStyle {
             return Palette.Content.secondary
         case .contentTertiary:
             return Palette.Content.tertiary
-        case .contentAccentPrimary:
-            return Palette.Content.accentPrimary
-        case .contentAccentSecondary:
-            return Palette.Content.accentSecondary
-        case .contentAccentTertiary:
-            return Palette.Content.accentTertiary
         case .indicatorContentError:
             return Palette.IndicatorContent.error
         case .indicatorContentSuccess:
@@ -127,6 +124,14 @@ public extension ForegroundStyle {
             return Palette.Text.secondary
         case .textTertiary:
             return Palette.Text.tertiary
+        case .contentAccentPrimary:
+            return Palette.Content.accentPrimary
+        case .contentAccentSecondary:
+            return Palette.Content.accentSecondary
+        case .contentAccentTertiary:
+            return Palette.Content.accentTertiary
+        case .contentSecondary:
+            return Palette.Content.secondary
         }
     }
 }

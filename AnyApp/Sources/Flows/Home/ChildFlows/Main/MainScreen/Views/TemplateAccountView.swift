@@ -1,18 +1,22 @@
+//
+//  TemplateAccountView.swift
+//  AnyApp
+//
+//  Created by Кристина Пастухова on 16.04.2024.
+//
+
 import UIKit
 import UI
 import AppIndependent
 
-final class TemplateView: BackgroundPrimary {
+final class TemplateAccountView: BackgroundPrimary {
 
     // MARK: - Private Properties
 
     private let titleLabel = Label(foregroundStyle: .textPrimary, fontStyle: .body2)
-//    private let descriptionLabel = Label(foregroundStyle: .textPrimary)
-//        .multiline()
-    private let rateLabel = Label(foregroundStyle: .textTertiary, fontStyle: .caption2)
-    private let dateLabel = Label(foregroundStyle: .textTertiary, fontStyle: .caption2)
     private let valueLabel = Label(foregroundStyle: .contentAccentPrimary, fontStyle: .body2)
     private let image = ImageView().size(CGSize(width: 40, height: 40))
+    private let button = BaseBrandButton(image: Asset.chevronUp.image)
     
     private var props: Props?
 
@@ -20,8 +24,6 @@ final class TemplateView: BackgroundPrimary {
 
     override public func setup() {
         super.setup()
-//        cornerRadius(16)
-//        borderStyle(.template, width: 1)
     }
 
     // MARK: - Private methods
@@ -30,27 +32,26 @@ final class TemplateView: BackgroundPrimary {
     private func body(with props: Props) -> UIView {
         HStack(spacing: 16) {
             VStack {
-                Spacer(.px2)
                 image
-//                    .layoutMargins(.make(vInsets: 2, hInsets: 0))
                 Spacer(.px2)
             }
-            VStack(distribution: .fillEqually, spacing: 4) {
-                HStack(distribution: .equalSpacing) {
-                    titleLabel
-                        .text(props.title)
-                    rateLabel
-                        .text(props.description)
-                }
-                HStack(distribution: .equalSpacing) {
-                    valueLabel
-                        .text(props.description)
-                    dateLabel
-                        .text(props.description)
-                }
+            VStack(distribution: .fillEqually, spacing: 2) {
+                titleLabel
+                    .text(props.title)
+                valueLabel
+                    .text(props.description)
             }
+            VStack {
+                Spacer(.px6)
+                button
+                    .size(.init(width: 40, height: 28), priority: .required)
+                    .backgroundColor(Palette.Content.secondary)
+                    .cornerRadius(4)
+                Spacer(.px8)
+            }
+            
         }
-        .layoutMargins(.make(vInsets: 14, hInsets: 0))
+        .layoutMargins(.init(top: 16, left: 0, bottom: 14, right: 0))
         .onTap { [weak self] in
             self?.props?.onTap?(props.id)
         }
@@ -61,7 +62,7 @@ final class TemplateView: BackgroundPrimary {
 
 // MARK: - Configurable
 
-extension TemplateView: ConfigurableView {
+extension TemplateAccountView: ConfigurableView {
 
     typealias Model = Props
 
@@ -72,7 +73,7 @@ extension TemplateView: ConfigurableView {
 
         var onTap: StringHandler?
 
-        public static func == (lhs: TemplateView.Props, rhs: TemplateView.Props) -> Bool {
+        public static func == (lhs: TemplateAccountView.Props, rhs: TemplateAccountView.Props) -> Bool {
             lhs.hashValue == rhs.hashValue
         }
 
@@ -89,3 +90,4 @@ extension TemplateView: ConfigurableView {
         body(with: model).embed(in: self)
     }
 }
+

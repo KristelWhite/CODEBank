@@ -6,7 +6,7 @@ final class TemplateHeaderView: BackgroundPrimary {
 
     // MARK: - Private Properties
 
-    private let titleLabel = Label(foregroundStyle: .textPrimary, fontStyle: .title)
+    private let titleLabel = Label(foregroundStyle: .textTertiary, fontStyle: .body15)
 
     private var props: Props?
 
@@ -23,7 +23,7 @@ final class TemplateHeaderView: BackgroundPrimary {
         VStack {
             titleLabel
         }
-        .layoutMargins(.all(16))
+        .layoutMargins(.init(top: 17, left: 0, bottom: 15, right: 0))
     }
 }
 

@@ -24,12 +24,34 @@ final class MainCellFactory {
 
     // MARK: - Cells
 
+    func makeTemplateAccountCell(
+        for indexPath: IndexPath,
+        with props: TemplateAccountView.Props
+    ) -> UITableViewCell {
+        tableView.dequeueTemplateCell(
+            forView: TemplateAccountView.self,
+            for: indexPath
+        ) { view, _ in
+            view.configure(with: props)
+        }
+    }
     func makeTemplateCell(
         for indexPath: IndexPath,
         with props: TemplateView.Props
     ) -> UITableViewCell {
         tableView.dequeueTemplateCell(
             forView: TemplateView.self,
+            for: indexPath
+        ) { view, _ in
+            view.configure(with: props)
+        }
+    }
+    func makeTemplateCardCell(
+        for indexPath: IndexPath,
+        with props: TemplateCardView.Props
+    ) -> UITableViewCell {
+        tableView.dequeueTemplateCell(
+            forView: TemplateCardView.self,
             for: indexPath
         ) { view, _ in
             view.configure(with: props)
