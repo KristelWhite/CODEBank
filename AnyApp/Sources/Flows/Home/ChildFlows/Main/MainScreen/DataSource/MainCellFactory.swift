@@ -37,10 +37,10 @@ final class MainCellFactory {
     }
     func makeTemplateCell(
         for indexPath: IndexPath,
-        with props: TemplateView.Props
+        with props: TemplateDepositView.Props
     ) -> UITableViewCell {
         tableView.dequeueTemplateCell(
-            forView: TemplateView.self,
+            forView: TemplateDepositView.self,
             for: indexPath
         ) { view, _ in
             view.configure(with: props)

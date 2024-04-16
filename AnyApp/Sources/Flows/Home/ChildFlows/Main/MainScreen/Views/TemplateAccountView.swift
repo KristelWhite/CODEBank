@@ -33,13 +33,14 @@ final class TemplateAccountView: BackgroundPrimary {
         HStack(spacing: 16) {
             VStack {
                 image
+                    .image(props.currency.imageValue)
                 Spacer(.px2)
             }
             VStack(distribution: .fillEqually, spacing: 2) {
                 titleLabel
                     .text(props.title)
                 valueLabel
-                    .text(props.description)
+                    .text(props.value)
             }
             VStack {
                 Spacer(.px6)
@@ -61,7 +62,31 @@ final class TemplateAccountView: BackgroundPrimary {
 }
 
 // MARK: - Configurable
-
+enum Currency: String, Equatable, Codable {
+    case ruble, dollar, euro
+    
+    var textValue: String {
+        switch self {
+        case .ruble:
+            return "ruble"
+        case .dollar:
+            return "dollar"
+        case .euro:
+            return "euro"
+        }
+    }
+    
+    var imageValue: UIImage {
+        switch self {
+        case .ruble:
+            return Asset.ruble.image
+        case .dollar:
+            return Asset.icUsd.image
+        case .euro:
+            return Asset.icEur.image
+        }
+    }
+}
 extension TemplateAccountView: ConfigurableView {
 
     typealias Model = Props
@@ -69,7 +94,8 @@ extension TemplateAccountView: ConfigurableView {
     struct Props: Hashable {
         let id: String
         let title: String
-        let description: String
+        let value: String
+        let currency: Currency
 
         var onTap: StringHandler?
 
@@ -80,7 +106,8 @@ extension TemplateAccountView: ConfigurableView {
         public func hash(into hasher: inout Hasher) {
             hasher.combine(id)
             hasher.combine(title)
-            hasher.combine(description)
+            hasher.combine(value)
+            hasher.combine(currency.textValue)
         }
     }
 

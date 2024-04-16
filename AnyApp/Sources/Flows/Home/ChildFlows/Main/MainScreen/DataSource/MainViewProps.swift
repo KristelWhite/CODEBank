@@ -20,7 +20,7 @@ struct MainViewProps {
         case header(TemplateHeaderView.Props)
         case account(TemplateAccountView.Props)
         case card(TemplateCardView.Props)
-        case deposit(TemplateView.Props)
+        case deposit(TemplateDepositView.Props)
     }
 
     let sections: [Section]

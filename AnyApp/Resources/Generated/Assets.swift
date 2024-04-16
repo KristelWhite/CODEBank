@@ -160,6 +160,11 @@ public enum Asset {
   public static let icon3 = ImageAsset(name: "@icon-3")
   public static let messages = ImageAsset(name: "Messages")
   public static let logo = ImageAsset(name: "logo")
+  public static let bankCard = ImageAsset(name: "BankCard")
+  public static let bankCardDisable = ImageAsset(name: "BankCardDisable")
+  public static let raiffaizen = ImageAsset(name: "Raiffaizen")
+  public static let sberbank = ImageAsset(name: "Sberbank")
+  public static let vtb24 = ImageAsset(name: "VTB24")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

@@ -35,6 +35,10 @@ public enum ForegroundStyle {
     case button
     
     case contentSecondary
+    
+    case indicatorContentError
+    case indicatorContentSuccess
+    case indicatorcontentDone
 }
 
 // Defines borderColor
@@ -59,6 +63,7 @@ public enum FontStyle {
     case caption2
     case timer
     case codeDigit
+    case cardNumber
 }
 
 // Defines shadow properties
@@ -132,6 +137,12 @@ public extension ForegroundStyle {
             return Palette.Content.accentTertiary
         case .contentSecondary:
             return Palette.Content.secondary
+        case .indicatorContentError:
+            return Palette.IndicatorContent.error
+        case .indicatorContentSuccess:
+            return Palette.IndicatorContent.success
+        case .indicatorcontentDone:
+            return Palette.IndicatorContent.done
         }
     }
 }
@@ -178,6 +189,8 @@ public extension FontStyle {
             return Typography.body15
         case .caption1:
             return Typography.caption1
+        case .cardNumber:
+            return Typography.cardNumber
         }
     }
 }

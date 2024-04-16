@@ -2,7 +2,7 @@ import UIKit
 import UI
 import AppIndependent
 
-final class TemplateView: BackgroundPrimary {
+final class TemplateDepositView: BackgroundPrimary {
 
     // MARK: - Private Properties
 
@@ -29,10 +29,10 @@ final class TemplateView: BackgroundPrimary {
     
     private func body(with props: Props) -> UIView {
         HStack(spacing: 16) {
-            VStack {
+            VStack { 
                 Spacer(.px2)
                 image
-//                    .layoutMargins(.make(vInsets: 2, hInsets: 0))
+                    .image(props.currency.imageValue)
                 Spacer(.px2)
             }
             VStack(distribution: .fillEqually, spacing: 4) {
@@ -40,13 +40,13 @@ final class TemplateView: BackgroundPrimary {
                     titleLabel
                         .text(props.title)
                     rateLabel
-                        .text(props.description)
+                        .text(props.rate)
                 }
                 HStack(distribution: .equalSpacing) {
                     valueLabel
-                        .text(props.description)
+                        .text(props.value)
                     dateLabel
-                        .text(props.description)
+                        .text(props.date)
                 }
             }
         }
@@ -61,25 +61,31 @@ final class TemplateView: BackgroundPrimary {
 
 // MARK: - Configurable
 
-extension TemplateView: ConfigurableView {
+extension TemplateDepositView: ConfigurableView {
 
     typealias Model = Props
 
     struct Props: Hashable {
         let id: String
         let title: String
-        let description: String
+        let rate: String
+        let date: String
+        let value: String
+        let currency: Currency
 
         var onTap: StringHandler?
 
-        public static func == (lhs: TemplateView.Props, rhs: TemplateView.Props) -> Bool {
+        public static func == (lhs: TemplateDepositView.Props, rhs: TemplateDepositView.Props) -> Bool {
             lhs.hashValue == rhs.hashValue
         }
 
         public func hash(into hasher: inout Hasher) {
             hasher.combine(id)
             hasher.combine(title)
-            hasher.combine(description)
+            hasher.combine(value)
+            hasher.combine(rate)
+            hasher.combine(date)
+            hasher.combine(currency.textValue)
         }
     }
 

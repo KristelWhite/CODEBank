@@ -15,6 +15,13 @@ public enum Typography {
         weight: .regular,
         lineHeight: 13
     )
+    
+    public static let cardNumber = TextStyle(
+        name: "cardNumber",
+        size: 10,
+        weight: .regular,
+        lineHeight: 12
+    )
 
     public static let button = TextStyle(
         name: "button",

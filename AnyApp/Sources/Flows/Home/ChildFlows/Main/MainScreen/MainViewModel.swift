@@ -41,23 +41,24 @@ final class MainViewModel {
             self?.onOutput?(.content(.init(sections: [
                 .accounts([
                     .header(.init(title: "!Accounts")),
-                    .account(.init(id: "1", title: "!Account 1", description: "!Description\nText") { id in
+                    .account(.init(id: "1", title: "!Account 1", value: "762348724,00", currency: .ruble) { id in
                         SnackCenter.shared.showSnack(withProps: .init(message: "Account pressed with \(id)"))
                     }),
-                    .card(.init(id: "1", title: "!Card 1", description: "!Description\nText") { id in
+                    .card(.init(id: "1", title: "!Card 1", state: .closed, cardNumber: "9874", paymentSysem: .masterCard ) { id in
                         SnackCenter.shared.showSnack(withProps: .init(message: "Card pressed with \(id)"))
                     }),
-                    .card(.init(id: "2", title: "!Card 2", description: "!Description\nText", onTap: { id in
+                    .card(.init(id: "2", title: "!Card 2", state: .physical, cardNumber: "8950", paymentSysem: .visa, onTap: { id in
                         SnackCenter.shared.showSnack(withProps: .init(message: "Card pressed with \(id)"))
                     }))
                 ]),
                 .deposits([
                     .header(.init(title: "!Deposits")),
-                    .deposit(.init(id: "1", title: "!Deposit 1", description: "!Description\nText")),
-                    .deposit(.init(id: "2", title: "!Deposit 2", description: "!Description\nText")),
-                    .deposit(.init(id: "3", title: "!Deposit 3", description: "!Description\nText"))
+                    .deposit(.init(id: "1", title: "!Deposit 1", rate: "3 %", date: "до 31.09.2025", value: "687374,00", currency: .ruble)),
+                    .deposit(.init(id: "2", title: "!Deposit 1", rate: "3 %", date: "до 31.09.2025", value: "687374,00", currency: .dollar)),
+                    .deposit(.init(id: "3", title: "!Deposit 1", rate: "3 %", date: "до 31.09.2025", value: "687374,00", currency: .euro))
                 ])
             ])))
         }
     }
 }
+
