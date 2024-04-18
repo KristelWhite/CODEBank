@@ -69,7 +69,7 @@ final class TemplateCardView: BackgroundPrimary {
         }
     }
 }
-
+//MARK: - активна ли карта
 enum CardState: String, Equatable, Codable {
     case closed, physical
     
@@ -81,7 +81,6 @@ enum CardState: String, Equatable, Codable {
             return "Физическая"
         }
     }
-    
     var label: Label {
         switch self {
         case .closed:
@@ -101,6 +100,7 @@ enum CardState: String, Equatable, Codable {
     
 }
 
+//MARK: - платежная система карты
 enum PaymentSystem: String, Equatable, Codable {
     case visa, masterCard
     

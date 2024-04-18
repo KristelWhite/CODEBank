@@ -53,6 +53,7 @@ public enum FontStyle {
     case title
     case lageTitle
     case subtitle
+    case subtitle2
     case body20
     case body17
     case body1
@@ -191,6 +192,8 @@ public extension FontStyle {
             return Typography.caption1
         case .cardNumber:
             return Typography.cardNumber
+        case .subtitle2:
+            return Typography.subtitle2
         }
     }
 }
