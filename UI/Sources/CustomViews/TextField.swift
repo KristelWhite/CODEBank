@@ -7,7 +7,7 @@ open class TextField: BaseTextField, Themeable {
     private(set) var placeholderForegroundStyle: ForegroundStyle?
     private(set) var placeholderFontStyle: FontStyle?
 
-    convenience init(
+    public convenience init(
         foregroundStyle: ForegroundStyle?,
         fontStyle: FontStyle?,
         backgroundStyle: BackgroundStyle? = nil,

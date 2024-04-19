@@ -6,33 +6,12 @@ final class AuthOtpView: BackgroundPrimary {
 
     var onOtpFilled: VoidHandler?
     
-    var instructionLabel: Label = {
-        var label = Label(text: "На ваш номер отправлено SMS с кодом подтверждения", foregroundStyle: .textPrimary, fontStyle: .button)
-        label.numberOfLines = 0
-        return label
-    }()
-    var timerLabel: Label = {
-        var label = Label(text: Entrance.timer("2:59"), foregroundStyle: .textPrimary, fontStyle: .timer)
-        return label
-    }()
+    var timerLabel = Label(text: Entrance.timer("2:59"), foregroundStyle: .textSecondary, fontStyle: .caption1)
     var codeTextFields: [CodeTextField] = []
-    var stackView = HStack(axis: .horizontal, alignment: .center, distribution: .fill, spacing: 6)
-    var separator: View = {
-        var view = View(backgroundStyle: .backgroundPrimary)
-        view.snp.makeConstraints { make in
-            make.height.equalTo(2)
-            make.width.equalTo(10)
-        }
-        view.layer.backgroundColor = CGColor(red: 112/255, green: 109/255, blue: 118/255, alpha: 1)
-        return view
-    }()
     
     override func setup() {
         super.setup()
-//        setupConstraints()
         setupTextFields()
-        stackView.insertArrangedSubview(separator, at: 3)
-        stackView.addArrangedSubview(FlexibleSpacer())
         body().embed(in: self)
         actionButton = ButtonPrimary(title: "Авторизоваться")
             .onTap { [weak self] in
@@ -44,9 +23,16 @@ final class AuthOtpView: BackgroundPrimary {
     private func body() -> UIView {
         VStack {
             Spacer(.px16)
-            instructionLabel
+            Label(text: "На ваш номер отправлено SMS с кодом подтверждения", foregroundStyle: .textPrimary, fontStyle: .body2)
+                .multiline()
             Spacer(.px24)
-            stackView
+            HStack(alignment: .center, spacing: 6) {
+                ForEach(collection: codeTextFields[0...2], spacing: 6, axis: .horizontal) {$0}
+                View(backgroundStyle: .contentTertiary)
+                    .size(CGSize(width: 10, height: 2), priority: .required)
+                ForEach(collection: codeTextFields[3...5], spacing: 6, axis: .horizontal) {$0}
+                FlexibleSpacer()
+            }
             Spacer(.custom(length: 28))
             timerLabel
             FlexibleSpacer()
@@ -54,38 +40,21 @@ final class AuthOtpView: BackgroundPrimary {
     }
     
     func setupTextFields() {
-        (0..<6).forEach{ _ in
+        (0..<6).forEach { _ in
             let textField = CodeTextField()
-            textField.delegate = self
-            textField.layer.cornerRadius = 14
-            textField.layer.masksToBounds = true
-            textField.layer.backgroundColor = .init(red: 64, green: 58, blue: 71, alpha: 1)
-//            textField.layer.backgroundColor = .init(red: 178, green: 178, blue: 178, alpha: 1)
-            textField.keyboardType = .numberPad
-            textField.textAlignment = .center
-            textField.font = UIFont.systemFont(ofSize: 20)
-            textField.textColor = .white
+                .size(CGSize(width: 40, height: 48))
+                .onTap {
+                    print("нажали на textfield")
+                }
             textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-            textField.borderStyle = .roundedRect
+            textField.delegate = self
             codeTextFields.append(textField)
-            stackView.addArrangedSubview(textField)
-            textField.snp.makeConstraints { make in
-                make.height.equalTo(48)
-                make.width.equalTo(40)
-            }
         }
     }
     
     @objc func textFieldDidChange(textField: UITextField) {
         
     }
-    
-//    func setupConstraints() {
-//        stackView.snp.makeConstraints { make in
-//            make.width.equalTo(286)
-//            make.height.equalTo(48)
-//        }
-//    }
 }
 
 extension AuthOtpView: UITextFieldDelegate {
@@ -96,21 +65,33 @@ extension AuthOtpView: UITextFieldDelegate {
 final class CodeTextField: TextField {
     private var bottomLine = UIView()
    
-    let activeLineColor = UIColor(red: 108, green: 120, blue: 230, alpha: 1)
+    let activeLineColor = Palette.Content.accentPrimary
     let inactiveLineColor = UIColor.clear
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupAppearance()
         setupBottomLine()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupAppearance()
         setupBottomLine()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupAppearance() {
+        layer.cornerRadius = 14
+        layer.masksToBounds = true
+        backgroundColor = Palette.Content.secondary
+        keyboardType = .numberPad
+        textAlignment = .center
+        font = Typography.subtitle?.font
+        textColor = Palette.Text.primary
     }
     
     private func setupBottomLine() {

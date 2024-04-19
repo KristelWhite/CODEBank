@@ -8,11 +8,10 @@ final class ProfileView: BackgroundPrimary {
     
     
     var settings: [Settings] = [.aboutApp, .theme, .support, .exit]
-    var settingViews: [UIView] = []
+   
 
     override func setup() {
         super.setup()
-        confugureSettingsView()
         body().embed(in: self)
     }
 
@@ -20,7 +19,10 @@ final class ProfileView: BackgroundPrimary {
         VStack {
             headerView()
             Spacer(.custom(length: 50))
-            ForEach(collection: settingViews, alignment: .fill) { $0 }
+            ForEach(collection: settings, alignment: .fill) {
+                TemplateSettingsView()
+                    .configured(with: $0.description)
+            }
             FlexibleSpacer()
             ButtonPrimary(title: "Разлогиниться")
                 .onTap { [weak self] in
@@ -39,13 +41,6 @@ final class ProfileView: BackgroundPrimary {
                 Label(text: "bvz bzv bzvz bzvhbjbe", foregroundStyle: .textPrimary, fontStyle: .subtitle2)
                 Label(text: "fknhfebhbfhbe", foregroundStyle: .textSecondary, fontStyle: .caption2)
             }
-        }
-    }
-    private func confugureSettingsView() {
-        settings.forEach { setting in
-            let view = TemplateSettingsView()
-            view.configure(with: setting.description )
-            settingViews.append(view)
         }
     }
 }

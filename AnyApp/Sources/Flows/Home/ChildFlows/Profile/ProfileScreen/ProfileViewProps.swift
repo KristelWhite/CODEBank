@@ -5,10 +5,12 @@
 //  Created by Кристина Пастухова on 18.04.2024.
 //
 
-import Foundation
+import UIKit
 
 struct ProfileViewProps {
-    let settiongs: [Settings]
+    let name: String
+    let image: UIImage
+    let phone: String
 }
 
 enum Settings: CaseIterable {
@@ -22,11 +24,11 @@ enum Settings: CaseIterable {
         case .aboutApp:
             return .init(id: "1", title: "О приложении", image: Asset.settings.image, isAccesory: true)
         case .theme:
-            return .init(id: "2", title: "то", image: Asset.moonStars.image , isAccesory: true)
+            return .init(id: "2", title: "Тема приложения", image: Asset.moonStars.image , isAccesory: true)
         case .support:
-            return .init(id: "3", title: "ото", image: Asset.phoneCall.image, isAccesory: false)
+            return .init(id: "3", title: "Служба поддержки", image: Asset.phoneCall.image, isAccesory: false)
         case .exit:
-            return .init(id: "4", title: "ио", image: Asset.accountOut.image, isAccesory: false)
+            return .init(id: "4", title: "Выход", image: Asset.accountOut.image, isAccesory: false)
         }
     }
     
