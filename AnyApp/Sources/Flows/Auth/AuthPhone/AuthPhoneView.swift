@@ -5,7 +5,10 @@ import SnapKit
 
 final class AuthPhoneView: BackgroundPrimary {
     
-    var onAuth: VoidHandler?
+    var onAuth: StringHandler?
+    
+    var phoneField = PhoneTextField(placeholder: "Телефон")
+        .height(52)
     
     override func setup() {
         super.setup()
@@ -14,7 +17,8 @@ final class AuthPhoneView: BackgroundPrimary {
         actionButton = ButtonPrimary(title: Entrance.enter)
             .height(52)
             .onTap { [weak self] in
-                self?.onAuth?()
+                guard let self = self , let phone = self.phoneField.text else { return }
+                self.onAuth?(phone)
             }
     }
     
@@ -22,8 +26,7 @@ final class AuthPhoneView: BackgroundPrimary {
         VStack( alignment: .fill, spacing: 21) {
             ImageView(image: Asset.logo.image)
                 .size(CGSize(width: 53, height: 59))
-            PhoneTextField(placeholder: "Телефон")
-                .height(52)
+           phoneField
             FlexibleSpacer()
         }
         .layoutMargins(.all(16))

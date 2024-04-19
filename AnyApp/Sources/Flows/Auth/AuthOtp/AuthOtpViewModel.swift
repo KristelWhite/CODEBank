@@ -3,6 +3,8 @@ import Combine
 
 final class AuthOtpViewModel {
 
+    typealias ConfigModel = AuthOtpConfigModel
+
     enum Input {
         case otpEntered
     }
@@ -13,15 +15,18 @@ final class AuthOtpViewModel {
 
     var onOutput: ((Output) -> Void)?
 
+    private let configModel: ConfigModel
     private let authRequestManager: AuthRequestManagerAbstract
     private let appSession: AppSession
 
     private var cancellables = Set<AnyCancellable>()
 
     init(
+        configModel: ConfigModel,
         authRequestManager: AuthRequestManagerAbstract,
         appSession: AppSession
     ) {
+        self.configModel = configModel
         self.authRequestManager = authRequestManager
         self.appSession = appSession
     }

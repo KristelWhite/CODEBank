@@ -12,6 +12,8 @@ import AppIndependent
 import SwinjectAutoregistration
 
 final class ProfileFlowCoordinator: Coordinator {
+    
+    var finishFlow: DefaultFinishHandler?
 
     // MARK: - Private Properties
 
@@ -23,7 +25,7 @@ final class ProfileFlowCoordinator: Coordinator {
         self.init(router: rootRouter)
     }
 
-    func mainController() -> UIViewController? {
+    func profileController() -> UIViewController? {
         let controller = resolver ~> ProfileController.self 
         router.setRootModule(controller)
         return router.rootController

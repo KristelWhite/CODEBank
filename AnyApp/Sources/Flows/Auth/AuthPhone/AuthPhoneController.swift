@@ -6,7 +6,7 @@ final class AuthPhoneController: TemplateViewController<AuthPhoneView> {
     typealias ViewModel = AuthPhoneViewModel
 
     enum Event {
-        case otp
+        case otp(AuthOtpConfigModel)
     }
 
     var onEvent: ((Event) -> Void)?
@@ -24,14 +24,14 @@ final class AuthPhoneController: TemplateViewController<AuthPhoneView> {
     }
 
     private func setupBindings() {
-        rootView.onAuth = { [weak self] in
-            self?.viewModel.handle(.phoneEntered)
+        rootView.onAuth = { [weak self] phone in
+            self?.viewModel.handle(.phoneEntered(phone))
         }
 
         viewModel.onOutput = { [weak self] output in
             switch output {
-            case .otp:
-                self?.onEvent?(.otp)
+            case .otp(let configModel):
+                self?.onEvent?(.otp(configModel))
             }
         }
     }
