@@ -22,7 +22,7 @@ final class AuthOtpView: BackgroundPrimary {
 
     private func body() -> UIView {
         VStack {
-            Spacer(.px16)
+//            Spacer(.px16)
             Label(text: "На ваш номер отправлено SMS с кодом подтверждения", foregroundStyle: .textPrimary, fontStyle: .body2)
                 .multiline()
             Spacer(.px24)
