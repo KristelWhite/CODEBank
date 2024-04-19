@@ -39,6 +39,8 @@ public enum ForegroundStyle {
     case indicatorContentError
     case indicatorContentSuccess
     case indicatorcontentDone
+    
+    case contentTertiary
 }
 
 // Defines borderColor
@@ -144,6 +146,9 @@ public extension ForegroundStyle {
             return Palette.IndicatorContent.success
         case .indicatorcontentDone:
             return Palette.IndicatorContent.done
+        case .contentTertiary:
+            return Palette.Content.tertiary
+
         }
     }
 }

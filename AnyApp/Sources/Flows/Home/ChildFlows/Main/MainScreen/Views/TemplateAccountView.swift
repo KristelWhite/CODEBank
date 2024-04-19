@@ -15,8 +15,10 @@ final class TemplateAccountView: BackgroundPrimary {
 
     private let titleLabel = Label(foregroundStyle: .textPrimary, fontStyle: .body2)
     private let valueLabel = Label(foregroundStyle: .contentAccentPrimary, fontStyle: .body2)
-    private let image = ImageView().size(CGSize(width: 40, height: 40))
+    private let image = ImageView()
+        .size(CGSize(width: 40, height: 40))
     private let button = BaseBrandButton(image: Asset.chevronUp.image)
+        .foregroundStyle(.contentTertiary)
     
     private var props: Props?
 

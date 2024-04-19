@@ -22,7 +22,9 @@ enum Settings: CaseIterable {
     var description: TemplateSettingsView.Props {
         switch self {
         case .aboutApp:
-            return .init(id: "1", title: "О приложении", image: Asset.settings.image, isAccesory: true)
+            return .init(id: "1", title: "О приложении", image: Asset.settings.image, isAccesory: true){ _ in
+                
+            }
         case .theme:
             return .init(id: "2", title: "Тема приложения", image: Asset.moonStars.image , isAccesory: true)
         case .support:

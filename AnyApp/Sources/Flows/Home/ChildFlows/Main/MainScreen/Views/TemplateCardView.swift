@@ -14,7 +14,10 @@ final class TemplateCardView: BackgroundPrimary {
     // MARK: - Private Properties
 
     private let titleLabel = Label(foregroundStyle: .textPrimary, fontStyle: .body2)
-    private let image = ImageView(image: Asset.input.image).size(CGSize(width: 24, height: 24))
+    private let image = ImageView(image: Asset.input.image)
+        .size(CGSize(width: 24, height: 24))
+        .foregroundStyle(.contentTertiary)
+
     private let stateLabel = Label(foregroundStyle: .textSecondary, fontStyle: .caption1)
     
     private var props: Props?

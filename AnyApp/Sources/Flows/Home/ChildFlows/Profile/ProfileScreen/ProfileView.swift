@@ -22,6 +22,9 @@ final class ProfileView: BackgroundPrimary {
             ForEach(collection: settings, alignment: .fill) {
                 TemplateSettingsView()
                     .configured(with: $0.description)
+                    .onTap {
+                        
+                    }
             }
             FlexibleSpacer()
             ButtonPrimary(title: "Разлогиниться")

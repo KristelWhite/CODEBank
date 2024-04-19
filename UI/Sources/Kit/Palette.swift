@@ -19,6 +19,7 @@ public enum Palette {
                 return UIColor(hex: 0xFFFFFF)
             }
         }
+
         public static var backgroundSecondary: UIColor { backgroundSecondary(forTheme: currentTheme) }
         public static func backgroundSecondary(forTheme theme: Theme) -> UIColor {
             switch theme {
