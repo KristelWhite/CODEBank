@@ -34,6 +34,35 @@ final class ProfileController: TemplateViewController<ProfileView> {
         rootView.onTheme = { [weak self] in
             self?.onEvent?(.onTheme)
         }
+        rootView.support = { [weak self] in
+            self?.showCallConfirmation()
+        }
+    }
+}
+// MARK: - Support Call
+extension ProfileController {
+    
+    func showCallConfirmation() {
+        let phone = "8 (800) 000-00-00"
+        let actionSheet = UIAlertController(title: "Звонок в службу поддержки", message: nil, preferredStyle: .actionSheet)
+        let callAction = UIAlertAction(title: "\(phone)", style: .default) { (action) in
+            self.makeCall(to: phone)
+        }
+        let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
+//        callAction.setValue( UIColor.black, forKey: "titleTextColor")
+//        cancelAction.setValue( UIColor.black, forKey: "titleTextColor")
         
+        actionSheet.addAction(callAction)
+        actionSheet.addAction(cancelAction)
+        
+        present(actionSheet, animated: true)
+    }
+    
+    func makeCall(to phone: String) {
+        if let phoneURL = URL(string: "tel://\(phone)") {
+            if UIApplication.shared.canOpenURL(phoneURL) {
+                UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+            }
+        }
     }
 }
