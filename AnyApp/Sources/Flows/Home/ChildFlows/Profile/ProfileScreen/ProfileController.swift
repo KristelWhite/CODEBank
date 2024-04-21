@@ -7,6 +7,7 @@ final class ProfileController: TemplateViewController<ProfileView> {
     
     enum Event {
         case aboutApp
+        case onTheme
     }
 
     var onEvent: ((Event) -> Void)?
@@ -29,7 +30,10 @@ final class ProfileController: TemplateViewController<ProfileView> {
         }
         rootView.onAboutApp = { [weak self] in
             self?.onEvent?(.aboutApp)
-            
         }
+        rootView.onTheme = { [weak self] in
+            self?.onEvent?(.onTheme)
+        }
+        
     }
 }

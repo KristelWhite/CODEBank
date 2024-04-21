@@ -34,6 +34,8 @@ final class ProfileFlowCoordinator: Coordinator {
             switch event {
             case .aboutApp:
                 self?.showAboutApp()
+            case .onTheme:
+                self?.showTheme()
             }
         }
         router.setRootModule(controller)
@@ -44,6 +46,13 @@ final class ProfileFlowCoordinator: Coordinator {
         let controller = resolver ~> (AboutAppController.self)
         
         router.push(controller)
+    }
+    
+    func showTheme() {
+        let controller = resolver ~> (ThemeController.self)
+        
+        router.push(controller)
+        
     }
 }
 

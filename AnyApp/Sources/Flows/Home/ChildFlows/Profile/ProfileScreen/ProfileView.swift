@@ -6,6 +6,7 @@ final class ProfileView: BackgroundPrimary {
 
     var onLogout: VoidHandler?
     var onAboutApp: VoidHandler?
+    var onTheme: VoidHandler?
     
     
     var settings: [Settings] = [.aboutApp, .theme, .support, .exit]
@@ -20,15 +21,20 @@ final class ProfileView: BackgroundPrimary {
     func handle(with settings: Settings) -> TemplateSettingsView.Props {
         switch settings {
         case .aboutApp:
-            return .init(id: "1", title: "О приложении", image: Asset.settings.image, isAccesory: true){ _ in
-                self.onAboutApp?()
+            return .init(id: "1", title: "О приложении", image: Asset.settings.image, isAccesory: true){ [weak self] _ in
+                self?.onAboutApp?()
             }
         case .theme:
-            return .init(id: "2", title: "Тема приложения", image: Asset.moonStars.image, isAccesory: true)
+            return .init(id: "2", title: "Тема приложения", image: Asset.moonStars.image, isAccesory: true){ [weak self] _ in
+                self?.onTheme?()
+                
+            }
         case .support:
             return .init(id: "3", title: "Служба поддержки", image: Asset.phoneCall.image, isAccesory: false)
         case .exit:
-            return .init(id: "4", title: "Выход", image: Asset.accountOut.image, isAccesory: false)
+            return .init(id: "4", title: "Выход", image: Asset.accountOut.image, isAccesory: false){ [weak self] _ in
+                self?.onLogout?()
+            }
         }
     }
     override func setup() {
@@ -45,10 +51,6 @@ final class ProfileView: BackgroundPrimary {
                     .configured(with: (self?.handle(with: $0))!)
             }
             FlexibleSpacer()
-            ButtonPrimary(title: "Разлогиниться")
-                .onTap { [weak self] in
-                    self?.onLogout?()
-                }
         }
         .layoutMargins(.make(vInsets: 16, hInsets: 16))
     }
