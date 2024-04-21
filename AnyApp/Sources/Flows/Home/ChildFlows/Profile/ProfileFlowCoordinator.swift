@@ -14,21 +14,36 @@ import SwinjectAutoregistration
 final class ProfileFlowCoordinator: Coordinator {
     
     var finishFlow: DefaultFinishHandler?
-
+    
+    
+    
     // MARK: - Private Properties
-
+    
     private let appSession: AppSession = resolver ~> AppSession.self
-
+    
     // MARK: - ProfileFlowCoordinator
-
+    
     public convenience init(rootRouter: RouterAbstract) {
         self.init(router: rootRouter)
     }
-
+    
     func profileController() -> UIViewController? {
-        let controller = resolver ~> ProfileController.self 
+        let controller = resolver ~> ProfileController.self
+        
+        controller.onEvent = { [weak self] event in
+            switch event {
+            case .aboutApp:
+                self?.showAboutApp()
+            }
+        }
         router.setRootModule(controller)
         return router.rootController
+    }
+    
+    func showAboutApp() {
+        let controller = resolver ~> (AboutAppController.self)
+        
+        router.push(controller)
     }
 }
 

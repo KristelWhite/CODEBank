@@ -4,6 +4,12 @@ import UIKit
 final class ProfileController: TemplateViewController<ProfileView> {
 
     typealias ViewModel = ProfileViewModel
+    
+    enum Event {
+        case aboutApp
+    }
+
+    var onEvent: ((Event) -> Void)?
 
     private var viewModel: ViewModel!
 
@@ -20,6 +26,10 @@ final class ProfileController: TemplateViewController<ProfileView> {
     private func setupBindings() {
         rootView.onLogout = { [weak self] in
             self?.viewModel.handle(.logout)
+        }
+        rootView.onAboutApp = { [weak self] in
+            self?.onEvent?(.aboutApp)
+            
         }
     }
 }

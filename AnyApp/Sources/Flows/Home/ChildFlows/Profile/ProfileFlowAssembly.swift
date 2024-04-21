@@ -37,6 +37,11 @@ final class ProfileFlowAssembly: Assembly, Identifiable {
             let viewModel = ProfileViewModel(appSession: resolver ~> AppSession.self)
             return ProfileController(viewModel: viewModel)
         }
+        
+        container.register(AboutAppController.self) { resolver in
+            let viewModel = AboutAppViewModel()
+            return AboutAppController(viewModel: viewModel)
+        }
     }
 
     func loaded(resolver: Resolver) {

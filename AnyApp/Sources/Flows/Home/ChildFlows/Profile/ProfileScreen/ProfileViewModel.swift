@@ -2,6 +2,11 @@ import Services
 import Combine
 
 final class ProfileViewModel {
+    
+    enum Output {
+//        case content(Props)
+        case aboutApp
+    }
 
     enum Input {
         case logout

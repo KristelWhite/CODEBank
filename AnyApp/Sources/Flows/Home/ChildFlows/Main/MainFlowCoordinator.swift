@@ -30,6 +30,14 @@ final class MainFlowCoordinator: Coordinator {
 
     func mainController() -> UIViewController? {
         let controller = resolver ~> MainController.self
+        
+        controller.onEvent = { [weak self] event in
+            switch event {
+            case .selectCard(with: let id):
+                break
+            }
+        }
+        
         innerRouter.setRootModule(controller)
         return innerRouter.rootController
     }

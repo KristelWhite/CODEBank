@@ -8,6 +8,7 @@ final class MainViewModel {
 
     enum Output {
         case content(Props)
+        case selectCard(with: String)
     }
 
     enum Input {
@@ -43,6 +44,8 @@ final class MainViewModel {
                     .header(.init(title: "!Accounts")),
                     .account(.init(id: "1", title: "!Account 1", value: "762348724,00", currency: .ruble) { id in
                         SnackCenter.shared.showSnack(withProps: .init(message: "Account pressed with \(id)"))
+                        self?.onOutput?(.selectCard(with: id))
+                        
                     }),
                     .card(.init(id: "1", title: "!Card 1", state: .closed, cardNumber: "9874", paymentSysem: .masterCard ) { id in
                         SnackCenter.shared.showSnack(withProps: .init(message: "Card pressed with \(id)"))

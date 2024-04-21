@@ -4,6 +4,13 @@ import UIKit
 final class MainController: TemplateViewController<MainView> {
 
     typealias ViewModel = MainViewModel
+    
+    enum Event {
+        case selectCard(with: String)
+    }
+
+    var onEvent: ((Event) -> Void)?
+
 
     private var viewModel: ViewModel!
 
@@ -32,6 +39,8 @@ final class MainController: TemplateViewController<MainView> {
             switch output {
             case .content(let props):
                 self?.rootView.configured(with: props)
+            case .selectCard(with: let id):
+                self?.onEvent?(.selectCard(with: id))
             }
         }
 

@@ -5,11 +5,32 @@ import AppIndependent
 final class ProfileView: BackgroundPrimary {
 
     var onLogout: VoidHandler?
+    var onAboutApp: VoidHandler?
     
     
     var settings: [Settings] = [.aboutApp, .theme, .support, .exit]
    
+    enum Settings: CaseIterable {
+        case aboutApp
+        case theme
+        case support
+        case exit
+    }
 
+    func handle(with settings: Settings) -> TemplateSettingsView.Props {
+        switch settings {
+        case .aboutApp:
+            return .init(id: "1", title: "О приложении", image: Asset.settings.image, isAccesory: true){ _ in
+                self.onAboutApp?()
+            }
+        case .theme:
+            return .init(id: "2", title: "Тема приложения", image: Asset.moonStars.image, isAccesory: true)
+        case .support:
+            return .init(id: "3", title: "Служба поддержки", image: Asset.phoneCall.image, isAccesory: false)
+        case .exit:
+            return .init(id: "4", title: "Выход", image: Asset.accountOut.image, isAccesory: false)
+        }
+    }
     override func setup() {
         super.setup()
         body().embed(in: self)
@@ -19,19 +40,17 @@ final class ProfileView: BackgroundPrimary {
         VStack {
             headerView()
             Spacer(.custom(length: 50))
-            ForEach(collection: settings, alignment: .fill) {
+            ForEach(collection: settings, alignment: .fill) { [weak self] in
                 TemplateSettingsView()
-                    .configured(with: $0.description)
-                    .onTap {
-                        
-                    }
+                    .configured(with: (self?.handle(with: $0))!)
             }
             FlexibleSpacer()
             ButtonPrimary(title: "Разлогиниться")
                 .onTap { [weak self] in
                     self?.onLogout?()
                 }
-        }.layoutMargins(.make(vInsets: 16, hInsets: 16))
+        }
+        .layoutMargins(.make(vInsets: 16, hInsets: 16))
     }
     
     private func headerView() -> UIView {

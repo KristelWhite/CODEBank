@@ -15,7 +15,7 @@ final class TemplateSettingsView: BackgroundPrimary {
 
     private let titleLabel = Label(foregroundStyle: .textPrimary, fontStyle: .body2)
     private let image = ImageView().size(CGSize(width: 24, height: 24), priority: .required)
-    private let accessoryImage = ImageView(image: Asset.chevronRight.image).size(CGSize(width: 24, height: 24),priority: .required)
+    private let accessoryImage = ImageView(image: Asset.chevronRight.image).size(CGSize(width: 24, height: 24), priority: .required)
     
     private var props: Props?
 

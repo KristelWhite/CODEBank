@@ -70,9 +70,5 @@ private extension HomeFlowCoordinator {
         addDependency(coordinator)
         
         return coordinator.profileController()
-//        let viewModel = ProfileViewModel(appSession: resolver ~> AppSession.self)
-//        let controller = ProfileController(viewModel: viewModel)
-//        controller.tabBarItem = .init(title: "Профиль", image: UIImage(systemName: "star"), selectedImage: UIImage(systemName: "star"))
-//        return controller
     }
 }
