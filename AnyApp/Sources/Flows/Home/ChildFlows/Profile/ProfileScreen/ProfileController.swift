@@ -26,7 +26,7 @@ final class ProfileController: TemplateViewController<ProfileView> {
 
     private func setupBindings() {
         rootView.onLogout = { [weak self] in
-            self?.viewModel.handle(.logout)
+            self?.showExitConfirmation()
         }
         rootView.onAboutApp = { [weak self] in
             self?.onEvent?(.aboutApp)
@@ -65,4 +65,24 @@ extension ProfileController {
             }
         }
     }
+}
+// MARK: - Exit Alert
+extension ProfileController {
+    
+    func showExitConfirmation() {
+        let alertController = UIAlertController(title: "Вы точно хотите выйти?", message: nil, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel) { action in
+        }
+
+        let exitAction = UIAlertAction(title: "Выйти", style: .destructive) { [weak self] action in
+            self?.viewModel.handle(.logout)
+        }
+    
+        alertController.addAction(cancelAction)
+        alertController.addAction(exitAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+
+    
 }
