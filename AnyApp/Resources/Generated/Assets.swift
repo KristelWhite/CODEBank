@@ -159,6 +159,7 @@ public enum Asset {
   public static let whitePlusDots = ImageAsset(name: "white_plus dots")
   public static let icon3 = ImageAsset(name: "@icon-3")
   public static let messages = ImageAsset(name: "Messages")
+  public static let logoLarge = ImageAsset(name: "logo large")
   public static let logo = ImageAsset(name: "logo")
   public static let logoSmall = ImageAsset(name: "logo_small")
   public static let bankCard = ImageAsset(name: "BankCard")

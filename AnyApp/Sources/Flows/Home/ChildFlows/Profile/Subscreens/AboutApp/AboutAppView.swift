@@ -17,11 +17,12 @@ final class AboutAppView: BackgroundPrimary {
     }
     
     private func body() -> UIView {
-        VStack( alignment: .fill, spacing: 21) {
-            ImageView(image: Asset.logo.image)
-                .size(CGSize(width: 53, height: 59))
+        VStack(alignment: .center, spacing: 16) {
+            ImageView(image: Asset.logoLarge.image)
+//                .size(CGSize(width: 171 , height: 192))
+            Label(text: "Версия 0.0.1 beta", foregroundStyle: .contentAccentSecondary, fontStyle: .caption2)
             FlexibleSpacer()
         }
-        .layoutMargins(.all(16))
+        .layoutMargins(.make(vInsets: 99))
     }
 }

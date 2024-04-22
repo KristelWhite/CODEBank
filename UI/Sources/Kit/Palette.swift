@@ -80,7 +80,7 @@ public enum Palette {
         public static func accentSecondary(forTheme theme: Theme) -> UIColor {
             switch theme {
             case .dark:
-                return UIColor(hex: 0x6C78E6)
+                return UIColor(hex: 0xF678BA)
             case .light:
                 return UIColor(hex: 0xFC5DA8)
             }

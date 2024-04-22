@@ -34,7 +34,7 @@ final class ProfileController: TemplateViewController<ProfileView> {
         rootView.onTheme = { [weak self] in
             self?.onEvent?(.onTheme)
         }
-        rootView.support = { [weak self] in
+        rootView.onSupport = { [weak self] in
             self?.showCallConfirmation()
         }
     }

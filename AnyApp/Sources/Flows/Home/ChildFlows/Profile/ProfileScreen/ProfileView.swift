@@ -7,7 +7,7 @@ final class ProfileView: BackgroundPrimary {
     var onLogout: VoidHandler?
     var onAboutApp: VoidHandler?
     var onTheme: VoidHandler?
-    var support: VoidHandler?
+    var onSupport: VoidHandler?
     
     
     var settings: [Settings] = [.aboutApp, .theme, .support, .exit]
@@ -32,7 +32,7 @@ final class ProfileView: BackgroundPrimary {
             }
         case .support:
             return .init(id: "3", title: "Служба поддержки", image: Asset.phoneCall.image, isAccesory: false) { [weak self] _ in
-                self?.support?()
+                self?.onSupport?()
             }
         case .exit:
             return .init(id: "4", title: "Выход", image: Asset.accountOut.image, isAccesory: false) { [weak self] _ in
