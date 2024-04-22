@@ -29,8 +29,9 @@ final class ProfileFlowAssembly: Assembly, Identifiable {
         .inObjectScope(.weak)
 
         container.register(ProfileFlowCoordinator.self) { resolver in
+            let innerRouter = resolver ~> (Router.self, name: RouterName.profile)
             let router = resolver ~> (Router.self, name: RouterName.profile)
-            return ProfileFlowCoordinator(rootRouter: router)
+            return ProfileFlowCoordinator(rootRouter: router, innerRouter: innerRouter) 
         }
 
         container.register(ProfileController.self) { resolver in

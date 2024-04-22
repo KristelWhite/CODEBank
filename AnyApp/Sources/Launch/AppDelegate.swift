@@ -34,11 +34,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    private func configureBackButton(){
+    private func configureBackButton() {
         let backImage = Asset.back.image.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 8))
         UINavigationBar.appearance().backIndicatorImage = backImage
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
-        UINavigationBar.appearance().tintColor = .white
+        UINavigationBar.appearance().tintColor = Palette.Button.buttonSecondary
         //        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -8, vertical: 0), for: .default)
     }
 

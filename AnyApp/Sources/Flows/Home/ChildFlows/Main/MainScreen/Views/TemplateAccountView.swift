@@ -17,8 +17,10 @@ final class TemplateAccountView: BackgroundPrimary {
     private let valueLabel = Label(foregroundStyle: .contentAccentPrimary, fontStyle: .body2)
     private let image = ImageView()
         .size(CGSize(width: 40, height: 40))
-    private let button = BaseBrandButton(image: Asset.chevronUp.image)
-        .foregroundStyle(.contentTertiary)
+//    private let button = BaseBrandButton(image: Asset.chevronUp.image.withTintColor(Palette.Content.tertiary))
+//        .foregroundStyle(.contentSecondary)
+    private let image2 = ImageView(image: Asset.chevronUp.image, foregroundStyle: .contentTertiary)
+        .backgroundColor(Palette.Content.secondary)
     
     private var props: Props?
 
@@ -46,9 +48,8 @@ final class TemplateAccountView: BackgroundPrimary {
             }
             VStack {
                 Spacer(.px6)
-                button
+                image2
                     .size(.init(width: 40, height: 28), priority: .required)
-                    .backgroundColor(Palette.Content.secondary)
                     .cornerRadius(4)
                 Spacer(.px8)
             }

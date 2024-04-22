@@ -21,10 +21,21 @@ final class ProfileFlowCoordinator: Coordinator {
     
     private let appSession: AppSession = resolver ~> AppSession.self
     
+    private let innerRouter: RouterAbstract
+    
     // MARK: - ProfileFlowCoordinator
     
-    public convenience init(rootRouter: RouterAbstract) {
-        self.init(router: rootRouter)
+
+    public init(
+        rootRouter: RouterAbstract,
+        innerRouter: RouterAbstract
+    ) {
+        self.innerRouter = innerRouter
+        super.init(router: rootRouter)
+    }
+
+    required init(router: any RouterAbstract) {
+        fatalError("init(router:) has not been implemented")
     }
     
     func profileController() -> UIViewController? {

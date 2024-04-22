@@ -55,6 +55,8 @@ final class TemplateCardView: BackgroundPrimary {
                 ZStack {
                     VStack {
                         ImageView(image: Asset.bankCard.image)
+                            .cornerRadius(4)
+                            .clipsToBounds(true)
                     }
                     VStack(alignment: .trailing, distribution: .fillEqually, spacing: 1) {
                         Label(text: props.cardNumber, foregroundStyle: props.state.colorCardNumber, fontStyle: .cardNumber)

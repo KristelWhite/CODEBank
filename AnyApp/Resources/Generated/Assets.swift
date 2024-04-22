@@ -167,6 +167,7 @@ public enum Asset {
   public static let raiffaizen = ImageAsset(name: "Raiffaizen")
   public static let sberbank = ImageAsset(name: "Sberbank")
   public static let vtb24 = ImageAsset(name: "VTB24")
+  public static let rub = ImageAsset(name: "rub")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 
