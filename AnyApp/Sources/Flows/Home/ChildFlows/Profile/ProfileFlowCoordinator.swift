@@ -49,20 +49,20 @@ final class ProfileFlowCoordinator: Coordinator {
                 self?.showTheme()
             }
         }
-        router.setRootModule(controller)
-        return router.rootController
+        innerRouter.setRootModule(controller)
+        return innerRouter.rootController
     }
     
     func showAboutApp() {
         let controller = resolver ~> (AboutAppController.self)
-        
-        router.push(controller)
+        controller.hidesBottomBarWhenPushed = true
+        innerRouter.push(controller)
     }
     
     func showTheme() {
         let controller = resolver ~> (ThemeController.self)
-        
-        router.push(controller)
+        controller.hidesBottomBarWhenPushed = true
+        innerRouter.push(controller)
         
     }
 }

@@ -15,12 +15,8 @@ final class TemplateAccountView: BackgroundPrimary {
 
     private let titleLabel = Label(foregroundStyle: .textPrimary, fontStyle: .body2)
     private let valueLabel = Label(foregroundStyle: .contentAccentPrimary, fontStyle: .body2)
-    private let image = ImageView()
-        .size(CGSize(width: 40, height: 40))
-//    private let button = BaseBrandButton(image: Asset.chevronUp.image.withTintColor(Palette.Content.tertiary))
-//        .foregroundStyle(.contentSecondary)
-    private let image2 = ImageView(image: Asset.chevronUp.image, foregroundStyle: .contentTertiary)
-        .backgroundColor(Palette.Content.secondary)
+    private let image = ImageView(foregroundStyle: .contentAccentTertiary)
+    private let accessoryImage = ImageView(image: Asset.chevronUp.image, foregroundStyle: .contentTertiary)
     
     private var props: Props?
 
@@ -36,9 +32,13 @@ final class TemplateAccountView: BackgroundPrimary {
     private func body(with props: Props) -> UIView {
         HStack(spacing: 16) {
             VStack {
-                image
-                    .image(props.currency.imageValue)
-                Spacer(.px2)
+                BackgroundView {
+                    image
+                        .image(props.currency.imageValue)
+                }
+                .backgroundStyle(.contentSecondary)
+                .size(.init(width: 40, height: 40), priority: .required)
+                .cornerRadius(20)
             }
             VStack(distribution: .fillEqually, spacing: 2) {
                 titleLabel
@@ -47,15 +47,18 @@ final class TemplateAccountView: BackgroundPrimary {
                     .text(props.value)
             }
             VStack {
-                Spacer(.px6)
-                image2
-                    .size(.init(width: 40, height: 28), priority: .required)
-                    .cornerRadius(4)
-                Spacer(.px8)
+                FlexibleGroupedSpacer()
+                BackgroundView {
+                    accessoryImage
+                }
+                .backgroundStyle(.contentSecondary)
+                .size(.init(width: 40, height: 28), priority: .required)
+                .cornerRadius(4)
+                FlexibleGroupedSpacer()
             }
-            
+            .linkGroupedSpacers()
         }
-        .layoutMargins(.init(top: 16, left: 0, bottom: 14, right: 0))
+        .layoutMargins(.make(vInsets: 16))
         .onTap { [weak self] in
             self?.props?.onTap?(props.id)
         }

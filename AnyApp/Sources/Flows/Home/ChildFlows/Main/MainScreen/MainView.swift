@@ -7,7 +7,7 @@ final class MainView: BackgroundPrimary {
     var onNewProduct: VoidHandler?
 
     private let tableView = BaseTableView()
-    private let button = ButtonPrimary(title: "!Новый продукт")
+    private let button = ButtonPrimary(title: "Открыть новый счет или продукт")
     private lazy var dataSource = MainDataSource(tableView: tableView)
 
     override func setup() {

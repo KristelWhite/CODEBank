@@ -19,6 +19,7 @@ final class AboutAppView: BackgroundPrimary {
     private func body() -> UIView {
         VStack(alignment: .center, spacing: 16) {
             ImageView(image: Asset.logoLarge.image)
+                .foregroundStyle(.contentAccentTertiary)
 //                .size(CGSize(width: 171 , height: 192))
             Label(text: "Версия 0.0.1 beta", foregroundStyle: .contentAccentSecondary, fontStyle: .caption2)
             FlexibleSpacer()

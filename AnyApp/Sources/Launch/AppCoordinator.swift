@@ -71,7 +71,6 @@ final class AppCoordinator: BaseCoordinator {
             }
         }
         removeDependency(of: HomeFlowCoordinator.self)
-//        removeAllDependencies()
         addDependency(coordinator)
         coordinator.start()
     }
@@ -80,7 +79,7 @@ final class AppCoordinator: BaseCoordinator {
         DIContainer.shared.assemble(assembly: HomeAssembly())
         let coordinator = resolver ~> (HomeFlowCoordinator.self, router)
         
-//        removeAllDependencies()
+        removeDependency(of: AuthFlowCoordinator.self)
         addDependency(coordinator)
         coordinator.start()
     }

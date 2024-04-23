@@ -33,25 +33,24 @@ final class TemplateCardView: BackgroundPrimary {
     
     
     private func body(with props: Props) -> UIView {
-        HStack(spacing: 16) {
+        HStack {
+            Spacer(.px8)
             VStack {
-                Spacer(.px8)
-                HStack {
-                    Spacer(.px8)
+                FlexibleGroupedSpacer()
+                
                     image
-                    Spacer(.custom(length: 7))
-                }
-                Spacer(.px8)
+                
+                FlexibleGroupedSpacer()
             }
+            .linkGroupedSpacers()
+            Spacer(.px24)
             VStack(distribution: .fillEqually, spacing: 3) {
                 titleLabel
                     .text(props.title)
-//                stateLabel
-//                    .text(props.state)
                 props.state.label
             }
             VStack {
-                Spacer(.px6)
+                FlexibleGroupedSpacer()
                 ZStack {
                     VStack {
                         ImageView(image: Asset.bankCard.image)
@@ -65,10 +64,13 @@ final class TemplateCardView: BackgroundPrimary {
                     .layoutMargins(.init(top: 2, left: 4, bottom: 1, right: 4))
                 }
                 .size(CGSize(width: 40, height: 28), priority: .required)
-                Spacer(.custom(length: 5))
+                FlexibleGroupedSpacer()
             }
+            .height(40, priority: .required)
+            .linkGroupedSpacers()
         }
-        .layoutMargins(.init(top: 16, left: 0, bottom: 17, right: 0))
+//        .height(72)
+        .layoutMargins(.make(vInsets: 16))
         .onTap { [weak self] in
             self?.props?.onTap?(props.id)
         }

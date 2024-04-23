@@ -43,13 +43,15 @@ final class ThemeView: BackgroundPrimary {
     }
     
     private func body() -> UIView {
-        VStack {
-            ForEach(collection: themes, alignment: .fill, distribution: .fill, axis: .vertical) { [weak self] theme in
-                TemplateThemeView()
-                    .configured(with: (self?.handle(with: theme))!)
+        ScrollView {
+            VStack {
+                ForEach(collection: themes, alignment: .fill, distribution: .fill, axis: .vertical) { [weak self] theme in
+                    TemplateThemeView()
+                        .configured(with: (self?.handle(with: theme))!)
+                }
+                FlexibleSpacer()
             }
-            FlexibleSpacer()
+//            .layoutMargins(.all(16))
         }
-        .layoutMargins(.all(16))
     }
 }

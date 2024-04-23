@@ -7,12 +7,10 @@ final class TemplateDepositView: BackgroundPrimary {
     // MARK: - Private Properties
 
     private let titleLabel = Label(foregroundStyle: .textPrimary, fontStyle: .body2)
-//    private let descriptionLabel = Label(foregroundStyle: .textPrimary)
-//        .multiline()
     private let rateLabel = Label(foregroundStyle: .textTertiary, fontStyle: .caption2)
     private let dateLabel = Label(foregroundStyle: .textTertiary, fontStyle: .caption2)
     private let valueLabel = Label(foregroundStyle: .contentAccentPrimary, fontStyle: .body2)
-    private let image = ImageView().size(CGSize(width: 40, height: 40))
+    private let image = ImageView(foregroundStyle: .contentAccentTertiary)
     
     private var props: Props?
 
@@ -20,8 +18,6 @@ final class TemplateDepositView: BackgroundPrimary {
 
     override public func setup() {
         super.setup()
-//        cornerRadius(16)
-//        borderStyle(.template, width: 1)
     }
 
     // MARK: - Private methods
@@ -29,12 +25,20 @@ final class TemplateDepositView: BackgroundPrimary {
     
     private func body(with props: Props) -> UIView {
         HStack(spacing: 16) {
-            VStack { 
-                Spacer(.px2)
-                image
-                    .image(props.currency.imageValue)
-                Spacer(.px2)
+            VStack {
+                FlexibleGroupedSpacer()
+                BackgroundView {
+                    image
+                        .image(props.currency.imageValue)
+                        .foregroundStyle(.contentAccentTertiary)
+                }
+                .backgroundStyle(.contentSecondary)
+                .size(.init(width: 40, height: 40), priority: .required)
+                .cornerRadius(20)
+                FlexibleGroupedSpacer()
             }
+            .height(44)
+            .linkGroupedSpacers()
             VStack(distribution: .fillEqually, spacing: 4) {
                 HStack(distribution: .equalSpacing) {
                     titleLabel
