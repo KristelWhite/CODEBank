@@ -8,6 +8,12 @@ public enum Typography {
         weight: .bold,
         lineHeight: 41
     )
+    public static let title28 = TextStyle(
+        name: "title28",
+        size: 28,
+        weight: .medium,
+        lineHeight: 34
+    )
 
     public static let caption2 = TextStyle(
         name: "caption2",

@@ -18,6 +18,7 @@ public enum BackgroundStyle {
     case overlay
     case calendarPeriod
     case secondaryButton
+    case contentAccentTertiary
 }
 
 // Defines textColor and tintColor
@@ -53,6 +54,7 @@ public enum BorderStyle {
 // Defines font
 public enum FontStyle {
     case title
+    case title28
     case lageTitle
     case subtitle
     case subtitle2
@@ -112,6 +114,8 @@ public extension BackgroundStyle {
             return Palette.Diffrent.calendarPeriod
         case .secondaryButton:
             return Palette.Button.buttonSecondary
+        case .contentAccentTertiary:
+            return Palette.Content.accentTertiary
         }
     }
 }
@@ -199,6 +203,8 @@ public extension FontStyle {
             return Typography.cardNumber
         case .subtitle2:
             return Typography.subtitle2
+        case .title28:
+            return Typography.title28
         }
     }
 }

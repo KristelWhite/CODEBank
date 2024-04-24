@@ -72,3 +72,4 @@ final class PhoneTextField: TextField {
         attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: Palette.Text.tertiary, NSAttributedString.Key.font: Typography.body2?.font])
     }
 }
+
