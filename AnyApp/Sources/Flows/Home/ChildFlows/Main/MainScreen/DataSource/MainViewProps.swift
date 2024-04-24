@@ -9,7 +9,7 @@ struct MainViewProps {
         var items: [Item] {
             switch self {
             case .accounts(let items),
-                 .deposits(let items):
+                    .deposits(let items):
                 return items
             }
         }

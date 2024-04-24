@@ -30,15 +30,20 @@ final class MainFlowCoordinator: Coordinator {
 
     func mainController() -> UIViewController? {
         let controller = resolver ~> MainController.self
-        
         controller.onEvent = { [weak self] event in
             switch event {
             case .selectCard(with: let id):
+                self?.showDeposit()
                 break
             }
         }
-        
         innerRouter.setRootModule(controller)
         return innerRouter.rootController
     }
+    func showDeposit() {
+        let controller = resolver ~> (DepositController.self)
+        controller.hidesBottomBarWhenPushed = true
+        innerRouter.push(controller)
+    }
+    
 }

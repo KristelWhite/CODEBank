@@ -14,15 +14,15 @@ final class DepositView: BackgroundPrimary {
 
     private let tableView = BaseTableView()
     private let switchView = TemplateSwitchView()
-//    private lazy var dataSource = DepositDataSource(tableView: tableView)
+    private lazy var dataSource = DepositDataSource(tableView: tableView)
     
     var props: Props?
 
     override func setup() {
         super.setup()
         setupBindings()
-        guard let props = props else { return }
-        body(with: props).embed(in: self)
+//        guard let props = props else { return }
+//        body(with: props).embed(in: self)
     }
 
     private func body(with props: Props) -> UIView {
@@ -66,7 +66,7 @@ final class DepositView: BackgroundPrimary {
 }
 
 extension DepositView: ConfigurableView {
-    typealias Model = Props
+    typealias Model = DepositViewProps
     
     struct Props: Hashable {
         let id: String
@@ -90,8 +90,14 @@ extension DepositView: ConfigurableView {
         }
     }
 
-    func configure(with model: Props) {
-//        dataSource.apply(sections: model.sections)
+    func configure(with model: DepositViewProps) {
+        dataSource.apply(sections: model.sections)
     }
+    func configure(with model: Props) {
+        self.props = model
+        subviews.forEach { $0.removeFromSuperview() }
+        body(with: model).embed(in: self)
+    }
+    
 }
 

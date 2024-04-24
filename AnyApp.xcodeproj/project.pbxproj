@@ -127,6 +127,9 @@
 		63DA7A622BD8616500C42069 /* TemplateSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A612BD8616500C42069 /* TemplateSwitchView.swift */; };
 		63DA7A642BD91CA900C42069 /* TemplatePaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A632BD91CA900C42069 /* TemplatePaymentView.swift */; };
 		63DA7A662BD91ED800C42069 /* TemplateActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A652BD91ED800C42069 /* TemplateActionView.swift */; };
+		63DA7A692BD9218400C42069 /* DepositDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A682BD9218400C42069 /* DepositDataSource.swift */; };
+		63DA7A6B2BD9219C00C42069 /* DepositCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A6A2BD9219C00C42069 /* DepositCellFactory.swift */; };
+		63DA7A6D2BD925BD00C42069 /* TemplateHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A6C2BD925BD00C42069 /* TemplateHistoryView.swift */; };
 		63E55ED12BCD47D80014FEFC /* MainViewProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55EC52BCD47D80014FEFC /* MainViewProps.swift */; };
 		63E55ED22BCD47D80014FEFC /* MainDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55EC62BCD47D80014FEFC /* MainDataSource.swift */; };
 		63E55ED32BCD47D80014FEFC /* MainCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55EC72BCD47D80014FEFC /* MainCellFactory.swift */; };
@@ -510,6 +513,9 @@
 		63DA7A612BD8616500C42069 /* TemplateSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateSwitchView.swift; sourceTree = "<group>"; };
 		63DA7A632BD91CA900C42069 /* TemplatePaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplatePaymentView.swift; sourceTree = "<group>"; };
 		63DA7A652BD91ED800C42069 /* TemplateActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateActionView.swift; sourceTree = "<group>"; };
+		63DA7A682BD9218400C42069 /* DepositDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositDataSource.swift; sourceTree = "<group>"; };
+		63DA7A6A2BD9219C00C42069 /* DepositCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositCellFactory.swift; sourceTree = "<group>"; };
+		63DA7A6C2BD925BD00C42069 /* TemplateHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateHistoryView.swift; sourceTree = "<group>"; };
 		63E1126AC6A7AB8AC8CBD172 /* Pods-CommonPods-Services.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonPods-Services.release.xcconfig"; path = "Target Support Files/Pods-CommonPods-Services/Pods-CommonPods-Services.release.xcconfig"; sourceTree = "<group>"; };
 		63E55EC52BCD47D80014FEFC /* MainViewProps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewProps.swift; sourceTree = "<group>"; };
 		63E55EC62BCD47D80014FEFC /* MainDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainDataSource.swift; sourceTree = "<group>"; };
@@ -1274,11 +1280,11 @@
 		63DA7A572BD858AE00C42069 /* Deposite */ = {
 			isa = PBXGroup;
 			children = (
+				63DA7A672BD9214C00C42069 /* DataSource */,
 				63DA7A602BD8614F00C42069 /* View */,
 				63DA7A582BD858C900C42069 /* DepositView.swift */,
 				63DA7A5A2BD858E100C42069 /* DepositViewModel.swift */,
 				63DA7A5C2BD8591B00C42069 /* DepositController.swift */,
-				63DA7A5E2BD85D3E00C42069 /* DepositViewProps.swift */,
 			);
 			path = Deposite;
 			sourceTree = "<group>";
@@ -1289,8 +1295,19 @@
 				63DA7A612BD8616500C42069 /* TemplateSwitchView.swift */,
 				63DA7A632BD91CA900C42069 /* TemplatePaymentView.swift */,
 				63DA7A652BD91ED800C42069 /* TemplateActionView.swift */,
+				63DA7A6C2BD925BD00C42069 /* TemplateHistoryView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		63DA7A672BD9214C00C42069 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				63DA7A682BD9218400C42069 /* DepositDataSource.swift */,
+				63DA7A6A2BD9219C00C42069 /* DepositCellFactory.swift */,
+				63DA7A5E2BD85D3E00C42069 /* DepositViewProps.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 		63E55EC22BCD47D80014FEFC /* Main */ = {
@@ -2378,9 +2395,11 @@
 				63E55EDA2BCD47D80014FEFC /* MainFlowCoordinator.swift in Sources */,
 				63DA7A5D2BD8591B00C42069 /* DepositController.swift in Sources */,
 				10E588122BC04F4D00D05347 /* AuthPhoneController.swift in Sources */,
+				63DA7A692BD9218400C42069 /* DepositDataSource.swift in Sources */,
 				63E55EFD2BD5C36C0014FEFC /* TemplateThemeView.swift in Sources */,
 				3FBF1D8B7572FCB2720E545B /* Assets.swift in Sources */,
 				63DA7A642BD91CA900C42069 /* TemplatePaymentView.swift in Sources */,
+				63DA7A6B2BD9219C00C42069 /* DepositCellFactory.swift in Sources */,
 				63E55ED52BCD47D80014FEFC /* MainViewModel.swift in Sources */,
 				63DA7A5F2BD85D3E00C42069 /* DepositViewProps.swift in Sources */,
 				63DA7A662BD91ED800C42069 /* TemplateActionView.swift in Sources */,
@@ -2416,6 +2435,7 @@
 				63E55ED62BCD47D80014FEFC /* MainView.swift in Sources */,
 				C857169C978ED96F74AEF059 /* RouterName.swift in Sources */,
 				10E588302BC3F49100D05347 /* ProfileView.swift in Sources */,
+				63DA7A6D2BD925BD00C42069 /* TemplateHistoryView.swift in Sources */,
 				63DA7A592BD858C900C42069 /* DepositView.swift in Sources */,
 				63E55EF72BD586FD0014FEFC /* ThemeView.swift in Sources */,
 				122824B82AA65A48560D5030 /* StartUpAssembly.swift in Sources */,

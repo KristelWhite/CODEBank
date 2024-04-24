@@ -30,6 +30,10 @@ final class MainFlowAssembly: Assembly, Identifiable {
             let viewModel = MainViewModel()
             return MainController(viewModel: viewModel)
         }
+        container.register(DepositController.self) { resolver in
+            let viewModel = DepositViewModel()
+            return DepositController(viewModel: viewModel)
+        }
     }
 
     func loaded(resolver: Resolver) {
