@@ -35,8 +35,8 @@ final class DepositController: TemplateViewController<DepositView> {
 
     private func configureNavigationItem() {
         navigationItem.title = "Счета"
-        navigationController?.navigationBar.barTintColor = Palette.Surface.backgroundPrimary
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Palette.Text.primary]
+//        navigationController?.navigationBar.barTintColor = Palette.Surface.backgroundPrimary
+//        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Palette.Text.primary]
         
     }
 

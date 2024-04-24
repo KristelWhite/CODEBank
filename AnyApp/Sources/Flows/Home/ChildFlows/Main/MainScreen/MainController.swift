@@ -29,8 +29,8 @@ final class MainController: TemplateViewController<MainView> {
     private func configureNavigationItem() {
 //        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Главная"
-        navigationController?.navigationBar.barTintColor = Palette.Surface.backgroundPrimary
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Palette.Text.primary]
+//        navigationController?.navigationBar.barTintColor = Palette.Surface.backgroundPrimary
+//        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Palette.Text.primary]
         
     }
 

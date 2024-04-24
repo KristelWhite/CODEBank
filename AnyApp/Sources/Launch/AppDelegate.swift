@@ -38,7 +38,15 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         let backImage = Asset.back.image.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 8))
         UINavigationBar.appearance().backIndicatorImage = backImage
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
-        UINavigationBar.appearance().tintColor = Palette.Button.buttonSecondary
+        var backButtonColor = UIColor { traitCollection in
+            switch traitCollection.userInterfaceStyle {
+            case .dark:
+                return Palette.Button.buttonSecondary
+            default:
+                return Palette.Button.buttonSecondary
+            }
+        }
+        UINavigationBar.appearance().tintColor = backButtonColor
         //        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -8, vertical: 0), for: .default)
     }
 
