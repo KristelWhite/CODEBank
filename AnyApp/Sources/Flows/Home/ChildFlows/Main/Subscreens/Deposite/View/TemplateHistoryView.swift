@@ -14,10 +14,9 @@ final class TemplateHistoryView: BackgroundPrimary {
     // MARK: - Private Properties
 
     private let titleLabel = Label(foregroundStyle: .textPrimary, fontStyle: .body2)
-    private let rateLabel = Label(foregroundStyle: .textTertiary, fontStyle: .caption2)
-    private let dateLabel = Label(foregroundStyle: .textTertiary, fontStyle: .caption2)
-    private let valueLabel = Label(foregroundStyle: .contentAccentPrimary, fontStyle: .body2)
-    private let image = ImageView(foregroundStyle: .contentAccentTertiary)
+    private let dateLabel = Label(foregroundStyle: .textTertiary, fontStyle: .caption1)
+    private let valueLabel = Label(foregroundStyle: .indicatorcontentDone, fontStyle: .body2)
+    private let image = ImageView(foregroundStyle: .contentAccentPrimary)
     
     private var props: Props?
 
@@ -32,34 +31,25 @@ final class TemplateHistoryView: BackgroundPrimary {
     
     private func body(with props: Props) -> UIView {
         HStack(spacing: 16) {
-            VStack {
-                FlexibleGroupedSpacer()
-                BackgroundView {
-                    image
-                        .image(props.currency.imageValue)
-                        .foregroundStyle(.contentAccentTertiary)
-                }
-                .backgroundStyle(.contentSecondary)
-                .size(.init(width: 40, height: 40), priority: .required)
-                .cornerRadius(20)
-                FlexibleGroupedSpacer()
+            BackgroundView{
+                image
+                    .image(props.image)
             }
-            .height(44)
-            .linkGroupedSpacers()
-            VStack(distribution: .fillEqually, spacing: 4) {
+            .backgroundStyle(.contentSecondary)
+            .size(CGSize(width: 40, height: 40), priority: .required)
+            .cornerRadius(20)
+            VStack(distribution: .fillEqually, spacing: 2) {
                 HStack(distribution: .equalSpacing) {
-                    titleLabel
-                        .text(props.title)
-                    rateLabel
-                        .text(props.rate)
-                }
-                HStack(distribution: .equalSpacing) {
-                    valueLabel
-                        .text(props.value)
                     dateLabel
                         .text(props.date)
+                    valueLabel
+                        .foregroundStyle(props.isIncome ? .indicatorcontentDone : .indicatorContentError)
+                        .text(props.value)
                 }
+                titleLabel
+                    .text(props.title)
             }
+            
         }
         .layoutMargins(.make(vInsets: 14, hInsets: 0))
         .onTap { [weak self] in
@@ -79,10 +69,10 @@ extension TemplateHistoryView: ConfigurableView {
     struct Props: Hashable {
         let id: String
         let title: String
-        let rate: String
         let date: String
         let value: String
-        let currency: Currency
+        let image: UIImage
+        let isIncome: Bool
 
         var onTap: StringHandler?
 
@@ -94,9 +84,9 @@ extension TemplateHistoryView: ConfigurableView {
             hasher.combine(id)
             hasher.combine(title)
             hasher.combine(value)
-            hasher.combine(rate)
+            hasher.combine(image)
             hasher.combine(date)
-            hasher.combine(currency.textValue)
+            hasher.combine(isIncome)
         }
     }
 
