@@ -98,12 +98,12 @@ extension TemplateAccountView: ConfigurableView {
     typealias Model = Props
 
     struct Props: Hashable {
-        let id: String
+        let id: Int
         let title: String
         let value: String
         let currency: Currency
 
-        var onTap: StringHandler?
+        var onTap: IntHandler?
 
         public static func == (lhs: TemplateAccountView.Props, rhs: TemplateAccountView.Props) -> Bool {
             lhs.hashValue == rhs.hashValue

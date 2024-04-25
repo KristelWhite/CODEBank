@@ -11,7 +11,7 @@ public struct AccountInfoResponse: Decodable {
     public let number: String
     public let status: String
     public let balance: Double
-    public let currency: String
+    public let currency: Currency
     public let accountId: Int
 }
 

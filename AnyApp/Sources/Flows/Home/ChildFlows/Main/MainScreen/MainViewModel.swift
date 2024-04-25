@@ -9,6 +9,7 @@ final class MainViewModel {
     enum Output {
         case content(Props)
         case selectCard(with: String)
+        case selectAccount(with: Int)
     }
 
     enum Input {
@@ -16,6 +17,17 @@ final class MainViewModel {
     }
 
     var onOutput: ((Output) -> Void)?
+
+    private let coreRequestManager: CoreRequestManagerAbstract
+
+    private var cancellables = Set<AnyCancellable>()
+
+    init(
+        coreRequestManager: CoreRequestManagerAbstract
+    ) {
+        self.coreRequestManager = coreRequestManager
+    }
+
 
     func handle(_ input: Input) {
         switch input {
@@ -37,28 +49,85 @@ final class MainViewModel {
         ])))
 
         // request:
-        
-        var sections: [Props.Section] = []
-        
-//        var accountItems: [Props.Item] = []
-//        mainResponse.accounts.forEach {
-//            accountItems.append(.account(.init(id: $0.id, title: $0.name, value: "", currency: .dollar) { id in
-//                // 1
-//                guard let account = mainResponse.accounts.first(where: { $0.id == id }) else { return }
-//                // 2
-//                onOutput?(.selectCard(with: id))
-//                // tap on account
-//            }))
-//            $0.cards.forEach {
-//                accountItems.append(.card(.init(id: $0.id, title: "", state: .closed, cardNumber: "", paymentSysem: .masterCard) { id in
-//                    // tap on card
-//                }))
-//            }
+
+        let accountsPublisher = coreRequestManager.accountsList()
+            .eraseToAnyPublisher()
+        let depositsPublisher = coreRequestManager.depositsList()
+            .eraseToAnyPublisher()
+
+        Publishers.CombineLatest(accountsPublisher, depositsPublisher)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print("Произошла ошибка: \(error)")
+                }
+            }, receiveValue: { [weak self] accountsResponse, depositsResponse in
+                print("Аккаунты: \(accountsResponse)")
+                print("Депозиты: \(depositsResponse)")
+                self?.handleReceivedData(accounts: accountsResponse, deposits: depositsResponse)
+            })
+            .store(in: &cancellables)
+
+
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+//            self?.onOutput?(.content(.init(sections: [
+//                .accounts([
+//                    .header(.init(title: "!Accounts")),
+//                    .account(.init(id: 1, title: "!Account 1", value: "762348724,00", currency: .ruble) { id in
+//                        SnackCenter.shared.showSnack(withProps: .init(message: "Account pressed with \(id)"))
+//
+//
+//                    }),
+//                    .card(.init(id: "1", title: "!Card 1", state: .closed, cardNumber: "9874", paymentSysem: .masterCard ) { id in
+//                        SnackCenter.shared.showSnack(withProps: .init(message: "Card pressed with \(id)"))
+//                    }),
+//                    .card(.init(id: "2", title: "!Card 2", state: .physical, cardNumber: "8950", paymentSysem: .visa, onTap: { id in
+//                        SnackCenter.shared.showSnack(withProps: .init(message: "Card pressed with \(id)"))
+//                    }))
+//                ]),
+//                .deposits([
+//                    .header(.init(title: "!Deposits")),
+//                    .deposit(.init(id: "1", title: "!Deposit 1", rate: "3 %", date: "до 31.09.2025", value: "687374,00", currency: .ruble)),
+//                    .deposit(.init(id: "2", title: "!Deposit 1", rate: "3 %", date: "до 31.09.2025", value: "687374,00", currency: .dollar)),
+//                    .deposit(.init(id: "3", title: "!Deposit 1", rate: "3 %", date: "до 31.09.2025", value: "687374,00", currency: .euro))
+//                ])
+//            ])))
 //        }
-//        sections.append(.accounts(accountItems))
-//        
-//        self.onOutput?(.content(.init(sections: sections)))
-        
+    }
+
+    private func handleReceivedData(accounts: AccountsListResponse, deposits: DepositsListResponse) {
+        var sections: [Props.Section] = []
+        var accountItems: [Props.Item] = []
+        var depositItems: [Props.Item] = []
+        accounts.accounts.forEach {
+            accountItems.append(.header(.init(title: "Счет номер \($0.number)")))
+            accountItems.append(.account(.init(id: $0.accountId, title: "Расчетный счет", value: "5678,00" , currency: .dollar) { id in
+                guard let account = accounts.accounts.first(where: { $0.accountId == id }) else { return }
+                self.onOutput?(.selectAccount(with: id))
+            }))
+            if let cards = $0.cards {
+                cards.forEach {
+                    accountItems.append(.card(.init(id: $0.id.uuidString, title: $0.name, state: .physical, cardNumber: $0.number, paymentSysem: .visa, onTap: { id in
+                        guard let card = cards.first(where: { $0.id.uuidString == id }) else { return }
+                        self.onOutput?(.selectCard(with: id))
+                    })))
+                }
+            }
+        }
+        sections.append(.accounts(accountItems))
+
+        depositItems.append(.header(.init(title: "Вклады")))
+        deposits.deposits.forEach {
+            depositItems.append(.deposit(.init(id: $0.depositId, title: $0.name ?? "Безымянный", rate: "3 %" , date: "дата", value: $0.balance, currency: .dollar, onTap: { _ in
+                SnackCenter.shared.showSnack(withProps: .init(message: "Данный функционал будет добавлен позже"))
+            })))
+        }
+
+        sections.append(.deposits(depositItems))
+        self.onOutput?(.content(.init(sections: sections)))
+
 //        self.onOutput?(.content(.init(sections: [
 //            .accounts([
 //                .header(.init(title: "!Accounts")),
@@ -66,30 +135,6 @@ final class MainViewModel {
 //            ])
 //        ])))
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
-            self?.onOutput?(.content(.init(sections: [
-                .accounts([
-                    .header(.init(title: "!Accounts")),
-                    .account(.init(id: "1", title: "!Account 1", value: "762348724,00", currency: .ruble) { id in
-                        SnackCenter.shared.showSnack(withProps: .init(message: "Account pressed with \(id)"))
-                        self?.onOutput?(.selectCard(with: id))
-                        
-                    }),
-                    .card(.init(id: "1", title: "!Card 1", state: .closed, cardNumber: "9874", paymentSysem: .masterCard ) { id in
-                        SnackCenter.shared.showSnack(withProps: .init(message: "Card pressed with \(id)"))
-                    }),
-                    .card(.init(id: "2", title: "!Card 2", state: .physical, cardNumber: "8950", paymentSysem: .visa, onTap: { id in
-                        SnackCenter.shared.showSnack(withProps: .init(message: "Card pressed with \(id)"))
-                    }))
-                ]),
-                .deposits([
-                    .header(.init(title: "!Deposits")),
-                    .deposit(.init(id: "1", title: "!Deposit 1", rate: "3 %", date: "до 31.09.2025", value: "687374,00", currency: .ruble)),
-                    .deposit(.init(id: "2", title: "!Deposit 1", rate: "3 %", date: "до 31.09.2025", value: "687374,00", currency: .dollar)),
-                    .deposit(.init(id: "3", title: "!Deposit 1", rate: "3 %", date: "до 31.09.2025", value: "687374,00", currency: .euro))
-                ])
-            ])))
-        }
     }
 }
 

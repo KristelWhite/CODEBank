@@ -27,7 +27,7 @@ final class MainFlowAssembly: Assembly, Identifiable {
         }
 
         container.register(MainController.self) { resolver in
-            let viewModel = MainViewModel()
+            let viewModel = MainViewModel(coreRequestManager: (resolver ~> NetworkFactory.self).makeCoreRequestManager())
             return MainController(viewModel: viewModel)
         }
         container.register(DepositController.self) { resolver in

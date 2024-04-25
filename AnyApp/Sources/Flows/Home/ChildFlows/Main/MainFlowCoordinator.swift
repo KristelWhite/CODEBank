@@ -33,8 +33,10 @@ final class MainFlowCoordinator: Coordinator {
         controller.onEvent = { [weak self] event in
             switch event {
             case .selectCard(with: let id):
-                self?.showDeposit()
+               
                 break
+            case .selectAccount(with: let id):
+                self?.showDeposit()
             }
         }
         innerRouter.setRootModule(controller)

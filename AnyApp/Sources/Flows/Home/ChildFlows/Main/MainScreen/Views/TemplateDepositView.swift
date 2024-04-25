@@ -48,7 +48,7 @@ final class TemplateDepositView: BackgroundPrimary {
                 }
                 HStack(distribution: .equalSpacing) {
                     valueLabel
-                        .text(props.value)
+                        .text(String(props.value))
                     dateLabel
                         .text(props.date)
                 }
@@ -70,14 +70,14 @@ extension TemplateDepositView: ConfigurableView {
     typealias Model = Props
 
     struct Props: Hashable {
-        let id: String
+        let id: Int
         let title: String
         let rate: String
         let date: String
-        let value: String
+        let value: Double
         let currency: Currency
 
-        var onTap: StringHandler?
+        var onTap: IntHandler?
 
         public static func == (lhs: TemplateDepositView.Props, rhs: TemplateDepositView.Props) -> Bool {
             lhs.hashValue == rhs.hashValue

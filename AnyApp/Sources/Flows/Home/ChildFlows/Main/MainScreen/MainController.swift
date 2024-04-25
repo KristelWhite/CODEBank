@@ -7,6 +7,7 @@ final class MainController: TemplateViewController<MainView> {
     
     enum Event {
         case selectCard(with: String)
+        case selectAccount(with: Int)
     }
 
     var onEvent: ((Event) -> Void)?
@@ -41,6 +42,8 @@ final class MainController: TemplateViewController<MainView> {
                 self?.rootView.configured(with: props)
             case .selectCard(with: let id):
                 self?.onEvent?(.selectCard(with: id))
+            case .selectAccount(with: let id):
+                self?.onEvent?(.selectAccount(with: id))
             }
         }
 
