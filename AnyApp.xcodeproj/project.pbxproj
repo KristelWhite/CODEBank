@@ -130,6 +130,12 @@
 		63DA7A692BD9218400C42069 /* DepositDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A682BD9218400C42069 /* DepositDataSource.swift */; };
 		63DA7A6B2BD9219C00C42069 /* DepositCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A6A2BD9219C00C42069 /* DepositCellFactory.swift */; };
 		63DA7A6D2BD925BD00C42069 /* TemplateHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A6C2BD925BD00C42069 /* TemplateHistoryView.swift */; };
+		63DA7A712BD9568000C42069 /* CoreRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A702BD9568000C42069 /* CoreRequestManager.swift */; };
+		63DA7A732BD956C200C42069 /* CorePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A722BD956C200C42069 /* CorePath.swift */; };
+		63DA7A752BD95C4E00C42069 /* ProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A742BD95C4E00C42069 /* ProfileResponse.swift */; };
+		63DA7A772BDA646200C42069 /* AccountListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A762BDA646200C42069 /* AccountListResponse.swift */; };
+		63DA7A792BDA703B00C42069 /* DepositListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A782BDA703B00C42069 /* DepositListResponse.swift */; };
+		63DA7A7B2BDA726100C42069 /* AccoutInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A7A2BDA726100C42069 /* AccoutInfoResponse.swift */; };
 		63E55ED12BCD47D80014FEFC /* MainViewProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55EC52BCD47D80014FEFC /* MainViewProps.swift */; };
 		63E55ED22BCD47D80014FEFC /* MainDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55EC62BCD47D80014FEFC /* MainDataSource.swift */; };
 		63E55ED32BCD47D80014FEFC /* MainCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55EC72BCD47D80014FEFC /* MainCellFactory.swift */; };
@@ -516,6 +522,12 @@
 		63DA7A682BD9218400C42069 /* DepositDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositDataSource.swift; sourceTree = "<group>"; };
 		63DA7A6A2BD9219C00C42069 /* DepositCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositCellFactory.swift; sourceTree = "<group>"; };
 		63DA7A6C2BD925BD00C42069 /* TemplateHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateHistoryView.swift; sourceTree = "<group>"; };
+		63DA7A702BD9568000C42069 /* CoreRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreRequestManager.swift; sourceTree = "<group>"; };
+		63DA7A722BD956C200C42069 /* CorePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorePath.swift; sourceTree = "<group>"; };
+		63DA7A742BD95C4E00C42069 /* ProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileResponse.swift; sourceTree = "<group>"; };
+		63DA7A762BDA646200C42069 /* AccountListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListResponse.swift; sourceTree = "<group>"; };
+		63DA7A782BDA703B00C42069 /* DepositListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositListResponse.swift; sourceTree = "<group>"; };
+		63DA7A7A2BDA726100C42069 /* AccoutInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccoutInfoResponse.swift; sourceTree = "<group>"; };
 		63E1126AC6A7AB8AC8CBD172 /* Pods-CommonPods-Services.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonPods-Services.release.xcconfig"; path = "Target Support Files/Pods-CommonPods-Services/Pods-CommonPods-Services.release.xcconfig"; sourceTree = "<group>"; };
 		63E55EC52BCD47D80014FEFC /* MainViewProps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewProps.swift; sourceTree = "<group>"; };
 		63E55EC62BCD47D80014FEFC /* MainDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainDataSource.swift; sourceTree = "<group>"; };
@@ -1310,6 +1322,27 @@
 			path = DataSource;
 			sourceTree = "<group>";
 		};
+		63DA7A6E2BD9531800C42069 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				63DA7A6F2BD9543F00C42069 /* Responses */,
+				63DA7A702BD9568000C42069 /* CoreRequestManager.swift */,
+				63DA7A722BD956C200C42069 /* CorePath.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		63DA7A6F2BD9543F00C42069 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				63DA7A742BD95C4E00C42069 /* ProfileResponse.swift */,
+				63DA7A762BDA646200C42069 /* AccountListResponse.swift */,
+				63DA7A782BDA703B00C42069 /* DepositListResponse.swift */,
+				63DA7A7A2BDA726100C42069 /* AccoutInfoResponse.swift */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
 		63E55EC22BCD47D80014FEFC /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -1703,6 +1736,7 @@
 		CF1D04A1E444FC5788CA8CED /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				63DA7A6E2BD9531800C42069 /* Core */,
 				10E588172BC051AE00D05347 /* Auth */,
 				459162307E49D3747055AA1E /* Base */,
 				34DB077AE5ED5DEFF28C6D5B /* Error */,
@@ -2476,6 +2510,7 @@
 				8B13B5A9ED8D47B9D4B4EA5E /* AuthPath.swift in Sources */,
 				D1A435669CA188A48D5CB2DE /* Environment+DeviceInfo.swift in Sources */,
 				BB586DA9AA445E2ED372314A /* Environment.swift in Sources */,
+				63DA7A772BDA646200C42069 /* AccountListResponse.swift in Sources */,
 				10E5881C2BC051F100D05347 /* AuthLoginResponse.swift in Sources */,
 				579765C25C52D0E67640EC8C /* ErrorHandler.swift in Sources */,
 				6B25C9A9C064A482215CEFBA /* ErrorParser.swift in Sources */,
@@ -2486,18 +2521,23 @@
 				343E2CF5A41F106590E4E304 /* NetworkManager.swift in Sources */,
 				73428E54D7704B0AEB24FDCA /* Path.swift in Sources */,
 				EDC60DEBCAD6179A2C1DE924 /* PersistentLayer.swift in Sources */,
+				63DA7A7B2BDA726100C42069 /* AccoutInfoResponse.swift in Sources */,
 				38962B6A30222DEDBE26A6C3 /* PersistentLayerProperty.swift in Sources */,
 				10E5881E2BC0520D00D05347 /* AuthOtpConfirmResponse.swift in Sources */,
 				2A8C20B541E6312E52CF0EC3 /* PushNotificationService.swift in Sources */,
 				1DD8FAF3095C136D6EA304FB /* QuickAccess.swift in Sources */,
+				63DA7A752BD95C4E00C42069 /* ProfileResponse.swift in Sources */,
 				2D2904046A7203699AB3465E /* RequestInterceptor.swift in Sources */,
 				10E588192BC051C100D05347 /* AuthRequestManager.swift in Sources */,
 				62005363BF978419E779EF53 /* RequestRouter.swift in Sources */,
+				63DA7A732BD956C200C42069 /* CorePath.swift in Sources */,
 				9C40E0FA08B68CF1A046F430 /* Server.swift in Sources */,
+				63DA7A792BDA703B00C42069 /* DepositListResponse.swift in Sources */,
 				153DB832A6F06DFC5204522B /* ServiceLayer.swift in Sources */,
 				B985D209AEA4FF65D48F550F /* ServicesFactory.swift in Sources */,
 				6398B8D7EBE4C432C0F0259A /* SessionAbstract.swift in Sources */,
 				028974D37A1FF5CC94837A85 /* SessionAction.swift in Sources */,
+				63DA7A712BD9568000C42069 /* CoreRequestManager.swift in Sources */,
 				10E588282BC05BD700D05347 /* NetworkAssembly.swift in Sources */,
 				7344386394DC230A65BB8F4E /* SessionEvent.swift in Sources */,
 				390AD524BD5410A49A54434B /* SessionState.swift in Sources */,

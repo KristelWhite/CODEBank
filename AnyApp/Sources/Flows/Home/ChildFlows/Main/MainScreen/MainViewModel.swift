@@ -37,6 +37,34 @@ final class MainViewModel {
         ])))
 
         // request:
+        
+        var sections: [Props.Section] = []
+        
+//        var accountItems: [Props.Item] = []
+//        mainResponse.accounts.forEach {
+//            accountItems.append(.account(.init(id: $0.id, title: $0.name, value: "", currency: .dollar) { id in
+//                // 1
+//                guard let account = mainResponse.accounts.first(where: { $0.id == id }) else { return }
+//                // 2
+//                onOutput?(.selectCard(with: id))
+//                // tap on account
+//            }))
+//            $0.cards.forEach {
+//                accountItems.append(.card(.init(id: $0.id, title: "", state: .closed, cardNumber: "", paymentSysem: .masterCard) { id in
+//                    // tap on card
+//                }))
+//            }
+//        }
+//        sections.append(.accounts(accountItems))
+//        
+//        self.onOutput?(.content(.init(sections: sections)))
+        
+//        self.onOutput?(.content(.init(sections: [
+//            .accounts([
+//                .header(.init(title: "!Accounts")),
+//                .a`
+//            ])
+//        ])))
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
             self?.onOutput?(.content(.init(sections: [
@@ -65,3 +93,33 @@ final class MainViewModel {
     }
 }
 
+
+// MARK: - Mocks
+
+extension MainViewModel {
+    var accountMocks: [Props.Item] {
+        []
+    }
+}
+
+struct MainResponse {
+    struct Account {
+        let id: String
+        let name: String
+        let cards: [Card]
+    }
+    
+    struct Card {
+        let id: String
+    }
+    
+    let accounts: [Account]
+}
+
+
+let mainResponse = MainResponse(accounts: [
+    .init(id: "1", name: "name", cards: [
+        .init(id: "1"),
+        .init(id: "2")
+    ])
+])

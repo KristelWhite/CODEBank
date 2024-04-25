@@ -27,26 +27,18 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         libraryManager.setupAllLibrary()
-        
         setupPushes()
         configureBackButton()
-        
         return true
     }
-    
+
     private func configureBackButton() {
         let backImage = Asset.back.image.withAlignmentRectInsets(UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 8))
         UINavigationBar.appearance().backIndicatorImage = backImage
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
-        var backButtonColor = UIColor { traitCollection in
-            switch traitCollection.userInterfaceStyle {
-            case .dark:
-                return Palette.Button.buttonSecondary
-            default:
-                return Palette.Button.buttonSecondary
-            }
+        UINavigationBar.appearance().tintColor = UIColor { _ in
+            Palette.Button.buttonSecondary
         }
-        UINavigationBar.appearance().tintColor = backButtonColor
         //        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -8, vertical: 0), for: .default)
     }
 
