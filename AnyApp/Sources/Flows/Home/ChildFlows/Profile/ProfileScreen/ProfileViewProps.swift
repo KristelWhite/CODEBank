@@ -9,7 +9,7 @@ import UIKit
 
 struct ProfileViewProps {
     let name: String
-    let image: UIImage
+    let image: UIImage = Asset.title.image
     let phone: String
 }
 

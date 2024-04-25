@@ -18,6 +18,7 @@ final class ProfileView: BackgroundPrimary {
         case support
         case exit
     }
+    var props: Model?
 
     func handle(with settings: Settings) -> TemplateSettingsView.Props {
         switch settings {
@@ -42,12 +43,13 @@ final class ProfileView: BackgroundPrimary {
     }
     override func setup() {
         super.setup()
-        body().embed(in: self)
+//        guard let props = props else {return}
+//        body(with: props).embed(in: self)
     }
 
-    private func body() -> UIView {
+    private func body(with model: Model) -> UIView {
         VStack {
-            headerView()
+            headerView(with: model)
             Spacer(.custom(length: 50))
             ForEach(collection: settings, alignment: .fill) { [weak self] in
                 TemplateSettingsView()
@@ -58,15 +60,15 @@ final class ProfileView: BackgroundPrimary {
         .layoutMargins(.make(vInsets: 16, hInsets: 16))
     }
     
-    private func headerView() -> UIView {
+    private func headerView(with model: Model) -> UIView {
         VStack(alignment: .center) {
             Spacer(.px72)
-            ImageView(image: Asset.title.image)
+            ImageView(image: model.image)
                 .size(CGSize(width: 88, height: 88), priority: .required)
             Spacer(.px16)
             VStack(alignment: .center, spacing: 4) {
-                Label(text: "bvz bzv bzvz bzvhbjbe", foregroundStyle: .textPrimary, fontStyle: .subtitle2)
-                Label(text: "fknhfebhbfhbe", foregroundStyle: .textSecondary, fontStyle: .caption2)
+                Label(text: model.name, foregroundStyle: .textPrimary, fontStyle: .subtitle2)
+                Label(text: model.phone, foregroundStyle: .textSecondary, fontStyle: .caption2)
             }
         }
     }
@@ -75,7 +77,9 @@ extension ProfileView: ConfigurableView {
     typealias Model = ProfileViewProps
 
     func configure(with model: ProfileViewProps) {
-    
+        self.props = model
+        subviews.forEach { $0.removeFromSuperview() }
+        body(with: model).embed(in: self)
     }
     
     

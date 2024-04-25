@@ -21,7 +21,7 @@ enum CorePath: String, Path, CaseIterable {
         case .accountsList:
             return "accountList"
         case .depositsList:
-            return "depositeList"
+            return "depositList"
         case .accountInfo:
             return "accountInfo"
         }

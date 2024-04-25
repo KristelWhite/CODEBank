@@ -22,6 +22,7 @@ final class ProfileController: TemplateViewController<ProfileView> {
     override func setup() {
         super.setup()
         setupBindings()
+        viewModel.handle(.loadData)
     }
 
     private func setupBindings() {
@@ -37,6 +38,13 @@ final class ProfileController: TemplateViewController<ProfileView> {
         rootView.onSupport = { [weak self] in
             self?.showCallConfirmation()
         }
+        viewModel.onOutput = { [weak self] output in
+            switch output {
+            case .content(let props):
+                self?.rootView.configured(with: props)
+            }
+        }
+
     }
 }
 // MARK: - Support Call
