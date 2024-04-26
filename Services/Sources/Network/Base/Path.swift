@@ -64,7 +64,7 @@ extension CorePath {
         case .depositsList:
             return "Get Deposits List"
         case .accountInfo:
-            return "Get Account Info"
+            return "Get Account  Info"
         }
     }
 

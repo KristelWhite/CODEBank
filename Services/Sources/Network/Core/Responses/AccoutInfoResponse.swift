@@ -10,8 +10,8 @@ import Foundation
 public struct AccountInfoResponse: Decodable {
     public let number: String
     public let status: String
-    public let balance: Double
-    public let currency: Currency
+    public let balance: Int
+    public let currency: String
     public let accountId: Int
 }
 

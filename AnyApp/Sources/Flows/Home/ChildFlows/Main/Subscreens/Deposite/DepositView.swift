@@ -13,7 +13,7 @@ final class DepositView: BackgroundPrimary {
 
 
     private let tableView = BaseTableView()
-    private let switchView = TemplateSwitchView()
+    private let switchView = SwitchView()
     private lazy var dataSource = DepositDataSource(tableView: tableView)
     
     var props: Props?
@@ -28,23 +28,25 @@ final class DepositView: BackgroundPrimary {
     private func body(with props: Props) -> UIView {
         ScrollView(axis: .vertical) {
             VStack {
-                VStack {
+                VStack( alignment: .center, distribution: .fill ) {
                     BackgroundView {
                         ImageView( foregroundStyle: .contentAccentTertiary)
                             .image(props.currency.imageValue)
                     }
+                    .cornerRadius(26)
                     .backgroundStyle(.contentSecondary)
                     .size(CGSize(width: 52, height: 52))
                     Spacer(.px16)
                     Label(foregroundStyle: .textPrimary, fontStyle: .body15)
                         .text(props.name)
                     Spacer(.px4)
-                    Label(foregroundStyle: .contentSecondary, fontStyle: .caption1)
+                    Label(foregroundStyle: .textSecondary, fontStyle: .caption1)
                         .text(props.cardNumber)
                     Spacer(.px8)
                     Label(foregroundStyle: .textPrimary, fontStyle: .title28)
-                        .text(props.value)
+                        .text(String(props.value))
                 }
+                .layoutMargins(.make(vInsets: 16))
                 switchView
                 tableView
             }
@@ -69,11 +71,11 @@ extension DepositView: ConfigurableView {
     typealias Model = DepositViewProps
     
     struct Props: Hashable {
-        let id: String
+        let id: Int
         let name: String
         let cardNumber: String
         let currency: Currency
-        let value: String
+        let value: Int
 
         var onTap: StringHandler?
 
@@ -97,6 +99,7 @@ extension DepositView: ConfigurableView {
         self.props = model
         subviews.forEach { $0.removeFromSuperview() }
         body(with: model).embed(in: self)
+
     }
     
 }

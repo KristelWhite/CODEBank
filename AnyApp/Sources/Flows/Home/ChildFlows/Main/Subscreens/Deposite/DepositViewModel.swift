@@ -15,7 +15,8 @@ final class DepositViewModel {
 
     enum Output {
         case content(Props)
-        case selectCard(with: String)
+        case profileInfo(DepositView.Props)
+//        case selectDeposit(with: Int)
     }
 
     enum Input {
@@ -23,6 +24,16 @@ final class DepositViewModel {
     }
 
     var onOutput: ((Output) -> Void)?
+
+    private var cancellables = Set<AnyCancellable>()
+
+    private var id: Int
+    private var coreRequestManager: CoreRequestManagerAbstract
+
+    init(id: Int, coreRequestManager: CoreRequestManagerAbstract) {
+        self.id = id
+        self.coreRequestManager = coreRequestManager
+    }
 
     func handle(_ input: Input) {
         switch input {
@@ -32,6 +43,23 @@ final class DepositViewModel {
     }
 
     private func loadData() {
+        loadProfileInfo()
+        loadHistory()
+
+
+    }
+    private func loadProfileInfo() {
+        print(id)
+        coreRequestManager.accountInfo(accountId: id)
+            .sink { error in
+
+            } receiveValue: { [weak self] request in
+                print(request)
+                self?.onOutput?(.profileInfo(.init(id: request.accountId, name: "Счет расчетный", cardNumber: request.number, currency: .ruble, value: request.balance)))
+            }.store(in: &cancellables)
+    }
+    private func loadHistory() {
+
     }
 }
 

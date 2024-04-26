@@ -38,14 +38,14 @@ final class DepositController: TemplateViewController<DepositView> {
     }
 
     private func setupBindings() {
-//        viewModel.onOutput = { [weak self] output in
-//            switch output {
-//            case .content(let props):
-//                self?.rootView.configured(with: props)
-//            case .selectCard(with: let id):
-//                self?.onEvent?(.selectCard(with: id))
-//            }
-//        }
+        viewModel.onOutput = { [weak self] output in
+            switch output {
+            case .content(let props):
+                self?.rootView.configure(with: props)
+            case .profileInfo(let props):
+                self?.rootView.configure(with: props)
+            }
+        }
 
 //        rootView.onNewProduct = { [weak self] in
 //            SnackCenter.shared.showSnack(withProps: .init(message: "!New Product"))

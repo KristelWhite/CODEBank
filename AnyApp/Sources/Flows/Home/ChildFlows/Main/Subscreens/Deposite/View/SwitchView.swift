@@ -9,12 +9,13 @@ import UIKit
 import UI
 import AppIndependent
 
-final class TemplateSwitchView: BackgroundPrimary {
+final class SwitchView: BackgroundPrimary {
     
     // MARK: - Private Properties
     
     
     private var historyImage = ImageView(image: Asset.history.image, foregroundStyle: .contentAccentPrimary)
+
     private let actionImage = ImageView(image: Asset.bankAccount.image, foregroundStyle: .contentAccentTertiary)
     private let paymentImage = ImageView(image: Asset.mainProduct.image, foregroundStyle: .contentAccentTertiary)
     
@@ -48,13 +49,25 @@ final class TemplateSwitchView: BackgroundPrimary {
     
     func setupViews() {
         historyView = BackgroundView {
-            historyImage
+            VStack {
+                FlexibleGroupedSpacer()
+                historyImage
+                FlexibleGroupedSpacer()
+            }.linkGroupedSpacers()
         }
         actionView = BackgroundView {
-            actionImage
+            VStack {
+                FlexibleGroupedSpacer()
+                actionImage
+                FlexibleGroupedSpacer()
+            }.linkGroupedSpacers()
         }
         paymentView = BackgroundView {
-            paymentImage
+            VStack {
+                FlexibleGroupedSpacer()
+                paymentImage
+                FlexibleGroupedSpacer()
+            }.linkGroupedSpacers()
         }
     }
     
@@ -76,7 +89,8 @@ final class TemplateSwitchView: BackgroundPrimary {
     }
     
     private func body() -> UIView {
-        HStack(spacing: 40) {
+        HStack( alignment: .center, distribution: .fill, spacing: 40) {
+            FlexibleGroupedSpacer()
             historyView
             .backgroundStyle(.contentAccentTertiary)
             .size(.init(width: 56, height: 56), priority: .required)
@@ -105,8 +119,10 @@ final class TemplateSwitchView: BackgroundPrimary {
                 self.changeStyle(view: self.paymentView, imageView: self.paymentImage, viewType: .payment)
                 self.onEvent?(.tapPayment)
             }
+            FlexibleGroupedSpacer()
         }
-        .layoutMargins(.make(vInsets: 16, hInsets: 36))
+        .linkGroupedSpacers()
+        .layoutMargins(.make(vInsets: 16))
     }
 }
 

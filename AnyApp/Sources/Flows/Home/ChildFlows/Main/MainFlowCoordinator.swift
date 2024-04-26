@@ -36,14 +36,14 @@ final class MainFlowCoordinator: Coordinator {
                
                 break
             case .selectAccount(with: let id):
-                self?.showDeposit()
+                self?.showDeposit(with: id)
             }
         }
         innerRouter.setRootModule(controller)
         return innerRouter.rootController
     }
-    func showDeposit() {
-        let controller = resolver ~> (DepositController.self)
+    func showDeposit(with id: Int) {
+        let controller = resolver ~> (DepositController.self, id)
         controller.hidesBottomBarWhenPushed = true
         innerRouter.push(controller)
     }
