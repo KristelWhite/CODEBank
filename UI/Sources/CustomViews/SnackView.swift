@@ -55,10 +55,10 @@ public final class SnackView: View {
     private var autohide: Bool = Constant.autohide
     private var showDuration: TimeInterval = Constant.showDuration
 
-    // TODO: fix typography, styles and layout
+
     private let titleLabel = Label()
-//        .fontStyle(.body2)
-//        .foregroundStyle(.contrast)
+        .fontStyle(.caption1)
+        .foregroundStyle(.button)
         .multiline()
 
     private lazy var contentView = body()
@@ -89,14 +89,14 @@ public final class SnackView: View {
         }
 
         titleLabel.text(props.message)
-//        backgroundStyle(
-//            props.style == .basic
-//                ? .layerContrast
-//                : .layerNegative
-//        )
+        backgroundStyle(
+            props.style == .basic
+            ? .backgroundPrimary
+            : .indicatorContentError
+        )
 
         cornerRadius(12)
-//        shadowStyle(ShadowStyle.calendar)
+        shadowStyle(ShadowStyle.dropShadow1)
         clipsToBounds(false)
 
         setupSwipeToCloseGesture()
@@ -114,8 +114,16 @@ public final class SnackView: View {
     // MARK: - Private Methods
 
     private func body() -> UIView {
-        BackgroundView(vPadding: 14, hPadding: 16) {
-            titleLabel
+        BackgroundView(vPadding: 17, hPadding: 16) {
+            HStack(spacing: 16){
+                titleLabel
+                ImageView(image: UIImage(named: "close"), foregroundStyle: .contentAccentTertiary)
+                    .width(24)
+                    .onTap { [weak self] in
+                        self?.dismiss()
+                    }
+            }
+
         }
     }
 

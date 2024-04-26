@@ -6,70 +6,99 @@ import SnapKit
 final class AuthPhoneView: BackgroundPrimary {
     
     var onAuth: StringHandler?
-    
-    var phoneField = PhoneTextField(placeholder: "Телефон")
-        .height(52)
+
+    private var phoneTextField = TextField(foregroundStyle: .textPrimary, fontStyle: .body2, placeholderForegroundStyle: .textTertiary, placeholderFontStyle: .body2)
     
     override func setup() {
         super.setup()
+        configureTextField()
         body().embed(in: self)
         moveActionButtonWithKeyboard = true
         actionButton = ButtonPrimary(title: Entrance.enter)
             .height(52)
             .onTap { [weak self] in
-                guard let self = self , let phone = self.phoneField.text else { return }
-                self.onAuth?(phone)
+                guard let self = self, let phone = self.phoneTextField.text else { return }
+                if phone.count == 18 {
+                    self.onAuth?(phone)
+                } else {
+                    SnackCenter.shared.showSnack(withProps: .init(message: "Пожалуйста, убедитесь, что вы правильно ввели номер телефона", style: .error))
+                    //change text and image color
+                }
+
             }
     }
     
     private func body() -> UIView {
-        VStack( alignment: .fill, spacing: 21) {
+        VStack {
+            Spacer(.px16)
             ImageView(image: Asset.logo.image)
                 .size(CGSize(width: 53, height: 59))
-           phoneField
+                .foregroundStyle(.contentAccentTertiary)
+            Spacer(.px20)
+            BackgroundView {
+                HStack(alignment: .center) {
+                    Spacer(.px24)
+                    ImageView(image: Asset.phone.image)
+                        .foregroundStyle(.contentAccentPrimary)
+                        .size(CGSize(width: 24, height: 24))
+                    Spacer(.px16)
+                    phoneTextField
+                        .placeholder("Телефон")
+                        .keyboardType(.numberPad)
+                    Spacer(.px16)
+                }
+            }
+            .backgroundStyle(.contentSecondary)
+            .cornerRadius(20)
+            .height(52)
             FlexibleSpacer()
         }
-        .layoutMargins(.all(16))
+        .layoutMargins(.make(hInsets: 16))
+    }
+
+    func configureTextField() {
+        phoneTextField.delegate = self
+    }
+}
+// MARK: - UITextFieldDelegate
+
+extension AuthPhoneView: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let fullString = (textField.text ?? "") as NSString
+        let updatedString = fullString.replacingCharacters(in: range, with: string)
+        print(updatedString)
+
+        let digitsOnly = updatedString.digits
+        print(digitsOnly)
+
+        textField.text = applyPhoneMask(to: digitsOnly)
+
+        return false
+    }
+
+    func applyPhoneMask(to digits: String) -> String {
+        var result = ""
+        var index = digits.startIndex
+
+        let mask = "+X (XXX) XXX XX XX"
+
+        for ch in mask where index < digits.endIndex {
+            if ch == "X" {
+                result.append(digits[index])
+                index = digits.index(after: index)
+            } else {
+                result.append(ch)
+            }
+        }
+
+        return result
     }
 }
 
-final class PhoneTextField: TextField {
-    
-    private let paddingText = UIEdgeInsets(top: 14, left: 60, bottom: 14, right: 16)
-    
-    init(placeholder: String) {
-        super.init(frame: .zero)
-        configure(placeholder: placeholder)
-    }
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-// MARK: - Override
-    override func textRect(forBounds bounds: CGRect) -> CGRect {
-        bounds.inset(by: paddingText)
-    }
-    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-        bounds.inset(by: paddingText)
-    }
-    override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        bounds.inset(by: paddingText)
-    }
-    override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
-        bounds.inset(by: UIEdgeInsets(top: 14, left: 24, bottom: 14, right: frame.width - 44))
-    }
-    private func configure(placeholder: String) {
-        var iconView = UIImageView(image: Asset.phone.image)
-        iconView.tintColor = Palette.Content.accentPrimary
-        iconView.contentMode = .center
-        leftView = iconView
-        leftViewMode = .always
-        keyboardType = .numberPad
-        layer.cornerRadius = 20
-        backgroundColor = Palette.Content.primary
-        textColor = Palette.Text.primary
-        tintColor = Palette.Content.accentPrimary
-        font = Typography.body2?.font
-        attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: Palette.Text.tertiary, NSAttributedString.Key.font: Typography.body2?.font])
+//MARK: - extension String
+extension String {
+    var digits: String {
+        return components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
     }
 }
 
