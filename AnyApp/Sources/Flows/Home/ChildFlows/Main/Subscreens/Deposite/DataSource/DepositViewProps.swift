@@ -10,11 +10,12 @@ import Foundation
 struct DepositViewProps {
 
     enum Section: Hashable {
-        case date([Item])
+        case top([Item])
+        case bottom([Item])
 
         var items: [Item] {
             switch self {
-            case .date(let items):
+            case .top(let items), .bottom(let items):
                 return items
             }
         }
@@ -26,8 +27,10 @@ struct DepositViewProps {
         case action(TemplateActionView.Props)
         case history(TemplateHistoryView.Props)
         case payment(TemplatePaymentView.Props)
+        case switchView(SwitchView.Props)
+        case depositHeader(HeaderDepositView.Props)
     }
-
     let sections: [Section]
+
 }
 

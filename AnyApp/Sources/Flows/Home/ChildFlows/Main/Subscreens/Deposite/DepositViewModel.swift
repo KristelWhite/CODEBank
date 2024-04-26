@@ -15,15 +15,18 @@ final class DepositViewModel {
 
     enum Output {
         case content(Props)
-        case profileInfo(DepositView.Props)
-//        case selectDeposit(with: Int)
     }
 
     enum Input {
         case loadData
+
     }
 
     var onOutput: ((Output) -> Void)?
+
+    var response: AccountInfoResponse?
+    var selectedTab: SwitchView.State = .history
+
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -41,26 +44,52 @@ final class DepositViewModel {
             loadData()
         }
     }
-
     private func loadData() {
-        loadProfileInfo()
-        loadHistory()
-
-
-    }
-    private func loadProfileInfo() {
         print(id)
         coreRequestManager.accountInfo(accountId: id)
             .sink { error in
 
-            } receiveValue: { [weak self] request in
-                print(request)
-                self?.onOutput?(.profileInfo(.init(id: request.accountId, name: "Счет расчетный", cardNumber: request.number, currency: .ruble, value: request.balance)))
+            } receiveValue: { [weak self] response in
+                print(" responce \(response)")
+                self?.response = response
+                self?.handleReceivedData(with: response)
             }.store(in: &cancellables)
     }
-    private func loadHistory() {
 
+    func changeSelectedTab(selectedTab: SwitchView.State) {
+        self.selectedTab = selectedTab
+        guard let response = response else { return }
+        handleReceivedData(with: response, selectedTab: selectedTab)
     }
+
+    func handleReceivedData(with response: AccountInfoResponse, selectedTab: SwitchView.State = .history)  {
+        var section: [Props.Section] = []
+        var items: [Props.Item] = []
+        items.append(.depositHeader(.init(id: response.accountId, name: "Счет расчетный", cardNumber: response.number, currency: .ruble, value: response.balance)))
+        items.append(.switchView(.init(state: selectedTab, onTap: {[weak self] selectedTab in
+            self?.changeSelectedTab(selectedTab: selectedTab)
+        })))
+        section.append(.top(items))
+        section.append(bottomSection(selectedTab: selectedTab ))
+        onOutput?(.content(.init(sections: section)))
+    }
+
+    private func bottomSection(selectedTab: SwitchView.State) -> DepositViewProps.Section {
+        switch selectedTab {
+        case .history:
+            return .bottom([
+                .header(.init(title: "title")),
+                .history(.init(id: "1", title: "nsjfrf", date: "frnhn", value: "rsbjfhb", image: Asset.acado.image, isIncome: true))
+                         ])
+        case .action:
+            break
+        case .payment:
+            break
+        }
+        return DepositViewProps.Section.top(.init())
+    }
+
 }
+
 
 

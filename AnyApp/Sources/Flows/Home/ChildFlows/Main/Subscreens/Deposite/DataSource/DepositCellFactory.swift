@@ -76,4 +76,28 @@ final class DepositCellFactory {
             view.configure(with: props)
         }
     }
+    func makeTemplateDepositHeaderCell(
+        for indexPath: IndexPath,
+        with props: HeaderDepositView.Props
+    ) -> UITableViewCell {
+        tableView.dequeueTemplateCell(
+            forView: HeaderDepositView.self,
+            for: indexPath
+        ) { view, _ in
+            view.configure(with: props)
+        }
+    }
+
+    func makeSwitchCell(
+        for indexPath: IndexPath,
+        with props: SwitchView.Props
+    ) -> UITableViewCell {
+        tableView.dequeueTemplateCell(
+            forView: SwitchView.self,
+            for: indexPath
+        ) { view, _ in
+            view.configure(with: props)
+        }
+    }
 }
+

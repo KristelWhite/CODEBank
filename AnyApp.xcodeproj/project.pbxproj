@@ -136,6 +136,7 @@
 		63DA7A772BDA646200C42069 /* AccountListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A762BDA646200C42069 /* AccountListResponse.swift */; };
 		63DA7A792BDA703B00C42069 /* DepositListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A782BDA703B00C42069 /* DepositListResponse.swift */; };
 		63DA7A7B2BDA726100C42069 /* AccoutInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A7A2BDA726100C42069 /* AccoutInfoResponse.swift */; };
+		63DA7A7D2BDBEA4000C42069 /* HeaderDepositeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A7C2BDBEA4000C42069 /* HeaderDepositeView.swift */; };
 		63E55ED12BCD47D80014FEFC /* MainViewProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55EC52BCD47D80014FEFC /* MainViewProps.swift */; };
 		63E55ED22BCD47D80014FEFC /* MainDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55EC62BCD47D80014FEFC /* MainDataSource.swift */; };
 		63E55ED32BCD47D80014FEFC /* MainCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55EC72BCD47D80014FEFC /* MainCellFactory.swift */; };
@@ -528,6 +529,7 @@
 		63DA7A762BDA646200C42069 /* AccountListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListResponse.swift; sourceTree = "<group>"; };
 		63DA7A782BDA703B00C42069 /* DepositListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositListResponse.swift; sourceTree = "<group>"; };
 		63DA7A7A2BDA726100C42069 /* AccoutInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccoutInfoResponse.swift; sourceTree = "<group>"; };
+		63DA7A7C2BDBEA4000C42069 /* HeaderDepositeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderDepositeView.swift; sourceTree = "<group>"; };
 		63E1126AC6A7AB8AC8CBD172 /* Pods-CommonPods-Services.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonPods-Services.release.xcconfig"; path = "Target Support Files/Pods-CommonPods-Services/Pods-CommonPods-Services.release.xcconfig"; sourceTree = "<group>"; };
 		63E55EC52BCD47D80014FEFC /* MainViewProps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewProps.swift; sourceTree = "<group>"; };
 		63E55EC62BCD47D80014FEFC /* MainDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainDataSource.swift; sourceTree = "<group>"; };
@@ -1308,6 +1310,7 @@
 				63DA7A632BD91CA900C42069 /* TemplatePaymentView.swift */,
 				63DA7A652BD91ED800C42069 /* TemplateActionView.swift */,
 				63DA7A6C2BD925BD00C42069 /* TemplateHistoryView.swift */,
+				63DA7A7C2BDBEA4000C42069 /* HeaderDepositeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2459,6 +2462,7 @@
 				63E55ED92BCD47D80014FEFC /* TemplateHeaderView.swift in Sources */,
 				AB2425DA903786858771197E /* HomeFlowCoordinator.swift in Sources */,
 				63E55ED82BCD47D80014FEFC /* TemplateShimmerCell.swift in Sources */,
+				63DA7A7D2BDBEA4000C42069 /* HeaderDepositeView.swift in Sources */,
 				10E5882E2BC3F48B00D05347 /* ProfileController.swift in Sources */,
 				10E588322BC3F53D00D05347 /* ProfileViewModel.swift in Sources */,
 				63DA7A622BD8616500C42069 /* SwitchView.swift in Sources */,

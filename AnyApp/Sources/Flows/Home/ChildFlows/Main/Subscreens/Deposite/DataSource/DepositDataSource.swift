@@ -49,6 +49,8 @@ final class DepositDataSource {
         tableView.registerTemplateCell(forView: TemplateHeaderView.self)
         tableView.registerTemplateCell(forView: TemplatePaymentView.self)
         tableView.registerTemplateCell(forView: TemplateActionView.self)
+        tableView.registerTemplateCell(forView: SwitchView.self)
+        tableView.registerTemplateCell(forView: HeaderDepositView.self)
     }
 
     private func configure() {
@@ -64,6 +66,10 @@ final class DepositDataSource {
                 return cellFactory.makeTemplateHistoryCell(for: indexPath, with: props)
             case .payment(let props):
                 return cellFactory.makeTemplatePaymentCell(for: indexPath, with: props)
+            case .switchView(let props):
+                return cellFactory.makeSwitchCell(for: indexPath, with: props)  
+            case .depositHeader(let props):
+                return cellFactory.makeTemplateDepositHeaderCell(for: indexPath, with: props)
             }
         }
     }

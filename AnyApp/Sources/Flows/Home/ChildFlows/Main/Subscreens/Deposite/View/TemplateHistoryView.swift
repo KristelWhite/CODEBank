@@ -14,6 +14,7 @@ final class TemplateHistoryView: BackgroundPrimary {
     // MARK: - Private Properties
 
     private let titleLabel = Label(foregroundStyle: .textPrimary, fontStyle: .body2)
+        .multiline()
     private let dateLabel = Label(foregroundStyle: .textTertiary, fontStyle: .caption1)
     private let valueLabel = Label(foregroundStyle: .indicatorcontentDone, fontStyle: .body2)
     private let image = ImageView(foregroundStyle: .contentAccentPrimary)

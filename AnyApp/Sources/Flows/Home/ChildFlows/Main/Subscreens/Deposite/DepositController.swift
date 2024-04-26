@@ -13,7 +13,8 @@ final class DepositController: TemplateViewController<DepositView> {
     typealias ViewModel = DepositViewModel
     
     enum Event {
-        case selectCard(with: String)
+       
+
     }
 
     var onEvent: ((Event) -> Void)?
@@ -42,14 +43,9 @@ final class DepositController: TemplateViewController<DepositView> {
             switch output {
             case .content(let props):
                 self?.rootView.configure(with: props)
-            case .profileInfo(let props):
-                self?.rootView.configure(with: props)
+                print("configure with \(props)")
             }
         }
-
-//        rootView.onNewProduct = { [weak self] in
-//            SnackCenter.shared.showSnack(withProps: .init(message: "!New Product"))
-//        }
     }
 }
 
