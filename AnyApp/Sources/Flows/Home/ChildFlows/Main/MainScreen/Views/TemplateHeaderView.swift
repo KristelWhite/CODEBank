@@ -21,7 +21,9 @@ final class TemplateHeaderView: BackgroundPrimary {
 
     private func body() -> UIView {
         VStack {
+//            Shimmer().height(52).embed(in: titleLabel)
             titleLabel
+
         }
         .layoutMargins(.init(top: 17, left: 0, bottom: 15, right: 0))
     }
@@ -34,7 +36,7 @@ extension TemplateHeaderView: ConfigurableView {
     typealias Model = Props
 
     struct Props: Hashable {
-        let title: String
+        var title: String
 
         public static func == (lhs: TemplateHeaderView.Props, rhs: TemplateHeaderView.Props) -> Bool {
             lhs.hashValue == rhs.hashValue

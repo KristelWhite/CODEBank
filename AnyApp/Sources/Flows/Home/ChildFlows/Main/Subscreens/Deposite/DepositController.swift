@@ -44,6 +44,10 @@ final class DepositController: TemplateViewController<DepositView> {
             case .content(let props):
                 self?.rootView.configure(with: props)
                 print("configure with \(props)")
+            case .error(let errorProps):
+                self?.setAdditionState(.error(errorProps))
+            case .removeState:
+                self?.removeAdditionalState()
             }
         }
     }

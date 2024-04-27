@@ -27,7 +27,7 @@ final class CoreRequestManager: NetworkRequestManager, CoreRequestManagerAbstrac
     }
 
     func accountInfo(accountId: Int) -> Core.AppPublisher<AccountInfoResponse> {
-        request(path: CorePath.accountInfo(id: accountId))
+        request(path: CorePath.accountInfo, pathParams: ["id": "\(accountId)"])
     }
 
     func profile() -> AppPublisher<ProfileResponse> {

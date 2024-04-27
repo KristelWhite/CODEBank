@@ -1,5 +1,6 @@
 import Services
 import Combine
+import UI
 
 final class ProfileViewModel {
 
@@ -7,6 +8,8 @@ final class ProfileViewModel {
 
     enum Output {
         case content(Props)
+        case error(ErrorView.Props)
+        case removeState
     }
 
     enum Input {
@@ -40,11 +43,17 @@ final class ProfileViewModel {
 
     func loadData() {
         coreRequestManager.profile()
-            .sink { _ in
-
-            } receiveValue: { [weak self] response in
+                .sink(receiveCompletion: { [weak self] error in
+                    guard case let .failure(error) = error else { return }
+                    let errorProps = ErrorUIHandler.handle(error) { [weak self] in
+                        self?.onOutput?(.removeState)
+                        self?.loadData()
+                    }
+                    self?.onOutput?(.error(errorProps))
+                    print(error.appError.localizedDescription)
+            }, receiveValue: { [weak self] response in
                 self?.onOutput?(.content(.init(name: "\(response.firstName) \(response.middleName)  \(response.lastName)", phone: response.phone)))
-            }
+            })
             .store(in: &cancellables)
     }
 }

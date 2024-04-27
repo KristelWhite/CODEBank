@@ -59,18 +59,18 @@ public struct ErrorUIHandler {
         switch error.appError.kind {
         case .network:
             return ErrorView.Props(
-                title: "",
-                message: "efff",
-                image: Asset.eye.image,
-                buttonTitle: "update",
+                title: "Внимание",
+                message: "Вероятно, соединение с интрнетом прервано",
+                image: Asset.bigIlustrtionNotWiFi.image,
+                buttonTitle: "Повторить",
                 onTap: onTap
             )
         default:
             return ErrorView.Props(
-                title: "dfef",
-                message: "efff",
-                image: Asset.eye.image,
-                buttonTitle: "update",
+                title: Common.Error.defaultTitle,
+                message: Common.Error.defaultMessagePity,
+                image: Asset.bigIlustrtion1.image,
+                buttonTitle: "Повторить",
                 onTap: onTap
             )
             break

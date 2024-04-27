@@ -7,15 +7,11 @@
 
 import Core
 
-enum CorePath: Path, CaseIterable {
+enum CorePath: String, Path, CaseIterable {
     case profile
     case accountsList
     case depositsList
-    case accountInfo(id: Int)
-
-    static var allCases: [CorePath] {
-           return [.profile, .accountsList, .depositsList, .accountInfo(id: 0)]
-       }
+    case accountInfo
 
     var version: String {
         "6096726/api/"
@@ -30,7 +26,7 @@ enum CorePath: Path, CaseIterable {
             return "accountList"
         case .depositsList:
             return "depositList"
-        case .accountInfo(let id):
+        case .accountInfo:
             return "accountInfo"
         }
     }
@@ -43,8 +39,8 @@ enum CorePath: Path, CaseIterable {
             return "\(version)core/account/list"
         case .depositsList:
             return "\(version)core/deposit/list"
-        case .accountInfo(let id):
-            return "\(version)core/account/\(id)"
+        case .accountInfo:
+            return "\(version)core/account/{id}"
         }
     }
 
@@ -58,7 +54,7 @@ enum CorePath: Path, CaseIterable {
             return .core(.accountsList)
         case .depositsList:
             return .core(.depositsList)
-        case .accountInfo(let id):
+        case .accountInfo:
             return .core(.accountInfo)
         }
     }

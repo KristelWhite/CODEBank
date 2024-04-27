@@ -42,6 +42,10 @@ final class ProfileController: TemplateViewController<ProfileView> {
             switch output {
             case .content(let props):
                 self?.rootView.configured(with: props)
+            case .error(let errorProps):
+                self?.setAdditionState(.error(errorProps))
+            case .removeState:
+                self?.removeAdditionalState()
             }
         }
 

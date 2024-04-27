@@ -48,6 +48,8 @@ final class MainController: TemplateViewController<MainView> {
                 self?.setAdditionState(.error(errorProps))
             case .loader:
                 break
+            case .removeState:
+                self?.removeAdditionalState()
             }
         }
 

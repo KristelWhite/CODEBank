@@ -15,6 +15,8 @@ final class DepositViewModel {
 
     enum Output {
         case content(Props)
+        case error(ErrorView.Props)
+        case removeState
     }
 
     enum Input {
@@ -47,8 +49,14 @@ final class DepositViewModel {
     private func loadData() {
         print(id)
         coreRequestManager.accountInfo(accountId: id)
-            .sink { error in
-
+            .sink { [weak self] error in
+                guard case let .failure(error) = error else { return }
+                let errorProps = ErrorUIHandler.handle(error) { [weak self] in
+                    self?.onOutput?(.removeState)
+                    self?.loadData()
+                }
+                self?.onOutput?(.error(errorProps))
+                print(error.appError.localizedDescription)
             } receiveValue: { [weak self] response in
                 print(" responce \(response)")
                 self?.response = response

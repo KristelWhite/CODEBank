@@ -11,6 +11,7 @@ final class MainViewModel {
         case selectCard(with: String)
         case selectAccount(with: Int)
         case error(ErrorView.Props)
+        case removeState
         case loader
     }
 
@@ -41,11 +42,11 @@ final class MainViewModel {
     private func loadData() {
         onOutput?(.content(.init(sections: [
             .accounts(
-                [.header(.init(title: "!Accounts"))] +
+                [.header(.init(title: "Счета"))] +
                 (1...3).map { _ in .shimmer() }
             ),
             .deposits(
-                [.header(.init(title: "!Deposits"))] +
+                [.header(.init(title: "Вклады"))] +
                 (1...3).map { _ in .shimmer() }
             )
         ])))
@@ -57,28 +58,21 @@ final class MainViewModel {
         let depositsPublisher = coreRequestManager.depositsList()
             .eraseToAnyPublisher()
 
-//        Publishers.CombineLatest(accountsPublisher, depositsPublisher)
-//            .sink(receiveCompletion: { [weak self] completion in
-//                switch completion {
-//                case .finished:
-//                    break
-//                case .failure(let error):
-//                    print("Произошла ошибка: \(error)")
-//                    self?.onOutput?(.error(.init(
-//                        title: Common.Error.defaultTitle,
-//                        message: Common.Error.defaultMessage,
-//                        image: Asset.bigIlustrtionNotWiFi.image,
-//                        buttonTitle: Common.repeat
-//                    ) { [weak self] in
-//                        self?.loadData()
-//                    }))
-//                }
-//            }, receiveValue: { [weak self] accountsResponse, depositsResponse in
-//                print("Аккаунты: \(accountsResponse)")
-//                print("Депозиты: \(depositsResponse)")
-//                self?.handleReceivedData(accounts: accountsResponse, deposits: depositsResponse)
-//            })
-//            .store(in: &cancellables)
+        Publishers.CombineLatest(accountsPublisher, depositsPublisher)
+            .sink(receiveCompletion: { [weak self] error in
+                guard case let .failure(error) = error else { return }
+                let errorProps = ErrorUIHandler.handle(error) { [weak self] in
+                    self?.onOutput?(.removeState)
+                    self?.loadData()
+                }
+                self?.onOutput?(.error(errorProps))
+                print(error.appError.localizedDescription)
+            }, receiveValue: { [weak self] accountsResponse, depositsResponse in
+                print("Аккаунты: \(accountsResponse)")
+                print("Депозиты: \(depositsResponse)")
+                self?.handleReceivedData(accounts: accountsResponse, deposits: depositsResponse)
+            })
+            .store(in: &cancellables)
 
 
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in

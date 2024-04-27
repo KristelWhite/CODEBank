@@ -7,7 +7,7 @@ public final class SnackView: View {
     enum Constant {
         static let autohide: Bool = true
         static let appearDuration: TimeInterval = 0.2
-        static let showDuration: TimeInterval = 5
+        static let showDuration: TimeInterval = 3
     }
 
     enum Event {
@@ -91,7 +91,7 @@ public final class SnackView: View {
         titleLabel.text(props.message)
         backgroundStyle(
             props.style == .basic
-            ? .backgroundPrimary
+            ? .indicatorContentSuccess
             : .indicatorContentError
         )
 
