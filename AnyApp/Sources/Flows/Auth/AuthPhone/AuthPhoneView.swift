@@ -8,6 +8,8 @@ final class AuthPhoneView: BackgroundPrimary {
     var onAuth: StringHandler?
 
     private var phoneTextField = TextField(foregroundStyle: .textPrimary, fontStyle: .body2, placeholderForegroundStyle: .textTertiary, placeholderFontStyle: .body2)
+    private var image = ImageView(image: Asset.phone.image)
+        .foregroundStyle(.contentAccentPrimary)
     
     override func setup() {
         super.setup()
@@ -22,10 +24,21 @@ final class AuthPhoneView: BackgroundPrimary {
                     self.onAuth?(phone)
                 } else {
                     SnackCenter.shared.showSnack(withProps: .init(message: "Пожалуйста, убедитесь, что вы правильно ввели номер телефона", style: .error))
-                    //change text and image color
+                    self.phoneTextField.foregroundStyle(.indicatorContentError)
+                    self.image.foregroundStyle(.indicatorContentError)
+                    Timer.scheduledTimer(
+                        timeInterval: 5,
+                        target: self,
+                        selector: #selector(self.changeColor),
+                        userInfo: nil,
+                        repeats: false
+                    )
                 }
-
             }
+    }
+    @objc func changeColor() {
+        phoneTextField.foregroundStyle(.textPrimary)
+        image.foregroundStyle(.contentAccentPrimary)
     }
     
     private func body() -> UIView {
@@ -38,8 +51,7 @@ final class AuthPhoneView: BackgroundPrimary {
             BackgroundView {
                 HStack(alignment: .center) {
                     Spacer(.px24)
-                    ImageView(image: Asset.phone.image)
-                        .foregroundStyle(.contentAccentPrimary)
+                    image
                         .size(CGSize(width: 24, height: 24))
                     Spacer(.px16)
                     phoneTextField
@@ -51,6 +63,7 @@ final class AuthPhoneView: BackgroundPrimary {
             .backgroundStyle(.contentSecondary)
             .cornerRadius(20)
             .height(52)
+            
             FlexibleSpacer()
         }
         .layoutMargins(.make(hInsets: 16))
@@ -59,6 +72,7 @@ final class AuthPhoneView: BackgroundPrimary {
     func configureTextField() {
         phoneTextField.delegate = self
     }
+
 }
 // MARK: - UITextFieldDelegate
 

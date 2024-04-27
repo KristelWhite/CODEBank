@@ -10,6 +10,8 @@ final class MainViewModel {
         case content(Props)
         case selectCard(with: String)
         case selectAccount(with: Int)
+        case error(ErrorView.Props)
+        case loader
     }
 
     enum Input {
@@ -55,20 +57,28 @@ final class MainViewModel {
         let depositsPublisher = coreRequestManager.depositsList()
             .eraseToAnyPublisher()
 
-        Publishers.CombineLatest(accountsPublisher, depositsPublisher)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print("Произошла ошибка: \(error)")
-                }
-            }, receiveValue: { [weak self] accountsResponse, depositsResponse in
-                print("Аккаунты: \(accountsResponse)")
-                print("Депозиты: \(depositsResponse)")
-                self?.handleReceivedData(accounts: accountsResponse, deposits: depositsResponse)
-            })
-            .store(in: &cancellables)
+//        Publishers.CombineLatest(accountsPublisher, depositsPublisher)
+//            .sink(receiveCompletion: { [weak self] completion in
+//                switch completion {
+//                case .finished:
+//                    break
+//                case .failure(let error):
+//                    print("Произошла ошибка: \(error)")
+//                    self?.onOutput?(.error(.init(
+//                        title: Common.Error.defaultTitle,
+//                        message: Common.Error.defaultMessage,
+//                        image: Asset.bigIlustrtionNotWiFi.image,
+//                        buttonTitle: Common.repeat
+//                    ) { [weak self] in
+//                        self?.loadData()
+//                    }))
+//                }
+//            }, receiveValue: { [weak self] accountsResponse, depositsResponse in
+//                print("Аккаунты: \(accountsResponse)")
+//                print("Депозиты: \(depositsResponse)")
+//                self?.handleReceivedData(accounts: accountsResponse, deposits: depositsResponse)
+//            })
+//            .store(in: &cancellables)
 
 
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
@@ -127,13 +137,6 @@ final class MainViewModel {
 
         sections.append(.deposits(depositItems))
         self.onOutput?(.content(.init(sections: sections)))
-
-//        self.onOutput?(.content(.init(sections: [
-//            .accounts([
-//                .header(.init(title: "!Accounts")),
-//                .a`
-//            ])
-//        ])))
 
     }
 }

@@ -44,6 +44,10 @@ final class MainController: TemplateViewController<MainView> {
                 self?.onEvent?(.selectCard(with: id))
             case .selectAccount(with: let id):
                 self?.onEvent?(.selectAccount(with: id))
+            case .error(let errorProps):
+                self?.setAdditionState(.error(errorProps))
+            case .loader:
+                break
             }
         }
 

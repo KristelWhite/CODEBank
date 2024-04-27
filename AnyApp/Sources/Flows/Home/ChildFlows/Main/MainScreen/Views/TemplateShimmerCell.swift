@@ -20,7 +20,7 @@ final class TemplateShimmerView: BackgroundPrimary {
             }
             .layoutMargins(.make(vInsets: 8, hInsets: 16))
         }
-        .height(72)
+        .height(52)
     }
 }
 //

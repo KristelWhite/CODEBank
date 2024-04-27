@@ -7,7 +7,7 @@ public final class SnackView: View {
     enum Constant {
         static let autohide: Bool = true
         static let appearDuration: TimeInterval = 0.2
-        static let showDuration: TimeInterval = 3
+        static let showDuration: TimeInterval = 5
     }
 
     enum Event {
