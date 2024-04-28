@@ -85,19 +85,32 @@ final class DepositViewModel {
     private func bottomSection(selectedTab: SwitchView.State) -> DepositViewProps.Section {
         switch selectedTab {
         case .history:
-            return .bottom([
-                .header(.init(title: "title")),
-                .history(.init(id: "1", title: "nsjfrf", date: "frnhn", value: "rsbjfhb", image: Asset.acado.image, isIncome: true))
-                         ])
+            return .bottom(accountMocks)
         case .action:
-            break
+            return .bottom([
+                .action(.init(id: "0", title: "Привязанные карты", image: Asset.cardWhite.image, isAccesory: true)),
+                .action(.init(id: "1", title: "Переименовать счет", image: Asset.rename.image, isAccesory: false)),
+                .action(.init(id: "2", title: "Реквизиты счета", image: Asset.requisites.image, isAccesory: false)),
+                .action(.init(id: "3", title: "Закрыть счет", image: Asset.bankAccount.image, isAccesory: false))])
         case .payment:
-            break
+            return .bottom([
+                .payment(.init(id: "0", title: "Мобильная связь", image: Asset._1Mobile.image)),
+                .payment(.init(id: "1", title: "ЖКХ", image: Asset._1Jkh.image)),
+                .payment(.init(id: "2", title: "Интернет", image: Asset._1Internet.image))])
         }
-        return DepositViewProps.Section.top(.init())
     }
-
 }
 
+//MARK: - MOCKS
+extension DepositViewModel {
+    var accountMocks: [Props.Item] {[
+        .header(.init(title: "Июнь 2021")),
+        .history(.init(id: "0", title: "Оплата OOO \"Янтарь энерго\" ", date: "25 июня, 18:52", value: "-1 500,00", image: Asset.yantar.image , isIncome: false)),
+        .history(.init(id: "1", title: "Зачисление зарплаты", date: "25 июня, 17:38", value: "+ 15 000,00", image: Asset._2CardPay.image , isIncome: true)),
+        .history(.init(id: "2", title: "Первод Александру Олеговичу С.", date: "25 июня, 15:13", value: "-6 000,00", image: Asset._2CardPay.image , isIncome: false)),
+        .history(.init(id: "3", title: "Оплата Транспорта", date: "25 июня, 12:01", value: "-33,00", image: Asset._2AccountPay.image , isIncome: false)),
+        .history(.init(id: "4", title: "Первод Ольге Владимировне Т.", date: "25 июня, 9:47", value: "-15 000,00", image: Asset._2CardPay.image , isIncome: false)),
+    ]}
+}
 
 

@@ -28,9 +28,10 @@ final class TemplatePaymentView: BackgroundPrimary {
     
     
     private func body(with props: Props) -> UIView {
-        HStack(spacing: 16) {
-            BackgroundView {
+        HStack(alignment: .center, spacing: 16) {
+            BackgroundView(padding: 8) {
                 image
+                    .image(props.image)
             }
             .backgroundStyle(.contentSecondary)
             .cornerRadius(20)
@@ -38,11 +39,12 @@ final class TemplatePaymentView: BackgroundPrimary {
             VStack {
                 FlexibleGroupedSpacer()
                 titleLabel
+                    .text(props.title)
                 FlexibleGroupedSpacer()
             }
             .linkGroupedSpacers()
         }
-        .layoutMargins(.make(vInsets: 14, hInsets: 16))
+        .layoutMargins(.make(vInsets: 14))
         .onTap { [weak self] in
             self?.props?.onTap?(props.id)
         }

@@ -86,6 +86,7 @@ public final class SnackView: View {
         addSubview(bodyView)
         bodyView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+            $0.center.equalToSuperview()
         }
 
         titleLabel.text(props.message)
@@ -114,17 +115,20 @@ public final class SnackView: View {
     // MARK: - Private Methods
 
     private func body() -> UIView {
-        BackgroundView(vPadding: 17, hPadding: 16) {
-            HStack(spacing: 16){
+
+//        BackgroundView(vPadding: 17, hPadding: 16) {
+            HStack(spacing: 16) {
                 titleLabel
+                FlexibleSpacer()
                 ImageView(image: UIImage(named: "close"), foregroundStyle: .contentAccentTertiary)
-                    .width(24)
+                    .size(CGSize(width: 16, height: 16))
                     .onTap { [weak self] in
                         self?.dismiss()
                     }
-            }
+//            }
 
         }
+        .layoutMargins(.all(17))
     }
 
     private func setupSwipeToCloseGesture() {

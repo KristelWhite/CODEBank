@@ -32,9 +32,11 @@ final class TemplateHistoryView: BackgroundPrimary {
     
     private func body(with props: Props) -> UIView {
         HStack(spacing: 16) {
-            BackgroundView{
-                image
-                    .image(props.image)
+            BackgroundView {
+                VStack(alignment: .center) {
+                    image
+                        .image(props.image)
+                }
             }
             .backgroundStyle(.contentSecondary)
             .size(CGSize(width: 40, height: 40), priority: .required)

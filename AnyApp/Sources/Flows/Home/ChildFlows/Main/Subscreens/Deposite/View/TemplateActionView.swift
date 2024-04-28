@@ -15,8 +15,8 @@ final class TemplateActionView: BackgroundPrimary {
 
     private let titleLabel = Label(foregroundStyle: .textSecondary, fontStyle: .body2)
     private let image = ImageView().size(CGSize(width: 24, height: 24), priority: .required)
-    private let accessoryImage = ImageView(image: Asset.chevronRight.image).size(CGSize(width: 24, height: 24), priority: .required)
-    
+    private let accessoryImage = ImageView(image: Asset.chevronDown.image).size(CGSize(width: 24, height: 24), priority: .required)
+
     private var props: Props?
 
     // MARK: - Public methods
@@ -44,7 +44,7 @@ final class TemplateActionView: BackgroundPrimary {
                 .foregroundStyle(.textTertiary)
                 .isHidden(!props.isAccesory)
         }
-        .layoutMargins(.make(vInsets: 16, hInsets: 16))
+        .layoutMargins(.make(vInsets: 16))
         .onTap { [weak self] in
             self?.props?.onTap?(props.id)
         }
