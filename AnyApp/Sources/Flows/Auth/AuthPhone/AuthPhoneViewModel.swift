@@ -37,6 +37,7 @@ final class AuthPhoneViewModel {
             .sink(
                 receiveCompletion: { [weak self] error in
                     guard case let .failure(error) = error else { return }
+                    //change on Snack
                     let errorProps = ErrorUIHandler.handle(error, onTap: {})
                     self?.onOutput?(.error(errorProps))
                     print(error.appError.localizedDescription)

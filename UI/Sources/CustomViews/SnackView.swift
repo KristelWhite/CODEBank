@@ -116,18 +116,15 @@ public final class SnackView: View {
 
     private func body() -> UIView {
 
-//        BackgroundView(vPadding: 17, hPadding: 16) {
+
             HStack(spacing: 16) {
                 titleLabel
                 FlexibleSpacer()
                 ImageView(image: UIImage(named: "close"), foregroundStyle: .contentAccentTertiary)
-                    .size(CGSize(width: 16, height: 16))
                     .onTap { [weak self] in
                         self?.dismiss()
                     }
-//            }
-
-        }
+            }
         .layoutMargins(.all(17))
     }
 

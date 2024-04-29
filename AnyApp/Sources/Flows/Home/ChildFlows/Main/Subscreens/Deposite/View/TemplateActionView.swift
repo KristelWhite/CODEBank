@@ -26,13 +26,14 @@ final class TemplateActionView: BackgroundPrimary {
     }
 
     // MARK: - Private methods
-    
-    
+
     private func body(with props: Props) -> UIView {
         HStack(spacing: 16) {
+
             image
                 .image(props.image)
                 .foregroundStyle(.textTertiary)
+
             VStack {
                 FlexibleGroupedSpacer()
                 titleLabel
@@ -40,23 +41,23 @@ final class TemplateActionView: BackgroundPrimary {
                 FlexibleGroupedSpacer()
             }
             .linkGroupedSpacers()
+
             accessoryImage
                 .foregroundStyle(.textTertiary)
-                .isHidden(!props.isAccesory)
+                    .isHidden(!props.isAccesory)
+
         }
         .layoutMargins(.make(vInsets: 16))
         .onTap { [weak self] in
             self?.props?.onTap?(props.id)
         }
     }
-    
-    
 }
 
 // MARK: - Configurable
 
 extension TemplateActionView: ConfigurableView {
-    
+
     typealias Model = Props
     
     struct Props: Hashable {

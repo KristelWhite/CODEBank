@@ -23,22 +23,26 @@ final class AuthPhoneView: BackgroundPrimary {
                 if phone.count == 18 {
                     self.onAuth?(phone)
                 } else {
-                    SnackCenter.shared.showSnack(withProps: .init(message: "Пожалуйста, убедитесь, что вы правильно ввели номер телефона", style: .error))
-                    self.phoneTextField.foregroundStyle(.indicatorContentError)
-                    self.image.foregroundStyle(.indicatorContentError)
-                    Timer.scheduledTimer(
-                        timeInterval: 5,
-                        target: self,
-                        selector: #selector(self.changeColor),
-                        userInfo: nil,
-                        repeats: false
-                    )
+                    self.snackServerError(message: "Пожалуйста, убедитесь, что вы правильно ввели номер телефона")
                 }
             }
     }
     @objc func changeColor() {
         phoneTextField.foregroundStyle(.textPrimary)
         image.foregroundStyle(.contentAccentPrimary)
+    }
+
+    func snackServerError(message: String) {
+        SnackCenter.shared.showSnack(withProps: .init(message: message, style: .error))
+        self.phoneTextField.foregroundStyle(.indicatorContentError)
+        self.image.foregroundStyle(.indicatorContentError)
+        Timer.scheduledTimer(
+            timeInterval: 5,
+            target: self,
+            selector: #selector(self.changeColor),
+            userInfo: nil,
+            repeats: false
+        )
     }
     
     private func body() -> UIView {

@@ -70,7 +70,7 @@ final class DepositViewModel {
         handleReceivedData(with: response, selectedTab: selectedTab)
     }
 
-    func handleReceivedData(with response: AccountInfoResponse, selectedTab: SwitchView.State = .history)  {
+    func handleReceivedData(with response: AccountInfoResponse, selectedTab: SwitchView.State = .history) {
         var section: [Props.Section] = []
         var items: [Props.Item] = []
         items.append(.depositHeader(.init(id: response.accountId, name: "Счет расчетный", cardNumber: response.number, currency: .ruble, value: response.balance)))
@@ -78,30 +78,32 @@ final class DepositViewModel {
             self?.changeSelectedTab(selectedTab: selectedTab)
         })))
         section.append(.top(items))
-        section.append(bottomSection(selectedTab: selectedTab ))
+        section.append(.bottom(bottomSection(selectedTab: selectedTab)))
         onOutput?(.content(.init(sections: section)))
     }
 
-    private func bottomSection(selectedTab: SwitchView.State) -> DepositViewProps.Section {
+    private func bottomSection(selectedTab: SwitchView.State) -> [Props.Item] {
         switch selectedTab {
         case .history:
-            return .bottom(accountMocks)
+            return accountMocks
         case .action:
-            return .bottom([
+            return [
                 .action(.init(id: "0", title: "Привязанные карты", image: Asset.cardWhite.image, isAccesory: true)),
                 .action(.init(id: "1", title: "Переименовать счет", image: Asset.rename.image, isAccesory: false)),
                 .action(.init(id: "2", title: "Реквизиты счета", image: Asset.requisites.image, isAccesory: false)),
-                .action(.init(id: "3", title: "Закрыть счет", image: Asset.bankAccount.image, isAccesory: false))])
+                .action(.init(id: "3", title: "Закрыть счет", image: Asset.bankAccount.image, isAccesory: false))
+                ]
         case .payment:
-            return .bottom([
+            return [
                 .payment(.init(id: "0", title: "Мобильная связь", image: Asset._1Mobile.image)),
                 .payment(.init(id: "1", title: "ЖКХ", image: Asset._1Jkh.image)),
-                .payment(.init(id: "2", title: "Интернет", image: Asset._1Internet.image))])
+                .payment(.init(id: "2", title: "Интернет", image: Asset._1Internet.image))
+                ]
         }
     }
 }
 
-//MARK: - MOCKS
+// MARK: - MOCKS
 extension DepositViewModel {
     var accountMocks: [Props.Item] {[
         .header(.init(title: "Июнь 2021")),

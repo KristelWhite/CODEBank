@@ -3,10 +3,47 @@ import UIKit
 import AppIndependent
 
 final class AuthOtpView: BackgroundPrimary {
+    enum Event {
+        case refreshOtp
+    }
+    var onOutput: ((Event) -> Void)?
 
-    var onOtpFilled: VoidHandler?
+    var onOtpFilled: StringHandler?
     
-    var timerLabel = Label(text: Entrance.timer("2:59"), foregroundStyle: .textSecondary, fontStyle: .caption1)
+    var timerLabel = Label(foregroundStyle: .textSecondary, fontStyle: .caption1)
+    lazy var timerButton = HStack(spacing: 16) {
+        ImageView(image: Asset.repay.image, foregroundStyle: .contentAccentPrimary)
+        Label(text: "Выслать код повторно", foregroundStyle: .textPrimary, fontStyle: .caption1)
+        FlexibleSpacer()
+    }
+    // MARK: - Timer
+
+    var countdownTimer: Timer?
+
+    let totalTime = 5
+    var timeLeft = 5
+
+    func startTimer() {
+        countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
+        timeLeft = totalTime
+        timerLabel.text(Entrance.timer("\(timeLeft.minutesAndSeconds())"))
+        timerButton.isHidden(true)
+        timerLabel.isHidden(false)
+    }
+
+    @objc func updateTimer() {
+        timeLeft -= 1
+        timerLabel.text(Entrance.timer("\(timeLeft.minutesAndSeconds())"))
+
+        if timeLeft <= 0 {
+            countdownTimer?.invalidate()
+            countdownTimer = nil
+            timerLabel.isHidden(true)
+            timerButton.isHidden(false)
+        }
+    }
+
+
     var codeTextFields: [CodeTextField] = []
     
     override func setup() {
@@ -15,17 +52,17 @@ final class AuthOtpView: BackgroundPrimary {
         body().embed(in: self)
         actionButton = ButtonPrimary(title: "Авторизоваться")
             .onTap { [weak self] in
-                self?.onOtpFilled?()
+                //input otp from textfilds
+                self?.onOtpFilled?("")
             }
         moveActionButtonWithKeyboard = true
+        startTimer()
     }
 
     private func body() -> UIView {
-        VStack {
-//            Spacer(.px16)
+        VStack(spacing: 24) {
             Label(text: "На ваш номер отправлено SMS с кодом подтверждения", foregroundStyle: .textPrimary, fontStyle: .body2)
                 .multiline()
-            Spacer(.px24)
             HStack(alignment: .center, spacing: 6) {
                 ForEach(collection: codeTextFields[0...2], spacing: 6, axis: .horizontal) {$0}
                 View(backgroundStyle: .contentTertiary)
@@ -33,8 +70,14 @@ final class AuthOtpView: BackgroundPrimary {
                 ForEach(collection: codeTextFields[3...5], spacing: 6, axis: .horizontal) {$0}
                 FlexibleSpacer()
             }
-            Spacer(.custom(length: 28))
             timerLabel
+            timerButton
+                .isHidden(true)
+                .onTap { [weak self] in
+                    self?.onOutput?(.refreshOtp)
+                    self?.startTimer()
+
+                }
             FlexibleSpacer()
         }.layoutMargins(.make(vInsets: 16, hInsets: 16))
     }
@@ -119,5 +162,13 @@ final class CodeTextField: TextField {
             bottomLine.backgroundColor = inactiveLineColor
         }
         return resigningActive
+    }
+}
+
+extension Int {
+    func minutesAndSeconds() -> String {
+        let minutes = self / 60
+        let seconds = self % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
 }

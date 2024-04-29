@@ -6,7 +6,8 @@ final class AuthOtpViewModel {
     typealias ConfigModel = AuthOtpConfigModel
 
     enum Input {
-        case otpEntered
+        case otpEntered(String)
+        case refreshOtp
     }
 
     enum Output {
@@ -15,7 +16,7 @@ final class AuthOtpViewModel {
 
     var onOutput: ((Output) -> Void)?
 
-    private let configModel: ConfigModel
+    private var configModel: ConfigModel
     private let authRequestManager: AuthRequestManagerAbstract
     private let appSession: AppSession
 
@@ -33,13 +34,35 @@ final class AuthOtpViewModel {
 
     func handle(_ input: Input) {
         switch input {
-        case .otpEntered:
-            confirmOtp()
+        case .otpEntered(let code):
+            confirmOtp(code: code)
+        case .refreshOtp:
+            login()
         }
     }
 
-    private func confirmOtp() {
-        authRequestManager.authConfirm(otpId: "", phone: "", otpCode: "")
+    private func login() {
+        authRequestManager.authLogin(phone: configModel.phone)
+            .sink(
+                receiveCompletion: { [weak self] error in
+                    guard case let .failure(error) = error else { return }
+                    //change on Snack
+                    print(error.appError.localizedDescription)
+                },
+                receiveValue: { [weak self] response in
+                    self?.configModel = AuthOtpConfigModel(
+                        otpId: response.otpId,
+                        phone: self?.configModel.phone ?? "",
+                        otpCode: response.otpCode,
+                        otpLength: response.otpLen
+                    )
+                }
+            ).store(in: &cancellables)
+
+    }
+
+    private func confirmOtp(code: String) {
+        authRequestManager.authConfirm(otpId: configModel.otpId, phone: configModel.phone, otpCode: code)
             .sink(
                 receiveCompletion: { _ in
                     // handle error
@@ -48,8 +71,12 @@ final class AuthOtpViewModel {
                         accessToken: response.guestToken,
                         refreshToken: ""
                     ))
-                    self?.onOutput?(.userLoggedIn)
+                    //local cheak
+                    if code == self?.configModel.otpCode {
+                        self?.onOutput?(.userLoggedIn)
+                    }
                 }
             ).store(in: &cancellables)
     }
+
 }
