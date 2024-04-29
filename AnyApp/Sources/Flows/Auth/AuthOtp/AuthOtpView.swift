@@ -7,6 +7,9 @@ final class AuthOtpView: BackgroundPrimary {
         case refreshOtp
     }
     var onOutput: ((Event) -> Void)?
+    enum Input {
+        case errorCondition(Int)
+    }
 
     var onOtpFilled: StringHandler?
     
@@ -16,12 +19,14 @@ final class AuthOtpView: BackgroundPrimary {
         Label(text: "Выслать код повторно", foregroundStyle: .textPrimary, fontStyle: .caption1)
         FlexibleSpacer()
     }
+    var errorLabel = Label( foregroundStyle: .indicatorContentError, fontStyle: .caption1)
     // MARK: - Timer
 
     var countdownTimer: Timer?
+    var errorTimer: Timer?
 
-    let totalTime = 5
-    var timeLeft = 5
+    let totalTime = 7
+    var timeLeft = 7
 
     func startTimer() {
         countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
@@ -34,13 +39,48 @@ final class AuthOtpView: BackgroundPrimary {
     @objc func updateTimer() {
         timeLeft -= 1
         timerLabel.text(Entrance.timer("\(timeLeft.minutesAndSeconds())"))
-
-        if timeLeft <= 0 {
-            countdownTimer?.invalidate()
-            countdownTimer = nil
-            timerLabel.isHidden(true)
-            timerButton.isHidden(false)
+        if errorTimer == nil {
+            timerLabel.isHidden(false)
         }
+
+            if timeLeft <= 0 {
+                countdownTimer?.invalidate()
+                countdownTimer = nil
+                if errorTimer == nil {
+                    timerLabel.isHidden(true)
+                    timerButton.isHidden(false)
+
+                }
+            }
+
+    }
+    func handle(input: Input) {
+        switch input {
+        case .errorCondition(let count):
+            for textFild in codeTextFields {
+                textFild.foregroundStyle(.indicatorContentError)
+            }
+            timerLabel.isHidden(true)
+            timerButton.isHidden(true)
+            errorLabel
+                .text("Неверный код. У вас осталось \(count) попытки")
+                .isHidden(false)
+            errorTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(finishErrorCondition), userInfo: nil, repeats: false)
+        }
+    }
+
+    @objc func finishErrorCondition() {
+        print("end timer")
+        errorTimer?.invalidate()
+        errorTimer = nil
+        if countdownTimer == nil {
+            timerButton.isHidden(false)
+        } else {
+            timerLabel.isHidden(false)
+        }
+        errorLabel
+            .isHidden(true)
+
     }
 
 
@@ -78,6 +118,8 @@ final class AuthOtpView: BackgroundPrimary {
                     self?.startTimer()
 
                 }
+            errorLabel
+                .isHidden(true)
             FlexibleSpacer()
         }.layoutMargins(.make(vInsets: 16, hInsets: 16))
     }
@@ -91,6 +133,10 @@ final class AuthOtpView: BackgroundPrimary {
                 }
             textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
             textField.delegate = self
+            textField.onDeleteBackward = {
+                print("delete")
+            }
+            textField.clearsOnBeginEditing = true
             codeTextFields.append(textField)
         }
     }
@@ -101,68 +147,50 @@ final class AuthOtpView: BackgroundPrimary {
 }
 
 extension AuthOtpView: UITextFieldDelegate {
-    
-}
 
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 
-final class CodeTextField: TextField {
-    private var bottomLine = UIView()
-   
-    let activeLineColor = Palette.Content.accentPrimary
-    let inactiveLineColor = UIColor.clear
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setupAppearance()
-        setupBottomLine()
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupAppearance()
-        setupBottomLine()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupAppearance() {
-        layer.cornerRadius = 14
-        layer.masksToBounds = true
-        backgroundColor = Palette.Content.secondary
-        keyboardType = .numberPad
-        textAlignment = .center
-        font = Typography.subtitle?.font
-        textColor = Palette.Text.primary
-    }
-    
-    private func setupBottomLine() {
-        bottomLine.backgroundColor = inactiveLineColor
-        addSubview(bottomLine)
-        bottomLine.snp.makeConstraints { make in
-            make.width.equalTo(24)
-            make.height.equalTo(2)
-            make.bottom.equalToSuperview().inset(10)
-            make.centerX.equalToSuperview()
+        if string.isEmpty {
+            if range.length == 1, let currentText = textField.text, currentText.isEmpty {
+                previousTextField(textField)
+            } else {
+                textField.text = ""
+            }
+            return false
         }
-        tintColor = .clear
-    }
-// MARK: - Override
-    override func becomeFirstResponder() -> Bool {
-        let becomingActive = super.becomeFirstResponder()
-        if becomingActive {
-            bottomLine.backgroundColor = activeLineColor
+
+        if range.length == 0, let currentText = textField.text, currentText.count >= 1 {
+            return false
         }
-        return becomingActive
-    }
-    override func resignFirstResponder() -> Bool {
-        let resigningActive = super.resignFirstResponder()
-        if resigningActive {
-            bottomLine.backgroundColor = inactiveLineColor
+
+        if string.count == 1 {
+            textField.text = string
+            nextTextField(textField)
+            return false
         }
-        return resigningActive
+
+        return true
     }
+
+    private func previousTextField(_ textField: UITextField) {
+        if let index = codeTextFields.firstIndex(of: textField as! CodeTextField), index > 0 {
+            let previousField = codeTextFields[index - 1]
+            previousField.text = ""
+            previousField.becomeFirstResponder()
+        }
+    }
+
+    private func nextTextField(_ textField: UITextField) {
+        if let index = codeTextFields.firstIndex(of: textField as! CodeTextField), index < codeTextFields.count - 1 {
+            codeTextFields[index + 1].becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+
+//            sendOTPToServer()
+        }
+    }
+
+    
 }
 
 extension Int {

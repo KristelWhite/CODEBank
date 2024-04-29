@@ -8,6 +8,7 @@ final class AuthOtpController: TemplateViewController<AuthOtpView>, NavigationBa
 
     enum Event {
         case userLoggedIn
+
     }
 
     var onEvent: ((Event) -> Void)?
@@ -40,7 +41,22 @@ final class AuthOtpController: TemplateViewController<AuthOtpView>, NavigationBa
             switch output {
             case .userLoggedIn:
                 self?.onEvent?(.userLoggedIn)
+            case .closeSession:
+                self?.showExitConfirmation()
+            case .wrongOtp(let count):
+                self?.rootView.handle(input: .errorCondition(count))
             }
         }
+    }
+}
+
+extension AuthOtpController {
+    func showExitConfirmation() {
+        let alertController = UIAlertController(title: "Вы ввели неверно код 5 раз", message: "Данная сессия авторизации будет завершена!", preferredStyle: .alert)
+        let exitAction = UIAlertAction(title: "Выход", style: .cancel) { [weak self] action in
+            self?.viewModel.handle(.closeSession)
+        }
+        alertController.addAction(exitAction)
+        present(alertController, animated: true, completion: nil)
     }
 }

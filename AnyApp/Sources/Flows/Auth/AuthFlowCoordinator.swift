@@ -46,6 +46,7 @@ final class AuthFlowCoordinator: Coordinator {
             switch event {
             case .userLoggedIn:
                 self?.onEvent?(.userLoggedIn)
+            
             }
         }
 

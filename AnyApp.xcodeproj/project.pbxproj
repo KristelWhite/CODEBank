@@ -120,6 +120,7 @@
 		632ED9D5576B6BAF3F0DC548 /* AppSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97D5567A4B1F3C2F11F7D9 /* AppSession.swift */; };
 		634A237BA79A2107314818C1 /* LogEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4692E115C5942F26BCF997A /* LogEvent.swift */; };
 		6398B8D7EBE4C432C0F0259A /* SessionAbstract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4852DA8B63E3960B4477026F /* SessionAbstract.swift */; };
+		63C362142BDFB9F5002D5D6E /* CodeTextFild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C362132BDFB9F5002D5D6E /* CodeTextFild.swift */; };
 		63DA7A592BD858C900C42069 /* DepositView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A582BD858C900C42069 /* DepositView.swift */; };
 		63DA7A5B2BD858E100C42069 /* DepositViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A5A2BD858E100C42069 /* DepositViewModel.swift */; };
 		63DA7A5D2BD8591B00C42069 /* DepositController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DA7A5C2BD8591B00C42069 /* DepositController.swift */; };
@@ -514,6 +515,7 @@
 		5C9FD28ED70C813452AE5758 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		5DA80942831F56DF59D307CD /* LibraryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryManager.swift; sourceTree = "<group>"; };
 		613D75DBB88E59FCA4F390F1 /* QuickLayout+Centering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuickLayout+Centering.swift"; sourceTree = "<group>"; };
+		63C362132BDFB9F5002D5D6E /* CodeTextFild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTextFild.swift; sourceTree = "<group>"; };
 		63DA7A582BD858C900C42069 /* DepositView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositView.swift; sourceTree = "<group>"; };
 		63DA7A5A2BD858E100C42069 /* DepositViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositViewModel.swift; sourceTree = "<group>"; };
 		63DA7A5C2BD8591B00C42069 /* DepositController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositController.swift; sourceTree = "<group>"; };
@@ -910,8 +912,9 @@
 		10E588102BC04F4300D05347 /* AuthOtp */ = {
 			isa = PBXGroup;
 			children = (
-				10E5881F2BC0575900D05347 /* AuthOtpController.swift */,
+				63C362132BDFB9F5002D5D6E /* CodeTextFild.swift */,
 				10E588212BC0577A00D05347 /* AuthOtpView.swift */,
+				10E5881F2BC0575900D05347 /* AuthOtpController.swift */,
 				10E588232BC0577F00D05347 /* AuthOtpViewModel.swift */,
 				63E55EEB2BD2ACF60014FEFC /* AuthOtpConfigModel.swift */,
 			);
@@ -2430,6 +2433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63C362142BDFB9F5002D5D6E /* CodeTextFild.swift in Sources */,
 				63E55EEC2BD2ACF60014FEFC /* AuthOtpConfigModel.swift in Sources */,
 				10E588242BC0577F00D05347 /* AuthOtpViewModel.swift in Sources */,
 				63E55EEF2BD512530014FEFC /* AboutAppView.swift in Sources */,

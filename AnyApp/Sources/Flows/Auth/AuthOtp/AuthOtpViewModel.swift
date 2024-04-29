@@ -8,13 +8,17 @@ final class AuthOtpViewModel {
     enum Input {
         case otpEntered(String)
         case refreshOtp
+        case closeSession
     }
 
     enum Output {
         case userLoggedIn
+        case closeSession
+        case wrongOtp(Int)
     }
 
     var onOutput: ((Output) -> Void)?
+    var otpAttempts = 5
 
     private var configModel: ConfigModel
     private let authRequestManager: AuthRequestManagerAbstract
@@ -38,6 +42,8 @@ final class AuthOtpViewModel {
             confirmOtp(code: code)
         case .refreshOtp:
             login()
+        case .closeSession:
+            appSession.handle(.logout(.init(needFlush: true, alert: nil)))
         }
     }
 
@@ -74,6 +80,14 @@ final class AuthOtpViewModel {
                     //local cheak
                     if code == self?.configModel.otpCode {
                         self?.onOutput?(.userLoggedIn)
+                    } else {
+                        self?.otpAttempts -= 1
+                        self?.onOutput?(.wrongOtp(self?.otpAttempts ?? 0))
+                        if self?.otpAttempts == 0 {
+                            self?.onOutput?(.closeSession)
+                        }
+
+
                     }
                 }
             ).store(in: &cancellables)
