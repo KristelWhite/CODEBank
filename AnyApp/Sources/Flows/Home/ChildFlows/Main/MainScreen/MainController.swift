@@ -50,6 +50,8 @@ final class MainController: TemplateViewController<MainView> {
                 break
             case .removeState:
                 self?.removeAdditionalState()
+            case .showActionButton:
+                self?.rootView.handle(input: .showButton)
             }
         }
 

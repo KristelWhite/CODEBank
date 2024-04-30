@@ -13,6 +13,7 @@ final class MainViewModel {
         case error(ErrorView.Props)
         case removeState
         case loader
+        case showActionButton
     }
 
     enum Input {
@@ -131,6 +132,7 @@ final class MainViewModel {
 
         sections.append(.deposits(depositItems))
         self.onOutput?(.content(.init(sections: sections)))
+        self.onOutput?(.showActionButton)
 
     }
 }

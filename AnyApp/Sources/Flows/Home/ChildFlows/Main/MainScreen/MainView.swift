@@ -4,16 +4,29 @@ import AppIndependent
 
 final class MainView: BackgroundPrimary {
 
+    enum Input {
+        case showButton
+    }
+
     var onNewProduct: VoidHandler?
 
     private let tableView = BaseTableView()
     private let button = ButtonPrimary(title: "Открыть новый счет или продукт")
     private lazy var dataSource = MainDataSource(tableView: tableView)
 
+    func handle(input: Input) {
+        switch input {
+        case .showButton:
+            button
+                .isHidden(false)
+        }
+    }
+
     override func setup() {
         super.setup()
         body().embed(in: self)
         setupButton()
+
     }
 
     private func body() -> UIView {
@@ -30,7 +43,9 @@ final class MainView: BackgroundPrimary {
             $0.bottom.equalTo(safeAreaLayoutGuide).inset(24)
             $0.height.equalTo(52)
         }
-        button.onTap { [weak self] in
+        button
+            .isHidden(true)
+            .onTap { [weak self] in
             self?.onNewProduct?()
         }
     }
