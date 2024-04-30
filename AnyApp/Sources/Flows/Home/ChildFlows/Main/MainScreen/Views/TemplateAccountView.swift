@@ -24,9 +24,32 @@ final class TemplateAccountView: BackgroundPrimary {
 
     override public func setup() {
         super.setup()
+        body().embed(in: self)
     }
 
     // MARK: - Private methods
+    private func body() -> UIView {
+        HStack(spacing: 16) {
+            VStack {
+                Shimmer()
+                .size(.init(width: 40, height: 40), priority: .required)
+            }
+            VStack( spacing: 2) {
+                Shimmer()
+                    .size(CGSize(width: 160, height: 20))
+                Shimmer()
+                    .size(CGSize(width: 90, height: 20))
+            }
+            VStack {
+                FlexibleGroupedSpacer()
+                Shimmer()
+                .size(.init(width: 40, height: 28), priority: .required)
+                FlexibleGroupedSpacer()
+            }
+            .linkGroupedSpacers()
+        }
+        .layoutMargins(.make(vInsets: 16))
+        }
     
     
     private func body(with props: Props) -> UIView {

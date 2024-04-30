@@ -14,13 +14,41 @@ final class TemplateDepositView: BackgroundPrimary {
     
     private var props: Props?
 
-    // MARK: - Public methods
-
     override public func setup() {
         super.setup()
+        body().embed(in: self)
     }
 
     // MARK: - Private methods
+
+    private func body() -> UIView {
+        HStack(spacing: 16) {
+            VStack {
+                FlexibleGroupedSpacer()
+                Shimmer()
+                .size(.init(width: 40, height: 40), priority: .required)
+                FlexibleGroupedSpacer()
+            }
+            .height(44)
+            .linkGroupedSpacers()
+            VStack(distribution: .fillEqually, spacing: 4) {
+                HStack(distribution: .equalSpacing) {
+                    Shimmer()
+                        .size(CGSize(width: 150, height: 20))
+                    Shimmer()
+                        .size(CGSize(width: 110, height: 20))
+                }
+                HStack(distribution: .equalSpacing) {
+                    Shimmer()
+                        .size(CGSize(width: 100, height: 20))
+                    Shimmer()
+                        .size(CGSize(width: 90, height: 20))
+                }
+            }
+        }
+        .height(72)
+        .layoutMargins(.make(vInsets: 14, hInsets: 0))
+    }
     
     
     private func body(with props: Props) -> UIView {

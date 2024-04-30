@@ -37,7 +37,7 @@ final class MainDataSource {
 
     private func setup() {
         tableView.contentInsets(.init(top: 0, left: 0, bottom: 92, right: 0))
-        tableView.registerTemplateCell(forView: TemplateShimmerView.self)
+//        tableView.registerTemplateCell(forView: TemplateShimmerView.self)
         tableView.registerTemplateCell(forView: TemplateDepositView.self)
         tableView.registerTemplateCell(forView: TemplateHeaderView.self)
         tableView.registerTemplateCell(forView: TemplateCardView.self)
@@ -47,8 +47,6 @@ final class MainDataSource {
     private func configure() {
         dataSource = DiffableDataSource(tableView: tableView) { [unowned self] _, indexPath, item in
             switch item {
-            case .shimmer:
-                return cellFactory.makeShimmer(for: indexPath)
             case .header(let props):
                 return cellFactory.makeTemplateHeaderCell(for: indexPath, with: props)
             case .account(let props):
@@ -57,6 +55,14 @@ final class MainDataSource {
                 return cellFactory.makeTemplateCardCell(for: indexPath, with: props)
             case .deposit(let props):
                 return cellFactory.makeTemplateCell(for: indexPath, with: props)
+            case .shimmerAccount:
+                return cellFactory.makeAccountShimmer(for: indexPath)
+            case .shimmerHeader:
+                return cellFactory.makeHeaderShimmer(for: indexPath)
+            case .shimmerDeposit:
+                return cellFactory.makeDepositShimmer(for: indexPath)
+            case .shimmerCard:
+                return cellFactory.makeCardShimmer(for: indexPath)
             }
         }
     }

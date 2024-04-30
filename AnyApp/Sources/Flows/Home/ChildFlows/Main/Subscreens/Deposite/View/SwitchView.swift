@@ -29,9 +29,25 @@ final class SwitchView: BackgroundPrimary {
     
     override public func setup() {
         super.setup()
+        body().embed(in: self)
 
     }
     // MARK: - Private methods
+
+    private func body() -> UIView {
+        HStack(alignment: .center, distribution: .fill, spacing: 40) {
+            FlexibleGroupedSpacer()
+            Shimmer()
+            .size(.init(width: 56, height: 56), priority: .required)
+            Shimmer()
+            .size(.init(width: 56, height: 56), priority: .required)
+            Shimmer()
+            .size(.init(width: 56, height: 56), priority: .required)
+            FlexibleGroupedSpacer()
+        }
+        .linkGroupedSpacers()
+        .layoutMargins(.make(vInsets: 16))
+    }
     
     private func body(with props: Props) -> UIView {
         HStack(alignment: .center, distribution: .fill, spacing: 40) {

@@ -22,6 +22,34 @@ final class MainCellFactory {
         )
     }
 
+    func makeAccountShimmer(for indexPath: IndexPath) -> UITableViewCell {
+        tableView.dequeueTemplateCell(
+            forView: TemplateAccountView.self,
+            for: indexPath
+        )
+    }
+
+    func makeDepositShimmer(for indexPath: IndexPath) -> UITableViewCell {
+        tableView.dequeueTemplateCell(
+            forView: TemplateDepositView.self,
+            for: indexPath
+        )
+    }
+
+    func makeCardShimmer(for indexPath: IndexPath) -> UITableViewCell {
+        tableView.dequeueTemplateCell(
+            forView: TemplateCardView.self,
+            for: indexPath
+        )
+    }
+
+    func makeHeaderShimmer(for indexPath: IndexPath) -> UITableViewCell {
+        tableView.dequeueTemplateCell(
+            forView: TemplateHeaderView.self,
+            for: indexPath
+        )
+    }
+
     // MARK: - Cells
 
     func makeTemplateAccountCell(

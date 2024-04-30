@@ -26,10 +26,35 @@ final class TemplateCardView: BackgroundPrimary {
 
     override public func setup() {
         super.setup()
-
+        body().embed(in: self)
     }
 
     // MARK: - Private methods
+
+    private func body() -> UIView {
+        HStack (spacing: 16) {
+            VStack {
+                Shimmer()
+                .size(.init(width: 40, height: 40), priority: .required)
+            }
+            VStack(spacing: 3) {
+                Shimmer()
+                    .size(CGSize(width: 180, height: 20))
+                Shimmer()
+                    .size(CGSize(width: 120, height: 20))
+            }
+            VStack {
+                FlexibleGroupedSpacer()
+                Shimmer()
+                .size(CGSize(width: 40, height: 28), priority: .required)
+                FlexibleGroupedSpacer()
+            }
+            .height(40, priority: .required)
+            .linkGroupedSpacers()
+        }
+//        .height(72)
+        .layoutMargins(.make(vInsets: 16))
+    }
     
     
     private func body(with props: Props) -> UIView {

@@ -22,12 +22,47 @@ final class DepositCellFactory {
 
     // MARK: - Common
 
-    func makeShimmer(for indexPath: IndexPath) -> UITableViewCell {
+    func makeDepositHeaderShimmer(for indexPath: IndexPath) -> UITableViewCell {
         tableView.dequeueTemplateCell(
-            forView: TemplateShimmerView.self,
+            forView: HeaderDepositView.self,
             for: indexPath
         )
     }
+
+    func makeActionShimmer(for indexPath: IndexPath) -> UITableViewCell {
+        tableView.dequeueTemplateCell(
+            forView: TemplateActionView.self,
+            for: indexPath
+        )
+    }
+
+    func makePaymentShimmer(for indexPath: IndexPath) -> UITableViewCell {
+        tableView.dequeueTemplateCell(
+            forView: TemplatePaymentView.self,
+            for: indexPath
+        )
+    }
+    func makeHistoryShimmer(for indexPath: IndexPath) -> UITableViewCell {
+        tableView.dequeueTemplateCell(
+            forView: TemplateHistoryView.self,
+            for: indexPath
+        )
+    }
+
+    func makeSwitchShimmer(for indexPath: IndexPath) -> UITableViewCell {
+        tableView.dequeueTemplateCell(
+            forView: SwitchView.self,
+            for: indexPath
+        )
+    }
+
+    func makeHeaderShimmer(for indexPath: IndexPath) -> UITableViewCell {
+        tableView.dequeueTemplateCell(
+            forView: TemplateHeaderView.self,
+            for: indexPath
+        )
+    }
+
 
     // MARK: - Cells
 

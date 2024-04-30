@@ -22,7 +22,12 @@ struct DepositViewProps {
     }
 
     enum Item: Hashable {
-        case shimmer(_ identifier: String = UUID().uuidString)
+        case shimerSwitch(_ identifier: String = UUID().uuidString)
+        case shimmerDepositHeader(_ identifier: String = UUID().uuidString)
+        case shimmerAction(_ identifier: String = UUID().uuidString)
+        case shimmerPayment(_ identifier: String = UUID().uuidString)
+        case shimmerHistory(_ identifier: String = UUID().uuidString)
+        case shimmerHeader(_ identifier: String = UUID().uuidString)
         case header(TemplateHeaderView.Props)
         case action(TemplateActionView.Props)
         case history(TemplateHistoryView.Props)

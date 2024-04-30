@@ -23,6 +23,22 @@ final class TemplateActionView: BackgroundPrimary {
 
     override public func setup() {
         super.setup()
+        body().embed(in: self)
+    }
+
+    private func body() -> UIView {
+        HStack(spacing: 16) {
+            Shimmer()
+                .size(CGSize(width: 24, height: 24))
+            VStack {
+                FlexibleGroupedSpacer()
+                Shimmer()
+                    .size(CGSize(width: 100, height: 20))
+                FlexibleGroupedSpacer()
+            }
+            .linkGroupedSpacers()
+        }
+        .layoutMargins(.make(vInsets: 16))
     }
 
     // MARK: - Private methods

@@ -47,6 +47,7 @@ final class DepositViewModel {
         }
     }
     private func loadData() {
+        addShimmer()
         print(id)
         coreRequestManager.accountInfo(accountId: id)
             .sink { [weak self] error in
@@ -62,6 +63,22 @@ final class DepositViewModel {
                 self?.response = response
                 self?.handleReceivedData(with: response)
             }.store(in: &cancellables)
+    }
+
+    func addShimmer() {
+        onOutput?(.content(.init(sections: [
+            .top([
+                .shimmerDepositHeader(),
+                .shimerSwitch()]),
+            .bottom([
+                .shimmerHeader(),
+                .shimmerHistory(),
+                .shimmerHistory(),
+                .shimmerHistory(),
+                .shimmerHistory(),
+                .shimmerHistory(),
+                .shimmerHistory()
+                ])])))
     }
 
     func changeSelectedTab(selectedTab: SwitchView.State) {

@@ -43,13 +43,41 @@ final class ProfileView: BackgroundPrimary {
     }
     override func setup() {
         super.setup()
-//        guard let props = props else {return}
-//        body(with: props).embed(in: self)
+        body().embed(in: self)
+    }
+
+    private func body() -> UIView {
+        VStack {
+            shimmerHeaderView()
+            bottomView()
+        }
+        .layoutMargins(.make(vInsets: 16, hInsets: 16))
+    }
+
+    func shimmerHeaderView() -> UIView {
+        VStack(alignment: .center) {
+            Spacer(.px72)
+            Shimmer()
+                .size(CGSize(width: 88, height: 88), priority: .required)
+            Spacer(.px16)
+            VStack(alignment: .center, spacing: 4) {
+                Shimmer()
+                    .size(CGSize(width: 150, height: 22))
+                Shimmer()
+                    .size(CGSize(width: 100, height: 13))
+            }
+        }
     }
 
     private func body(with model: Model) -> UIView {
         VStack {
             headerView(with: model)
+            bottomView()
+        }
+        .layoutMargins(.make(vInsets: 16, hInsets: 16))
+    }
+    func bottomView() -> UIView {
+        VStack {
             Spacer(.custom(length: 50))
             ForEach(collection: settings, alignment: .fill) { [weak self] in
                 TemplateSettingsView()
@@ -57,7 +85,6 @@ final class ProfileView: BackgroundPrimary {
             }
             FlexibleSpacer()
         }
-        .layoutMargins(.make(vInsets: 16, hInsets: 16))
     }
     
     private func headerView(with model: Model) -> UIView {

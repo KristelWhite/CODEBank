@@ -22,9 +22,25 @@ final class TemplatePaymentView: BackgroundPrimary {
 
     override public func setup() {
         super.setup()
+        body().embed(in: self)
     }
 
     // MARK: - Private methods
+
+    private func body() -> UIView {
+        HStack(alignment: .center, spacing: 16) {
+            Shimmer()
+            .size(CGSize(width: 40, height: 40), priority: .required)
+            VStack {
+                FlexibleGroupedSpacer()
+                Shimmer()
+                    .size(CGSize(width: 100, height: 20))
+                FlexibleGroupedSpacer()
+            }
+            .linkGroupedSpacers()
+        }
+        .layoutMargins(.make(vInsets: 14))
+    }
     
     
     private func body(with props: Props) -> UIView {

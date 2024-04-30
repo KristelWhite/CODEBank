@@ -42,17 +42,14 @@ final class AuthOtpView: BackgroundPrimary {
         if errorTimer == nil {
             timerLabel.isHidden(false)
         }
-
             if timeLeft <= 0 {
                 countdownTimer?.invalidate()
                 countdownTimer = nil
                 if errorTimer == nil {
                     timerLabel.isHidden(true)
                     timerButton.isHidden(false)
-
                 }
             }
-
     }
     func handle(input: Input) {
         switch input {

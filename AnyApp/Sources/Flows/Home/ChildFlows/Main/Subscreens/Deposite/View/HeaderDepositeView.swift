@@ -19,10 +19,27 @@ final class HeaderDepositView: BackgroundPrimary {
 
     override public func setup() {
         super.setup()
-
+        body().embed(in: self)
     }
 
     // MARK: - Private methods
+
+    private func body() -> UIView {
+        VStack( alignment: .center, distribution: .fill ) {
+            Shimmer()
+            .size(CGSize(width: 52, height: 52))
+            Spacer(.px16)
+            Shimmer()
+                .size(CGSize(width: 100, height: 20))
+            Spacer(.px4)
+            Shimmer()
+                .size(CGSize(width: 150, height: 16))
+            Spacer(.px8)
+            Shimmer()
+                .size(CGSize(width: 200, height: 34))
+        }
+        .layoutMargins(.make(vInsets: 16))
+    }
 
 
     private func body(with props: Props) -> UIView {

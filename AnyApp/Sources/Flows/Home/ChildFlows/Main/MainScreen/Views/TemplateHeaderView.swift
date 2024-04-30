@@ -18,12 +18,22 @@ final class TemplateHeaderView: BackgroundPrimary {
     }
 
     // MARK: - Private methods
-
     private func body() -> UIView {
         VStack {
-//            Shimmer().height(52).embed(in: titleLabel)
-            titleLabel
+            HStack{
+                Shimmer()
+                    .size(CGSize(width: 100, height: 20))
+                FlexibleSpacer()
 
+            }
+        }
+        .layoutMargins(.init(top: 17, left: 0, bottom: 15, right: 0))
+    }
+
+    private func body(with props: Props) -> UIView {
+        VStack {
+            titleLabel
+                .text(props.title)
         }
         .layoutMargins(.init(top: 17, left: 0, bottom: 15, right: 0))
     }
@@ -48,6 +58,8 @@ extension TemplateHeaderView: ConfigurableView {
     }
 
     public func configure(with model: Props) {
-        titleLabel.text(model.title)
+        self.props = model
+        subviews.forEach { $0.removeFromSuperview() }
+        body(with: model).embed(in: self)
     }
 }

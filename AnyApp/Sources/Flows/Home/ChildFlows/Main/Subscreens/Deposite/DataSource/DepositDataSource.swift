@@ -56,8 +56,6 @@ final class DepositDataSource {
     private func configure() {
         dataSource = DiffableDataSource(tableView: tableView) { [unowned self] _, indexPath, item in
             switch item {
-            case .shimmer:
-                return cellFactory.makeShimmer(for: indexPath)
             case .header(let props):
                 return cellFactory.makeTemplateHeaderCell(for: indexPath, with: props)
             case .action(let props):
@@ -70,6 +68,18 @@ final class DepositDataSource {
                 return cellFactory.makeSwitchCell(for: indexPath, with: props)  
             case .depositHeader(let props):
                 return cellFactory.makeTemplateDepositHeaderCell(for: indexPath, with: props)
+            case .shimmerDepositHeader:
+                return cellFactory.makeDepositHeaderShimmer(for: indexPath)
+            case .shimmerAction:
+                return cellFactory.makeActionShimmer(for: indexPath)
+            case .shimmerPayment:
+                return cellFactory.makePaymentShimmer(for: indexPath)
+            case .shimmerHistory:
+                return cellFactory.makeHistoryShimmer(for: indexPath)
+            case .shimerSwitch:
+                return cellFactory.makeSwitchShimmer(for: indexPath)
+            case .shimmerHeader:
+                return cellFactory.makeHeaderShimmer(for: indexPath)
             }
         }
     }

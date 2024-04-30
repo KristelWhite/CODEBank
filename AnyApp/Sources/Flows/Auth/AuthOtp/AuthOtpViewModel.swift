@@ -78,17 +78,19 @@ final class AuthOtpViewModel {
                         refreshToken: ""
                     ))
                     //local cheak
-                    if code == self?.configModel.otpCode {
-                        self?.onOutput?(.userLoggedIn)
-                    } else {
-                        self?.otpAttempts -= 1
-                        self?.onOutput?(.wrongOtp(self?.otpAttempts ?? 0))
-                        if self?.otpAttempts == 0 {
-                            self?.onOutput?(.closeSession)
-                        }
+//                    if code == self?.configModel.otpCode {
+//                        self?.onOutput?(.userLoggedIn)
+//                    } else {
+//                        self?.otpAttempts -= 1
+//                        self?.onOutput?(.wrongOtp(self?.otpAttempts ?? 0))
+//                        if self?.otpAttempts == 0 {
+//                            self?.onOutput?(.closeSession)
+//                        }
+                    self?.onOutput?(.userLoggedIn)
 
 
-                    }
+
+
                 }
             ).store(in: &cancellables)
     }

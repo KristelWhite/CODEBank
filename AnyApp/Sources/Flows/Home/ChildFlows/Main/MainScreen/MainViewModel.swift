@@ -42,16 +42,16 @@ final class MainViewModel {
     private func loadData() {
         onOutput?(.content(.init(sections: [
             .accounts(
-                [.header(.init(title: "Счета"))] +
-                (1...3).map { _ in .shimmer() }
+                [.shimmerHeader()] + [.shimmerAccount()] +
+                (1...3).map { _ in .shimmerCard() }
             ),
             .deposits(
-                [.header(.init(title: "Вклады"))] +
-                (1...3).map { _ in .shimmer() }
+                [.shimmerHeader()] +
+                (1...3).map { _ in .shimmerDeposit()}
             )
         ])))
 
-        // request:
+//         request:
 
         let accountsPublisher = coreRequestManager.accountsList()
             .eraseToAnyPublisher()
