@@ -1,4 +1,5 @@
 import UIKit
+import Services
 import UI
 import AppIndependent
 
@@ -103,7 +104,7 @@ extension TemplateDepositView: ConfigurableView {
         let rate: String
         let date: String
         let value: Double
-        let currency: Currency
+        let currency: Currency 
 
         var onTap: IntHandler?
 
@@ -117,7 +118,7 @@ extension TemplateDepositView: ConfigurableView {
             hasher.combine(value)
             hasher.combine(rate)
             hasher.combine(date)
-            hasher.combine(currency.textValue)
+            hasher.combine(currency)
         }
     }
 

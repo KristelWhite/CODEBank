@@ -90,7 +90,7 @@ final class DepositViewModel {
     func handleReceivedData(with response: AccountInfoResponse, selectedTab: SwitchView.State = .history) {
         var section: [Props.Section] = []
         var items: [Props.Item] = []
-        items.append(.depositHeader(.init(id: response.accountId, name: "Счет расчетный", cardNumber: response.number, currency: .ruble, value: response.balance)))
+        items.append(.depositHeader(.init(id: response.accountId, name: "Счет расчетный", cardNumber: response.number, currency: response.currency, value: response.balance)))
         items.append(.switchView(.init(state: selectedTab, onTap: {[weak self] selectedTab in
             self?.changeSelectedTab(selectedTab: selectedTab)
         })))

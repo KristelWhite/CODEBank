@@ -8,6 +8,7 @@
 import UIKit
 import UI
 import AppIndependent
+import Services
 
 final class TemplateAccountView: BackgroundPrimary {
 
@@ -67,7 +68,7 @@ final class TemplateAccountView: BackgroundPrimary {
                 titleLabel
                     .text(props.title)
                 valueLabel
-                    .text(props.value)
+                    .text(String(props.value))
             }
             VStack {
                 FlexibleGroupedSpacer()
@@ -91,31 +92,6 @@ final class TemplateAccountView: BackgroundPrimary {
 }
 
 // MARK: - Configurable
-enum Currency: String, Equatable, Codable {
-    case ruble, dollar, euro
-    
-    var textValue: String {
-        switch self {
-        case .ruble:
-            return "ruble"
-        case .dollar:
-            return "dollar"
-        case .euro:
-            return "euro"
-        }
-    }
-    
-    var imageValue: UIImage {
-        switch self {
-        case .ruble:
-            return Asset.ruble.image
-        case .dollar:
-            return Asset.icUsd.image
-        case .euro:
-            return Asset.icEur.image
-        }
-    }
-}
 extension TemplateAccountView: ConfigurableView {
 
     typealias Model = Props
@@ -123,7 +99,7 @@ extension TemplateAccountView: ConfigurableView {
     struct Props: Hashable {
         let id: Int
         let title: String
-        let value: String
+        let value: Double
         let currency: Currency
 
         var onTap: IntHandler?
@@ -136,7 +112,7 @@ extension TemplateAccountView: ConfigurableView {
             hasher.combine(id)
             hasher.combine(title)
             hasher.combine(value)
-            hasher.combine(currency.textValue)
+            hasher.combine(currency)
         }
     }
 

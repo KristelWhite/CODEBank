@@ -118,6 +118,9 @@
 		60529ED87A26419E981944CF /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0B5C38EBBD032B43466D5C /* Label.swift */; };
 		62005363BF978419E779EF53 /* RequestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04711ABFEAEF33494EB8E3B3 /* RequestRouter.swift */; };
 		631348942BE0F8B5009EE942 /* ErrorHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631348932BE0F8B5009EE942 /* ErrorHandlers.swift */; };
+		631348972BE111F1009EE942 /* CustomDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631348952BE10DCC009EE942 /* CustomDataTypes.swift */; };
+		631348992BE11347009EE942 /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 631348982BE11347009EE942 /* Asset.xcassets */; };
+		6313489B2BE114F8009EE942 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6313489A2BE114F8009EE942 /* Asset.swift */; };
 		632ED9D5576B6BAF3F0DC548 /* AppSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97D5567A4B1F3C2F11F7D9 /* AppSession.swift */; };
 		634A237BA79A2107314818C1 /* LogEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4692E115C5942F26BCF997A /* LogEvent.swift */; };
 		6398B8D7EBE4C432C0F0259A /* SessionAbstract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4852DA8B63E3960B4477026F /* SessionAbstract.swift */; };
@@ -517,6 +520,9 @@
 		5DA80942831F56DF59D307CD /* LibraryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryManager.swift; sourceTree = "<group>"; };
 		613D75DBB88E59FCA4F390F1 /* QuickLayout+Centering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuickLayout+Centering.swift"; sourceTree = "<group>"; };
 		631348932BE0F8B5009EE942 /* ErrorHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandlers.swift; sourceTree = "<group>"; };
+		631348952BE10DCC009EE942 /* CustomDataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDataTypes.swift; sourceTree = "<group>"; };
+		631348982BE11347009EE942 /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
+		6313489A2BE114F8009EE942 /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
 		63C362132BDFB9F5002D5D6E /* CodeTextFild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTextFild.swift; sourceTree = "<group>"; };
 		63DA7A582BD858C900C42069 /* DepositView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositView.swift; sourceTree = "<group>"; };
 		63DA7A5A2BD858E100C42069 /* DepositViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositViewModel.swift; sourceTree = "<group>"; };
@@ -1346,6 +1352,7 @@
 		63DA7A6F2BD9543F00C42069 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
+				631348952BE10DCC009EE942 /* CustomDataTypes.swift */,
 				63DA7A742BD95C4E00C42069 /* ProfileResponse.swift */,
 				63DA7A762BDA646200C42069 /* AccountListResponse.swift */,
 				63DA7A782BDA703B00C42069 /* DepositListResponse.swift */,
@@ -1643,6 +1650,8 @@
 				1B24AB67CFA77054AF2E8D1D /* Certificates */,
 				74625752A599AE6D6328B024 /* Info.plist */,
 				30280F8EF123F2419C4CED42 /* Services.h */,
+				631348982BE11347009EE942 /* Asset.xcassets */,
+				6313489A2BE114F8009EE942 /* Asset.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -2148,6 +2157,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				631348992BE11347009EE942 /* Asset.xcassets in Resources */,
 				57D9B27793F3A45D093E12DA /* qa-charles-ssl-certificate.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2540,6 +2550,7 @@
 				0BE2E904E4175A95F9EAB2AA /* HeaderKey.swift in Sources */,
 				175638E10814EC02A9474E93 /* HttpMethod.swift in Sources */,
 				97CD0768BB80EF63BF274747 /* KeychainStorageService.swift in Sources */,
+				631348972BE111F1009EE942 /* CustomDataTypes.swift in Sources */,
 				99CBBE1A460C4BF184333C71 /* NetworkLayer.swift in Sources */,
 				343E2CF5A41F106590E4E304 /* NetworkManager.swift in Sources */,
 				73428E54D7704B0AEB24FDCA /* Path.swift in Sources */,
@@ -2550,6 +2561,7 @@
 				2A8C20B541E6312E52CF0EC3 /* PushNotificationService.swift in Sources */,
 				1DD8FAF3095C136D6EA304FB /* QuickAccess.swift in Sources */,
 				63DA7A752BD95C4E00C42069 /* ProfileResponse.swift in Sources */,
+				6313489B2BE114F8009EE942 /* Asset.swift in Sources */,
 				2D2904046A7203699AB3465E /* RequestInterceptor.swift in Sources */,
 				10E588192BC051C100D05347 /* AuthRequestManager.swift in Sources */,
 				62005363BF978419E779EF53 /* RequestRouter.swift in Sources */,

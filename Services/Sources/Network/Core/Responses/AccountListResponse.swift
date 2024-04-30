@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 public struct AccountsListResponse: Decodable {
     public let accounts: [Account]
 }
@@ -16,7 +17,7 @@ public struct Account: Decodable {
     public let number: String
     public let status: String
     public let balance : Double
-    public let currency: String
+    public let currency: Currency
     public let accountId: Int
 }
 
@@ -43,16 +44,10 @@ public enum Status: String, Decodable {
     case deactivated = "DEACTIVATED"
 }
 
-public enum PaymentSystem: String, Decodable {
-    case visa = "Visa"
-    case masterCard = "MasterCard"
-    case mir = "МИР"
-}
-
 public enum CardType: String, Decodable {
-    case physical, dugital
-
+    case physical, digital
 }
+
 
 
 //{

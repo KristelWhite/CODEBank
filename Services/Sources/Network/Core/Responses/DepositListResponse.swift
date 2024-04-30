@@ -10,7 +10,7 @@ import Foundation
 public struct Deposit: Decodable {
     public var depositId: Int
     public var balance: Double
-    public var currency: String
+    public var currency: Currency
     public var status: String
     public var name: String?
 }

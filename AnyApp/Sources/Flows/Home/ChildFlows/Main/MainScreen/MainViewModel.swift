@@ -108,13 +108,14 @@ final class MainViewModel {
         var depositItems: [Props.Item] = []
         accounts.accounts.forEach {
             accountItems.append(.header(.init(title: "Счет номер \($0.number)")))
-            accountItems.append(.account(.init(id: $0.accountId, title: "Расчетный счет", value: "5678,00" , currency: .dollar) { id in
+            accountItems.append(.account(.init(id: $0.accountId, title: "Расчетный счет", value: $0.balance, currency: $0.currency) { id in
                 guard let account = accounts.accounts.first(where: { $0.accountId == id }) else { return }
                 self.onOutput?(.selectAccount(with: id))
             }))
             if let cards = $0.cards {
                 cards.forEach {
-                    accountItems.append(.card(.init(id: $0.id.uuidString, title: $0.name, state: .physical, cardNumber: $0.number, paymentSysem: .visa, onTap: { id in
+                    let state: CardState = $0.status == .deactivated ? .closed : (($0.cardType == .digital) ? .digital : .physical)
+                    accountItems.append(.card(.init(id: $0.id.uuidString, title: $0.name, state: state, cardNumber: $0.number, paymentSystem: $0.paymentSystem, onTap: { id in
                         guard let card = cards.first(where: { $0.id.uuidString == id }) else { return }
                         self.onOutput?(.selectCard(with: id))
                     })))
@@ -125,7 +126,7 @@ final class MainViewModel {
 
         depositItems.append(.header(.init(title: "Вклады")))
         deposits.deposits.forEach {
-            depositItems.append(.deposit(.init(id: $0.depositId, title: $0.name ?? "Безымянный", rate: "3 %", date: "дата", value: $0.balance, currency: .dollar, onTap: { _ in
+            depositItems.append(.deposit(.init(id: $0.depositId, title: $0.name ?? "Безымянный", rate: "3 %", date: "дата", value: $0.balance, currency: $0.currency, onTap: { _ in
                 SnackCenter.shared.showSnack(withProps: .init(message: "Данный функционал будет добавлен позже"))
             })))
         }

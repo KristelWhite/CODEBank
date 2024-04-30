@@ -8,6 +8,7 @@
 import UIKit
 import UI
 import AppIndependent
+import Services
 
 final class TemplateCardView: BackgroundPrimary {
 
@@ -83,7 +84,7 @@ final class TemplateCardView: BackgroundPrimary {
                     }
                     VStack(alignment: .trailing, distribution: .fillEqually, spacing: 1) {
                         Label(text: props.cardNumber, foregroundStyle: props.state.colorCardNumber, fontStyle: .cardNumber)
-                        ImageView(image: props.paymentSysem.image)
+                        ImageView(image: props.paymentSystem.image)
                     }
                     .layoutMargins(.init(top: 2, left: 4, bottom: 1, right: 4))
                 }
@@ -100,58 +101,7 @@ final class TemplateCardView: BackgroundPrimary {
         }
     }
 }
-//MARK: - активна ли карта
-enum CardState: String, Equatable, Codable {
-    case closed, physical
-    
-    var textValue: String {
-        switch self {
-        case .closed:
-            return "Закрыта"
-        case .physical:
-            return "Физическая"
-        }
-    }
-    var label: Label {
-        switch self {
-        case .closed:
-            return Label(text: self.textValue, foregroundStyle: .indicatorContentError, fontStyle: .caption1)
-        case .physical:
-            return Label(text: self.textValue, foregroundStyle: .textSecondary, fontStyle: .caption1)
-        }
-    }
-    var colorCardNumber: ForegroundStyle {
-        switch self {
-        case .closed:
-            return .textSecondary
-        case .physical:
-            return .contentAccentTertiary
-        }
-    }
-    
-}
 
-//MARK: - платежная система карты
-enum PaymentSystem: String, Equatable, Codable {
-    case visa, masterCard
-    
-    var textValue: String {
-        switch self {
-        case .visa:
-            return "Visa"
-        case .masterCard:
-            return "MasterCard"
-        }
-    }
-    var image: UIImage {
-        switch self {
-        case .visa:
-            return Asset.visa.image
-        case .masterCard:
-            return Asset.masterCard.image
-        }
-    }
-}
 
 // MARK: - Configurable
 
@@ -164,7 +114,7 @@ extension TemplateCardView: ConfigurableView {
         let title: String
         let state: CardState
         let cardNumber: String
-        let paymentSysem: PaymentSystem
+        let paymentSystem: PaymentSystem
 
         var onTap: StringHandler?
 
@@ -175,9 +125,9 @@ extension TemplateCardView: ConfigurableView {
         public func hash(into hasher: inout Hasher) {
             hasher.combine(id)
             hasher.combine(title)
-            hasher.combine(state.textValue)
+            hasher.combine(state)
             hasher.combine(cardNumber)
-            hasher.combine(paymentSysem.textValue)
+            hasher.combine(paymentSystem)
         }
     }
 
@@ -187,5 +137,6 @@ extension TemplateCardView: ConfigurableView {
         body(with: model).embed(in: self)
     }
 }
+
 
 

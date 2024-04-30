@@ -8,6 +8,7 @@
 import UIKit
 import UI
 import AppIndependent
+import Services
 
 final class HeaderDepositView: BackgroundPrimary {
 
@@ -76,7 +77,7 @@ extension HeaderDepositView: ConfigurableView {
         let name: String
         let cardNumber: String
         let currency: Currency
-        let value: Int
+        let value: Double
         
         var onTap: StringHandler?
         
@@ -88,7 +89,7 @@ extension HeaderDepositView: ConfigurableView {
             hasher.combine(id)
             hasher.combine(name)
             hasher.combine(cardNumber)
-            hasher.combine(currency.textValue)
+            hasher.combine(currency)
             hasher.combine(value)
         }
     }
