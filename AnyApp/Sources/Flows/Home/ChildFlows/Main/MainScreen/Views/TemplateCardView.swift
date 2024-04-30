@@ -83,7 +83,7 @@ final class TemplateCardView: BackgroundPrimary {
                             .clipsToBounds(true)
                     }
                     VStack(alignment: .trailing, distribution: .fillEqually, spacing: 1) {
-                        Label(text: props.cardNumber, foregroundStyle: props.state.colorCardNumber, fontStyle: .cardNumber)
+                        Label(text: props.cardNumber.lastFourCharacters, foregroundStyle: props.state.colorCardNumber, fontStyle: .cardNumber)
                         ImageView(image: props.paymentSystem.image)
                     }
                     .layoutMargins(.init(top: 2, left: 4, bottom: 1, right: 4))

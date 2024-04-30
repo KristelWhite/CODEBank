@@ -57,10 +57,10 @@ final class HeaderDepositView: BackgroundPrimary {
                 .text(props.name)
             Spacer(.px4)
             Label(foregroundStyle: .textSecondary, fontStyle: .caption1)
-                .text(props.cardNumber)
+                .text(props.cardNumber.maskCardNumber())
             Spacer(.px8)
             Label(foregroundStyle: .textPrimary, fontStyle: .title28)
-                .text(String(props.value))
+                .text(String(props.value.formattedAsCurrency(props.currency.sign)))
         }
         .layoutMargins(.make(vInsets: 16))
     }

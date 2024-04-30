@@ -68,7 +68,7 @@ final class TemplateAccountView: BackgroundPrimary {
                 titleLabel
                     .text(props.title)
                 valueLabel
-                    .text(String(props.value))
+                    .text(props.value.formattedAsCurrency(props.currency.sign))
             }
             VStack {
                 FlexibleGroupedSpacer()

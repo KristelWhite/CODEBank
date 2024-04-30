@@ -23,6 +23,18 @@ public enum Currency: String, Decodable {
             return Asset.icEur.image
         }
     }
+
+    public var sign: String {
+        switch self {
+        case .rub:
+            return "₽"
+        case .usd:
+            return "$"
+        case .eur:
+            return "€"
+        }
+    }
+
 }
 
 // MARK: - платежная система карты

@@ -121,6 +121,7 @@
 		631348972BE111F1009EE942 /* CustomDataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631348952BE10DCC009EE942 /* CustomDataTypes.swift */; };
 		631348992BE11347009EE942 /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 631348982BE11347009EE942 /* Asset.xcassets */; };
 		6313489B2BE114F8009EE942 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6313489A2BE114F8009EE942 /* Asset.swift */; };
+		6313489D2BE15ACA009EE942 /* FormattingExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6313489C2BE15ACA009EE942 /* FormattingExtensions.swift */; };
 		632ED9D5576B6BAF3F0DC548 /* AppSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97D5567A4B1F3C2F11F7D9 /* AppSession.swift */; };
 		634A237BA79A2107314818C1 /* LogEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4692E115C5942F26BCF997A /* LogEvent.swift */; };
 		6398B8D7EBE4C432C0F0259A /* SessionAbstract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4852DA8B63E3960B4477026F /* SessionAbstract.swift */; };
@@ -523,6 +524,7 @@
 		631348952BE10DCC009EE942 /* CustomDataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDataTypes.swift; sourceTree = "<group>"; };
 		631348982BE11347009EE942 /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
 		6313489A2BE114F8009EE942 /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
+		6313489C2BE15ACA009EE942 /* FormattingExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattingExtensions.swift; sourceTree = "<group>"; };
 		63C362132BDFB9F5002D5D6E /* CodeTextFild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTextFild.swift; sourceTree = "<group>"; };
 		63DA7A582BD858C900C42069 /* DepositView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositView.swift; sourceTree = "<group>"; };
 		63DA7A5A2BD858E100C42069 /* DepositViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositViewModel.swift; sourceTree = "<group>"; };
@@ -1259,6 +1261,7 @@
 				AC6BF9C33D8F2C07D4AC0404 /* Flows */,
 				51F0345FCB82403ED27B04AE /* Launch */,
 				631348932BE0F8B5009EE942 /* ErrorHandlers.swift */,
+				6313489C2BE15ACA009EE942 /* FormattingExtensions.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -2493,6 +2496,7 @@
 				63E55ED82BCD47D80014FEFC /* TemplateShimmerCell.swift in Sources */,
 				63DA7A7D2BDBEA4000C42069 /* HeaderDepositeView.swift in Sources */,
 				10E5882E2BC3F48B00D05347 /* ProfileController.swift in Sources */,
+				6313489D2BE15ACA009EE942 /* FormattingExtensions.swift in Sources */,
 				10E588322BC3F53D00D05347 /* ProfileViewModel.swift in Sources */,
 				63DA7A622BD8616500C42069 /* SwitchView.swift in Sources */,
 				10E588072BC049C900D05347 /* AuthFlowAssembly.swift in Sources */,

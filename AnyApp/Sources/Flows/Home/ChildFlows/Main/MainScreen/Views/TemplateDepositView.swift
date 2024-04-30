@@ -77,7 +77,7 @@ final class TemplateDepositView: BackgroundPrimary {
                 }
                 HStack(distribution: .equalSpacing) {
                     valueLabel
-                        .text(String(props.value))
+                        .text(props.value.formattedAsCurrency(props.currency.sign))
                     dateLabel
                         .text(props.date)
                 }

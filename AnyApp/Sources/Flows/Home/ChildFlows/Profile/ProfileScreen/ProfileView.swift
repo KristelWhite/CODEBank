@@ -95,7 +95,7 @@ final class ProfileView: BackgroundPrimary {
             Spacer(.px16)
             VStack(alignment: .center, spacing: 4) {
                 Label(text: model.name, foregroundStyle: .textPrimary, fontStyle: .subtitle2)
-                Label(text: model.phone, foregroundStyle: .textSecondary, fontStyle: .caption2)
+                Label(text: model.phone.formatPhoneNumber(), foregroundStyle: .textSecondary, fontStyle: .caption2)
             }
         }
     }
