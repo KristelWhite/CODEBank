@@ -37,8 +37,8 @@ final class AuthPhoneController: TemplateViewController<AuthPhoneView> {
             switch output {
             case .otp(let configModel):
                 self?.onEvent?(.otp(configModel))
-            case .error(let errorProps):
-                self?.setAdditionState(.error(errorProps))
+//            case .error(let errorProps):
+//                self?.setAdditionState(.error(errorProps))
             }
         }
     }

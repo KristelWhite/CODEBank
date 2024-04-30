@@ -125,7 +125,7 @@ final class MainViewModel {
 
         depositItems.append(.header(.init(title: "Вклады")))
         deposits.deposits.forEach {
-            depositItems.append(.deposit(.init(id: $0.depositId, title: $0.name ?? "Безымянный", rate: "3 %" , date: "дата", value: $0.balance, currency: .dollar, onTap: { _ in
+            depositItems.append(.deposit(.init(id: $0.depositId, title: $0.name ?? "Безымянный", rate: "3 %", date: "дата", value: $0.balance, currency: .dollar, onTap: { _ in
                 SnackCenter.shared.showSnack(withProps: .init(message: "Данный функционал будет добавлен позже"))
             })))
         }

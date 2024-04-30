@@ -72,7 +72,7 @@ final class NetworkLayer: Network {
     lazy var urlSessionConfiguration: URLSessionConfiguration = {
         let configuration = URLSessionConfiguration.default
         configuration.httpShouldSetCookies = false
-        configuration.timeoutIntervalForRequest = 60
+        configuration.timeoutIntervalForRequest = 1
         configuration.waitsForConnectivity = false
         configuration.requestCachePolicy = .reloadIgnoringCacheData
         return configuration

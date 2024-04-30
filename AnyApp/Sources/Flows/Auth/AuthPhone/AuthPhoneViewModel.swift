@@ -8,7 +8,7 @@ final class AuthPhoneViewModel {
 
     enum Output {
         case otp(AuthOtpConfigModel)
-        case error(ErrorView.Props)
+//        case error(ErrorView.Props)
     }
 
     enum Input {
@@ -37,9 +37,7 @@ final class AuthPhoneViewModel {
             .sink(
                 receiveCompletion: { [weak self] error in
                     guard case let .failure(error) = error else { return }
-                    //change on Snack
-                    let errorProps = ErrorUIHandler.handle(error, onTap: {})
-                    self?.onOutput?(.error(errorProps))
+                    ErrorServerHandler.handle(error)
                     print(error.appError.localizedDescription)
                 },
                 receiveValue: { [weak self] response in
@@ -55,26 +53,3 @@ final class AuthPhoneViewModel {
     }
 }
 
-public struct ErrorUIHandler {
-    static func handle(_ error: ErrorWithContext, onTap: @escaping VoidHandler) -> ErrorView.Props {
-        switch error.appError.kind {
-        case .network:
-            return ErrorView.Props(
-                title: "Внимание",
-                message: "Вероятно, соединение с интрнетом прервано",
-                image: Asset.bigIlustrtionNotWiFi.image,
-                buttonTitle: "Повторить",
-                onTap: onTap
-            )
-        default:
-            return ErrorView.Props(
-                title: Common.Error.defaultTitle,
-                message: Common.Error.defaultMessagePity,
-                image: Asset.bigIlustrtion1.image,
-                buttonTitle: "Повторить",
-                onTap: onTap
-            )
-            break
-        }
-    }
-}

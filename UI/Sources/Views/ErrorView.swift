@@ -17,7 +17,7 @@ public final class ErrorView: BackgroundPrimary {
     private let messageLabel = Label(foregroundStyle: .textPrimary)
         .textAlignment(.center)
         .multiline()
-    private let imageView = UIImageView()
+    private let imageView = ImageView()
     private var retryButton = ButtonPrimary()
 
     private var props: Props?
@@ -25,9 +25,15 @@ public final class ErrorView: BackgroundPrimary {
     // MARK: - Private methods
 
     private func body(with props: Props) -> UIView {
-        VStack {
+        VStack(alignment: .center) {
             FlexibleGroupedSpacer()
-            imageView
+            BackgroundView {
+                imageView
+                    .image(props.image)
+            }
+            .size(CGSize(width: 148, height: 148), priority: .required)
+            .cornerRadius(74)
+            .backgroundStyle(.contentSecondary)
             Spacer(.px20)
             titleLabel
                 .text(props.title)

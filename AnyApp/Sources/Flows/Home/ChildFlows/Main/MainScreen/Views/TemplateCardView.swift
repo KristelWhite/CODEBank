@@ -32,7 +32,7 @@ final class TemplateCardView: BackgroundPrimary {
     // MARK: - Private methods
 
     private func body() -> UIView {
-        HStack (spacing: 16) {
+        HStack(spacing: 16) {
             VStack {
                 Shimmer()
                 .size(.init(width: 40, height: 40), priority: .required)
@@ -52,7 +52,6 @@ final class TemplateCardView: BackgroundPrimary {
             .height(40, priority: .required)
             .linkGroupedSpacers()
         }
-//        .height(72)
         .layoutMargins(.make(vInsets: 16))
     }
     

@@ -1,5 +1,6 @@
 import Services
 import Combine
+import UI
 
 final class AuthOtpViewModel {
 
@@ -52,7 +53,7 @@ final class AuthOtpViewModel {
             .sink(
                 receiveCompletion: { [weak self] error in
                     guard case let .failure(error) = error else { return }
-                    //change on Snack
+                    ErrorServerHandler.handle(error)
                     print(error.appError.localizedDescription)
                 },
                 receiveValue: { [weak self] response in
@@ -70,8 +71,10 @@ final class AuthOtpViewModel {
     private func confirmOtp(code: String) {
         authRequestManager.authConfirm(otpId: configModel.otpId, phone: configModel.phone, otpCode: code)
             .sink(
-                receiveCompletion: { _ in
-                    // handle error
+                receiveCompletion: { [weak self] error in
+                    guard case let .failure(error) = error else { return }
+                    ErrorServerHandler.handle(error)
+                    print(error.appError.localizedDescription)
                 }, receiveValue: { [weak self] response in
                     self?.appSession.handle(.updateTokens(
                         accessToken: response.guestToken,
@@ -94,5 +97,4 @@ final class AuthOtpViewModel {
                 }
             ).store(in: &cancellables)
     }
-
 }
