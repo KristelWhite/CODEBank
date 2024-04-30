@@ -34,12 +34,12 @@ public enum Currency: String, Decodable {
             return "€"
         }
     }
-
 }
 
 // MARK: - платежная система карты
 public enum PaymentSystem: String, Decodable {
     case visa = "Visa"
+    case visa1 = "VISA"
     case masterCard = "MasterCard"
 
     public var image: UIImage {
@@ -48,6 +48,8 @@ public enum PaymentSystem: String, Decodable {
             return Asset.visa.image
         case .masterCard:
             return Asset.masterCard.image
+        case .visa1:
+            return Asset.visa.image
         }
     }
 }
@@ -82,6 +84,4 @@ public enum CardState: String, Equatable, Codable {
             return .contentAccentTertiary
         }
     }
-
 }
-

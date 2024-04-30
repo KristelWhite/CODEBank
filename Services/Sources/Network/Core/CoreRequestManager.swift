@@ -15,9 +15,14 @@ public protocol CoreRequestManagerAbstract: AnyObject {
     func accountsList() -> AppPublisher<AccountsListResponse>
     func depositsList() -> AppPublisher<DepositsListResponse>
     func accountInfo(accountId: Int) -> AppPublisher<AccountInfoResponse>
+    func cardInfo(cardId: String) -> AppPublisher<CardInfoResponse>
 }
 
 final class CoreRequestManager: NetworkRequestManager, CoreRequestManagerAbstract {
+    func cardInfo(cardId: String) -> Core.AppPublisher<CardInfoResponse> {
+        request(path: CorePath.cardInfo, pathParams: ["id": "\(cardId)"])
+    }
+
     func accountsList() -> Core.AppPublisher<AccountsListResponse> {
         request(path: CorePath.accountsList)
     }

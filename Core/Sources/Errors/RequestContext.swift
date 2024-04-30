@@ -16,5 +16,6 @@ public enum RequestContext {
         case depositsList
         case accountInfo
         case accountsList
+        case cardInfo
     }
 }

@@ -58,6 +58,9 @@ private enum DateFormatterFactory {
     static let defaultTimeWithSecondsFormatter = DateFormatter().also {
         $0.format = .timeWithSeconds
     }
+    static let cardHeaderFormatter = DateFormatter().also {
+        $0.format = .cardHeader
+    }
 
     static func formatter(forFormat format: DateFormat) -> DateFormatter {
         switch format {
@@ -75,6 +78,8 @@ private enum DateFormatterFactory {
             return defaultTimeFormatter
         case .timeWithSeconds:
             return defaultTimeWithSecondsFormatter
+        case .cardHeader:
+            return cardHeaderFormatter
         }
     }
 }

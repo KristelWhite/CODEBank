@@ -25,6 +25,7 @@ public typealias AssetImageTypeAlias = ImageAsset.Image
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 public enum Asset {
   public static let accentColor = ColorAsset(name: "AccentColor")
+  public static let bg = ImageAsset(name: "BG")
   public static let bitmap = ImageAsset(name: "Bitmap")
   public static let bankAccount = ImageAsset(name: "Bank account")
   public static let payPass = ImageAsset(name: "PayPass")

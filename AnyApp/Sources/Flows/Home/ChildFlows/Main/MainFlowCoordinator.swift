@@ -33,8 +33,7 @@ final class MainFlowCoordinator: Coordinator {
         controller.onEvent = { [weak self] event in
             switch event {
             case .selectCard(with: let id):
-               
-                break
+                self?.showCard(with: id)
             case .selectAccount(with: let id):
                 self?.showDeposit(with: id)
             }
@@ -44,6 +43,12 @@ final class MainFlowCoordinator: Coordinator {
     }
     func showDeposit(with id: Int) {
         let controller = resolver ~> (DepositController.self, id)
+        controller.hidesBottomBarWhenPushed = true
+        innerRouter.push(controller)
+    }
+
+    func showCard(with id: String) {
+        let controller = resolver ~> (CardController.self, id)
         controller.hidesBottomBarWhenPushed = true
         innerRouter.push(controller)
     }

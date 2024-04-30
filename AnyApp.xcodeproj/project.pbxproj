@@ -122,6 +122,14 @@
 		631348992BE11347009EE942 /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 631348982BE11347009EE942 /* Asset.xcassets */; };
 		6313489B2BE114F8009EE942 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6313489A2BE114F8009EE942 /* Asset.swift */; };
 		6313489D2BE15ACA009EE942 /* FormattingExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6313489C2BE15ACA009EE942 /* FormattingExtensions.swift */; };
+		6313489F2BE17C52009EE942 /* CardInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6313489E2BE17C52009EE942 /* CardInfoResponse.swift */; };
+		631348A42BE17EDA009EE942 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631348A32BE17EDA009EE942 /* CardView.swift */; };
+		631348A62BE17EF1009EE942 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631348A52BE17EF1009EE942 /* CardViewModel.swift */; };
+		631348A82BE17F08009EE942 /* CardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631348A72BE17F08009EE942 /* CardController.swift */; };
+		631348AA2BE17F28009EE942 /* CardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631348A92BE17F28009EE942 /* CardDataSource.swift */; };
+		631348AC2BE17F3C009EE942 /* CardCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631348AB2BE17F3C009EE942 /* CardCellFactory.swift */; };
+		631348AE2BE17F6F009EE942 /* CardViewProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631348AD2BE17F6F009EE942 /* CardViewProps.swift */; };
+		631348B02BE17F9D009EE942 /* HeaderCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631348AF2BE17F9D009EE942 /* HeaderCardView.swift */; };
 		632ED9D5576B6BAF3F0DC548 /* AppSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97D5567A4B1F3C2F11F7D9 /* AppSession.swift */; };
 		634A237BA79A2107314818C1 /* LogEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4692E115C5942F26BCF997A /* LogEvent.swift */; };
 		6398B8D7EBE4C432C0F0259A /* SessionAbstract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4852DA8B63E3960B4477026F /* SessionAbstract.swift */; };
@@ -525,6 +533,14 @@
 		631348982BE11347009EE942 /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
 		6313489A2BE114F8009EE942 /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
 		6313489C2BE15ACA009EE942 /* FormattingExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattingExtensions.swift; sourceTree = "<group>"; };
+		6313489E2BE17C52009EE942 /* CardInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfoResponse.swift; sourceTree = "<group>"; };
+		631348A32BE17EDA009EE942 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		631348A52BE17EF1009EE942 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		631348A72BE17F08009EE942 /* CardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardController.swift; sourceTree = "<group>"; };
+		631348A92BE17F28009EE942 /* CardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDataSource.swift; sourceTree = "<group>"; };
+		631348AB2BE17F3C009EE942 /* CardCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCellFactory.swift; sourceTree = "<group>"; };
+		631348AD2BE17F6F009EE942 /* CardViewProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewProps.swift; sourceTree = "<group>"; };
+		631348AF2BE17F9D009EE942 /* HeaderCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCardView.swift; sourceTree = "<group>"; };
 		63C362132BDFB9F5002D5D6E /* CodeTextFild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTextFild.swift; sourceTree = "<group>"; };
 		63DA7A582BD858C900C42069 /* DepositView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositView.swift; sourceTree = "<group>"; };
 		63DA7A5A2BD858E100C42069 /* DepositViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositViewModel.swift; sourceTree = "<group>"; };
@@ -1300,15 +1316,46 @@
 			path = Errors;
 			sourceTree = "<group>";
 		};
+		631348A02BE17E9D009EE942 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				631348A22BE17EB7009EE942 /* Views */,
+				631348A12BE17EA5009EE942 /* DataSource */,
+				631348A32BE17EDA009EE942 /* CardView.swift */,
+				631348A52BE17EF1009EE942 /* CardViewModel.swift */,
+				631348A72BE17F08009EE942 /* CardController.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		631348A12BE17EA5009EE942 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				631348A92BE17F28009EE942 /* CardDataSource.swift */,
+				631348AB2BE17F3C009EE942 /* CardCellFactory.swift */,
+				631348AD2BE17F6F009EE942 /* CardViewProps.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		631348A22BE17EB7009EE942 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				631348AF2BE17F9D009EE942 /* HeaderCardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		63DA7A562BD858A100C42069 /* Subscreens */ = {
 			isa = PBXGroup;
 			children = (
-				63DA7A572BD858AE00C42069 /* Deposite */,
+				631348A02BE17E9D009EE942 /* Card */,
+				63DA7A572BD858AE00C42069 /* Deposit */,
 			);
 			path = Subscreens;
 			sourceTree = "<group>";
 		};
-		63DA7A572BD858AE00C42069 /* Deposite */ = {
+		63DA7A572BD858AE00C42069 /* Deposit */ = {
 			isa = PBXGroup;
 			children = (
 				63DA7A672BD9214C00C42069 /* DataSource */,
@@ -1317,7 +1364,7 @@
 				63DA7A5A2BD858E100C42069 /* DepositViewModel.swift */,
 				63DA7A5C2BD8591B00C42069 /* DepositController.swift */,
 			);
-			path = Deposite;
+			path = Deposit;
 			sourceTree = "<group>";
 		};
 		63DA7A602BD8614F00C42069 /* View */ = {
@@ -1360,6 +1407,7 @@
 				63DA7A762BDA646200C42069 /* AccountListResponse.swift */,
 				63DA7A782BDA703B00C42069 /* DepositListResponse.swift */,
 				63DA7A7A2BDA726100C42069 /* AccoutInfoResponse.swift */,
+				6313489E2BE17C52009EE942 /* CardInfoResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -2449,6 +2497,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				631348AA2BE17F28009EE942 /* CardDataSource.swift in Sources */,
 				63C362142BDFB9F5002D5D6E /* CodeTextFild.swift in Sources */,
 				63E55EEC2BD2ACF60014FEFC /* AuthOtpConfigModel.swift in Sources */,
 				10E588242BC0577F00D05347 /* AuthOtpViewModel.swift in Sources */,
@@ -2477,8 +2526,10 @@
 				8E2E9DA0BD3CD3BE938E4D49 /* Auth.swift in Sources */,
 				63E55ED22BCD47D80014FEFC /* MainDataSource.swift in Sources */,
 				10E588202BC0575900D05347 /* AuthOtpController.swift in Sources */,
+				631348A42BE17EDA009EE942 /* CardView.swift in Sources */,
 				631348942BE0F8B5009EE942 /* ErrorHandlers.swift in Sources */,
 				63E55EE72BD121430014FEFC /* TemplateSettingsView.swift in Sources */,
+				631348B02BE17F9D009EE942 /* HeaderCardView.swift in Sources */,
 				63E55EF92BD5870D0014FEFC /* ThemeViewModel.swift in Sources */,
 				63E55EDF2BCE93B10014FEFC /* TemplateCardView.swift in Sources */,
 				63E55ED32BCD47D80014FEFC /* MainCellFactory.swift in Sources */,
@@ -2486,8 +2537,10 @@
 				63E55ED42BCD47D80014FEFC /* MainController.swift in Sources */,
 				63E55EE32BD02C420014FEFC /* ProfileFlowAssembly.swift in Sources */,
 				63E55EDD2BCE93950014FEFC /* TemplateAccountView.swift in Sources */,
+				631348AC2BE17F3C009EE942 /* CardCellFactory.swift in Sources */,
 				510DA1D20162F8C3A434FAA6 /* AuthFlowCoordinator.swift in Sources */,
 				63E55EDB2BCD47D80014FEFC /* MainFlowAssembly.swift in Sources */,
+				631348A82BE17F08009EE942 /* CardController.swift in Sources */,
 				81EE6CA3925BD588AB50E959 /* Common.swift in Sources */,
 				63E55EEA2BD13D620014FEFC /* ProfileViewProps.swift in Sources */,
 				10E588142BC04FED00D05347 /* AuthPhoneView.swift in Sources */,
@@ -2500,6 +2553,7 @@
 				10E588322BC3F53D00D05347 /* ProfileViewModel.swift in Sources */,
 				63DA7A622BD8616500C42069 /* SwitchView.swift in Sources */,
 				10E588072BC049C900D05347 /* AuthFlowAssembly.swift in Sources */,
+				631348A62BE17EF1009EE942 /* CardViewModel.swift in Sources */,
 				10E588162BC0512600D05347 /* AuthPhoneViewModel.swift in Sources */,
 				ED73A7BF79BDBE243B837434 /* LibraryManager.swift in Sources */,
 				4CBA1DF480311E3BEBDF46D9 /* Profile.swift in Sources */,
@@ -2507,6 +2561,7 @@
 				C857169C978ED96F74AEF059 /* RouterName.swift in Sources */,
 				10E588302BC3F49100D05347 /* ProfileView.swift in Sources */,
 				63DA7A6D2BD925BD00C42069 /* TemplateHistoryView.swift in Sources */,
+				631348AE2BE17F6F009EE942 /* CardViewProps.swift in Sources */,
 				63DA7A592BD858C900C42069 /* DepositView.swift in Sources */,
 				63E55EF72BD586FD0014FEFC /* ThemeView.swift in Sources */,
 				122824B82AA65A48560D5030 /* StartUpAssembly.swift in Sources */,
@@ -2543,6 +2598,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6313489F2BE17C52009EE942 /* CardInfoResponse.swift in Sources */,
 				632ED9D5576B6BAF3F0DC548 /* AppSession.swift in Sources */,
 				8B13B5A9ED8D47B9D4B4EA5E /* AuthPath.swift in Sources */,
 				D1A435669CA188A48D5CB2DE /* Environment+DeviceInfo.swift in Sources */,

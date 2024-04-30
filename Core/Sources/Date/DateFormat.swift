@@ -6,6 +6,7 @@ public enum DateFormat: CaseIterable {
     case time
     case timeWithSeconds
     case defaultServer
+    case cardHeader
 
     public var dateFormat: String {
         switch self {
@@ -16,13 +17,15 @@ public enum DateFormat: CaseIterable {
         case .dayMonthShortYear:
             return "dd.MM.yy"
         case .iso:
-            return "dd.MM.yyyy HH:mm:ss"
+            return "yyyy-MM-dd'T'HH:mm:ssZ"
         case .time:
             return "HH:mm"
         case .timeWithSeconds:
             return "HH:mm:ss"
         case .defaultServer:
             return "dd.MM.yyyy"
+        case .cardHeader:
+            return "MM/dd"
         }
     }
 

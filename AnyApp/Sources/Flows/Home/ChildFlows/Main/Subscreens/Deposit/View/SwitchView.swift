@@ -52,12 +52,8 @@ final class SwitchView: BackgroundPrimary {
     private func body(with props: Props) -> UIView {
         HStack(alignment: .center, distribution: .fill, spacing: 40) {
             FlexibleGroupedSpacer()
-            BackgroundView {
-                VStack {
-                    FlexibleGroupedSpacer()
-                    ImageView(image: Asset.history.image, foregroundStyle: props.state == .history ? .contentAccentPrimary : .contentAccentTertiary )
-                    FlexibleGroupedSpacer()
-                }.linkGroupedSpacers()
+            BackgroundView(padding: 16) {
+                ImageView(image: Asset.history.image, foregroundStyle: props.state == .history ? .contentAccentPrimary : .contentAccentTertiary )
             }
             .backgroundStyle( props.state == .history ? .contentAccentTertiary : .contentSecondary)
             .size(.init(width: 56, height: 56), priority: .required)
@@ -65,12 +61,8 @@ final class SwitchView: BackgroundPrimary {
             .onTap { [weak self] in
                 self?.props?.onTap?(.history)
             }
-            BackgroundView {
-                VStack {
-                    FlexibleGroupedSpacer()
-                    ImageView(image: Asset.bankAccount.image, foregroundStyle: props.state == .action ? .contentAccentPrimary : .contentAccentTertiary)
-                    FlexibleGroupedSpacer()
-                }.linkGroupedSpacers()
+            BackgroundView(padding: 16) {
+                ImageView(image: Asset.bankAccount.image, foregroundStyle: props.state == .action ? .contentAccentPrimary : .contentAccentTertiary)
             }
             .backgroundStyle(props.state == .action ? .contentAccentTertiary : .contentSecondary)
             .size(.init(width: 56, height: 56), priority: .required)
@@ -78,12 +70,8 @@ final class SwitchView: BackgroundPrimary {
             .onTap { [weak self] in
                 self?.props?.onTap?(.action)
             }
-            BackgroundView {
-                VStack {
-                    FlexibleGroupedSpacer()
-                    ImageView(image: Asset.mainProduct.image, foregroundStyle: props.state == .payment ? .contentAccentPrimary : .contentAccentTertiary)
-                    FlexibleGroupedSpacer()
-                }.linkGroupedSpacers()
+            BackgroundView(padding: 16) {
+                ImageView(image: Asset.mainProduct.image, foregroundStyle: props.state == .payment ? .contentAccentPrimary : .contentAccentTertiary)
             }
             .backgroundStyle(props.state == .payment ? .contentAccentTertiary : .contentSecondary)
             .size(.init(width: 56, height: 56), priority: .required)
@@ -103,7 +91,7 @@ extension SwitchView: ConfigurableView {
 
     struct Props: Hashable {
         let state: State
-
+        
         var onTap: ((State) -> Void)?
 
         public static func == (lhs: SwitchView.Props, rhs: SwitchView.Props) -> Bool {

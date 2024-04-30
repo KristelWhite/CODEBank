@@ -12,6 +12,7 @@ enum CorePath: String, Path, CaseIterable {
     case accountsList
     case depositsList
     case accountInfo
+    case cardInfo
 
     var version: String {
         "6096726/api/"
@@ -28,6 +29,8 @@ enum CorePath: String, Path, CaseIterable {
             return "depositList"
         case .accountInfo:
             return "accountInfo"
+        case .cardInfo:
+            return "cardInfo"
         }
     }
 
@@ -41,6 +44,8 @@ enum CorePath: String, Path, CaseIterable {
             return "\(version)core/deposit/list"
         case .accountInfo:
             return "\(version)core/account/{id}"
+        case .cardInfo:
+            return "\(version)core/card/{id}"
         }
     }
 
@@ -56,6 +61,8 @@ enum CorePath: String, Path, CaseIterable {
             return .core(.depositsList)
         case .accountInfo:
             return .core(.accountInfo)
+        case .cardInfo:
+            return .core(.cardInfo) 
         }
     }
 }

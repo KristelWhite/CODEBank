@@ -34,6 +34,10 @@ final class MainFlowAssembly: Assembly, Identifiable {
             let viewModel = DepositViewModel(id: id, coreRequestManager: (resolver ~> NetworkFactory.self).makeCoreRequestManager())
             return DepositController(viewModel: viewModel)
         }
+        container.register(CardController.self) { resolver in 
+            let viewModel = CardViewModel(id: "2", coreRequestManager: (resolver ~> NetworkFactory.self).makeCoreRequestManager())
+            return CardController(viewModel: viewModel)
+        }
     }
 
     func loaded(resolver: Resolver) {

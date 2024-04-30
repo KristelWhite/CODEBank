@@ -3,10 +3,19 @@ open class BackgroundView: BaseBackgroundView, Themeable {
 
     public private(set) var backgroundStyle: BackgroundStyle?
     public private(set) var borderStyle: BorderStyle?
+    public private(set) var shadowStyle: ShadowStyle?
+
 
     override open func setup() {
         super.setup()
         subscribeOnThemeChanges()
+    }
+
+    @discardableResult
+    public func shadowStyle(_ style: ShadowStyle) -> Self {
+        self.shadowStyle = style
+        updateAppearance()
+        return self
     }
 
     @discardableResult
@@ -31,6 +40,9 @@ open class BackgroundView: BaseBackgroundView, Themeable {
 
         if let borderStyle {
             borderColor(borderStyle.color)
+        }
+        if let shadowStyle {
+            shadow(shadowStyle.shadowProps)
         }
     }
 }
