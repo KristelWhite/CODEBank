@@ -8,11 +8,19 @@ final class MainView: BackgroundPrimary {
         case showButton
     }
 
+    enum Event {
+        case loadData
+    }
+
+    var onEvent: ((Event) -> Void)?
+
     var onNewProduct: VoidHandler?
 
     private let tableView = BaseTableView()
+
     private let button = ButtonPrimary(title: "Открыть новый счет или продукт")
     private lazy var dataSource = MainDataSource(tableView: tableView)
+    var refreshControl = UIRefreshControl()
 
     func handle(input: Input) {
         switch input {
@@ -26,7 +34,7 @@ final class MainView: BackgroundPrimary {
         super.setup()
         body().embed(in: self)
         setupButton()
-
+        setupRefreshController()
     }
 
     private func body() -> UIView {
@@ -34,6 +42,16 @@ final class MainView: BackgroundPrimary {
             tableView
         }
         .layoutMargins(.make(vInsets: 0, hInsets: 16))
+    }
+
+    private func setupRefreshController() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Потяните, чтобы обновить")
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+
+    @objc func refreshData() {
+        onEvent?(.loadData)
     }
 
     private func setupButton() {
@@ -68,5 +86,6 @@ extension MainView: ConfigurableView {
 
     func configure(with model: MainViewProps) {
         dataSource.apply(sections: model.sections)
+        refreshControl.endRefreshing()
     }
 }

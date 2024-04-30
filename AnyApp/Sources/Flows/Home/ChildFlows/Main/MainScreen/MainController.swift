@@ -53,6 +53,14 @@ final class MainController: TemplateViewController<MainView> {
             case .showActionButton:
                 self?.rootView.handle(input: .showButton)
             }
+
+        }
+
+        rootView.onEvent = { [weak self] event in
+            switch event {
+            case .loadData:
+                self?.viewModel.handle(.loadData)
+            }
         }
 
         rootView.onNewProduct = { [weak self] in

@@ -50,6 +50,12 @@ final class DepositController: TemplateViewController<DepositView> {
                 self?.removeAdditionalState()
             }
         }
+        rootView.onEvent = { [weak self] event in
+            switch event {
+            case .loadData:
+                self?.viewModel.handle(.loadData)
+            }
+        }
     }
 }
 

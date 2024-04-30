@@ -11,17 +11,29 @@ import AppIndependent
 
 final class DepositView: BackgroundPrimary {
     enum Event {
+        case loadData
     }
     var onEvent: ((Event) -> Void)?
 
 
     private let tableView = BaseTableView()
     private lazy var dataSource = DepositDataSource(tableView: tableView)
+    private var refreshControl = UIRefreshControl()
 
 
     override func setup() {
         super.setup()
         body().embed(in: self)
+        setupRefreshController()
+    }
+    private func setupRefreshController() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Потяните, чтобы обновить")
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+
+    @objc func refreshData() {
+        onEvent?(.loadData)
     }
 
     private func body() -> UIView {
@@ -37,6 +49,7 @@ extension DepositView: ConfigurableView {
 
     func configure(with model: DepositViewProps) {
         dataSource.apply(sections: model.sections)
+        refreshControl.endRefreshing()
     }
 }
 
