@@ -107,7 +107,7 @@ final class MainViewModel {
         var accountItems: [Props.Item] = []
         var depositItems: [Props.Item] = []
         accounts.accounts.forEach {
-            accountItems.append(.header(.init(title: "Счет номер \($0.number)")))
+            accountItems.append(.header(.init(title: "Счета")))
             accountItems.append(.account(.init(id: $0.accountId, title: "Расчетный счет", value: $0.balance, currency: $0.currency) { id in
                 guard let account = accounts.accounts.first(where: { $0.accountId == id }) else { return }
                 self.onOutput?(.selectAccount(with: id))
@@ -115,7 +115,7 @@ final class MainViewModel {
             if let cards = $0.cards {
                 cards.forEach {
                     let state: CardState = $0.status == .deactivated ? .closed : (($0.cardType == .digital) ? .digital : .physical)
-                    accountItems.append(.card(.init(id: $0.id.uuidString, title: $0.name, state: state, cardNumber: $0.number, paymentSystem: $0.paymentSystem, onTap: { id in
+                    accountItems.append(.card(.init(id: $0.id.uuidString, title: $0.name, state: state, cardNumber: "123456789098", paymentSystem: $0.paymentSystem, onTap: { id in
                         guard let card = cards.first(where: { $0.id.uuidString == id }) else { return }
                         self.onOutput?(.selectCard(with: id))
                     })))
@@ -126,7 +126,7 @@ final class MainViewModel {
 
         depositItems.append(.header(.init(title: "Вклады")))
         deposits.deposits.forEach {
-            depositItems.append(.deposit(.init(id: $0.depositId, title: $0.name ?? "Безымянный", rate: "3 %", date: "дата", value: $0.balance, currency: $0.currency, onTap: { _ in
+            depositItems.append(.deposit(.init(id: $0.depositId, title: $0.name ?? "Безымянный", rate: "Ставка 7.65%", date: "до 31.08.2024", value: $0.balance, currency: $0.currency, onTap: { _ in
                 SnackCenter.shared.showSnack(withProps: .init(message: "Данный функционал будет добавлен позже"))
             })))
         }

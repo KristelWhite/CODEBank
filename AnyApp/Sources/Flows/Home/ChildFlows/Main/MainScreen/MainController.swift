@@ -64,7 +64,7 @@ final class MainController: TemplateViewController<MainView> {
         }
 
         rootView.onNewProduct = { [weak self] in
-            SnackCenter.shared.showSnack(withProps: .init(message: "!New Product"))
+            SnackCenter.shared.showSnack(withProps: .init(message: "Данный функционал в разработке"))
         }
     }
 }

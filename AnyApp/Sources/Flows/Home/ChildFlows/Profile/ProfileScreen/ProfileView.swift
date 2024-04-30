@@ -23,11 +23,11 @@ final class ProfileView: BackgroundPrimary {
     func handle(with settings: Settings) -> TemplateSettingsView.Props {
         switch settings {
         case .aboutApp:
-            return .init(id: "1", title: "О приложении", image: Asset.settings.image, isAccesory: true){ [weak self] _ in
+            return .init(id: "1", title: "О приложении", image: Asset.settings.image, isAccesory: true) { [weak self] _ in
                 self?.onAboutApp?()
             }
         case .theme:
-            return .init(id: "2", title: "Тема приложения", image: Asset.moonStars.image, isAccesory: true){ [weak self] _ in
+            return .init(id: "2", title: "Тема приложения", image: Asset.moonStars.image, isAccesory: true) { [weak self] _ in
                 self?.onTheme?()
                 
             }
@@ -92,6 +92,9 @@ final class ProfileView: BackgroundPrimary {
             Spacer(.px72)
             ImageView(image: model.image)
                 .size(CGSize(width: 88, height: 88), priority: .required)
+                .cornerRadius(44)
+                .clipsToBounds(true)
+
             Spacer(.px16)
             VStack(alignment: .center, spacing: 4) {
                 Label(text: model.name, foregroundStyle: .textPrimary, fontStyle: .subtitle2)
