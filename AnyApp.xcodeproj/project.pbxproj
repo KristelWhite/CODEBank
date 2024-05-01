@@ -131,8 +131,6 @@
 		631348AE2BE17F6F009EE942 /* CardViewProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631348AD2BE17F6F009EE942 /* CardViewProps.swift */; };
 		631348B02BE17F9D009EE942 /* HeaderCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631348AF2BE17F9D009EE942 /* HeaderCardView.swift */; };
 		631348B22BE21DB5009EE942 /* CardConfigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631348B12BE21DB5009EE942 /* CardConfigModel.swift */; };
-		631348B42BE22421009EE942 /* MyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631348B32BE22421009EE942 /* MyVC.swift */; };
-		631348B62BE2243F009EE942 /* MyMV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631348B52BE2243F009EE942 /* MyMV.swift */; };
 		632ED9D5576B6BAF3F0DC548 /* AppSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97D5567A4B1F3C2F11F7D9 /* AppSession.swift */; };
 		634A237BA79A2107314818C1 /* LogEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4692E115C5942F26BCF997A /* LogEvent.swift */; };
 		6398B8D7EBE4C432C0F0259A /* SessionAbstract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4852DA8B63E3960B4477026F /* SessionAbstract.swift */; };
@@ -545,8 +543,6 @@
 		631348AD2BE17F6F009EE942 /* CardViewProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewProps.swift; sourceTree = "<group>"; };
 		631348AF2BE17F9D009EE942 /* HeaderCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCardView.swift; sourceTree = "<group>"; };
 		631348B12BE21DB5009EE942 /* CardConfigModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardConfigModel.swift; sourceTree = "<group>"; };
-		631348B32BE22421009EE942 /* MyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVC.swift; sourceTree = "<group>"; };
-		631348B52BE2243F009EE942 /* MyMV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMV.swift; sourceTree = "<group>"; };
 		63C362132BDFB9F5002D5D6E /* CodeTextFild.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTextFild.swift; sourceTree = "<group>"; };
 		63DA7A582BD858C900C42069 /* DepositView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositView.swift; sourceTree = "<group>"; };
 		63DA7A5A2BD858E100C42069 /* DepositViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositViewModel.swift; sourceTree = "<group>"; };
@@ -1875,8 +1871,6 @@
 				10E5880E2BC04F0700D05347 /* AuthPhone */,
 				BF88B739CBFC56E6E1404F0A /* AuthFlowCoordinator.swift */,
 				10E588062BC049C900D05347 /* AuthFlowAssembly.swift */,
-				631348B32BE22421009EE942 /* MyVC.swift */,
-				631348B52BE2243F009EE942 /* MyMV.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -2545,7 +2539,6 @@
 				63E55ED32BCD47D80014FEFC /* MainCellFactory.swift in Sources */,
 				63E55ED12BCD47D80014FEFC /* MainViewProps.swift in Sources */,
 				63E55ED42BCD47D80014FEFC /* MainController.swift in Sources */,
-				631348B42BE22421009EE942 /* MyVC.swift in Sources */,
 				63E55EE32BD02C420014FEFC /* ProfileFlowAssembly.swift in Sources */,
 				63E55EDD2BCE93950014FEFC /* TemplateAccountView.swift in Sources */,
 				631348AC2BE17F3C009EE942 /* CardCellFactory.swift in Sources */,
@@ -2568,7 +2561,6 @@
 				10E588162BC0512600D05347 /* AuthPhoneViewModel.swift in Sources */,
 				ED73A7BF79BDBE243B837434 /* LibraryManager.swift in Sources */,
 				4CBA1DF480311E3BEBDF46D9 /* Profile.swift in Sources */,
-				631348B62BE2243F009EE942 /* MyMV.swift in Sources */,
 				63E55ED62BCD47D80014FEFC /* MainView.swift in Sources */,
 				C857169C978ED96F74AEF059 /* RouterName.swift in Sources */,
 				10E588302BC3F49100D05347 /* ProfileView.swift in Sources */,

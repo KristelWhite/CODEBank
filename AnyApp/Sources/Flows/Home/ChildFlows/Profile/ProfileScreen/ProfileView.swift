@@ -4,6 +4,14 @@ import AppIndependent
 
 final class ProfileView: BackgroundPrimary {
 
+    enum Event {
+        case loadData
+        
+    }
+
+    var onEvent: ((Event) -> Void)?
+    var scrollView: ScrollView = ScrollView(content: {UIView()})
+
     var onLogout: VoidHandler?
     var onAboutApp: VoidHandler?
     var onTheme: VoidHandler?
@@ -17,7 +25,10 @@ final class ProfileView: BackgroundPrimary {
         case theme
         case support
         case exit
+
     }
+    private var refreshControl = UIRefreshControl()
+
     var props: Model?
 
     func handle(with settings: Settings) -> TemplateSettingsView.Props {
@@ -43,7 +54,18 @@ final class ProfileView: BackgroundPrimary {
     }
     override func setup() {
         super.setup()
+        setupRefreshController()
         body().embed(in: self)
+    }
+
+    private func setupRefreshController() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Потяните, чтобы обновить")
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+
+    }
+
+    @objc func refreshData() {
+        onEvent?(.loadData)
     }
 
     private func body() -> UIView {
@@ -70,11 +92,16 @@ final class ProfileView: BackgroundPrimary {
     }
 
     private func body(with model: Model) -> UIView {
-        VStack {
-            headerView(with: model)
-            bottomView()
+        scrollView = ScrollView {
+            VStack {
+                headerView(with: model)
+                bottomView()
+            }
+            .layoutMargins(.make(vInsets: 16, hInsets: 16))
         }
-        .layoutMargins(.make(vInsets: 16, hInsets: 16))
+        scrollView.refreshControl = refreshControl
+        return scrollView
+
     }
     func bottomView() -> UIView {
         VStack {
@@ -86,7 +113,7 @@ final class ProfileView: BackgroundPrimary {
             FlexibleSpacer()
         }
     }
-    
+
     private func headerView(with model: Model) -> UIView {
         VStack(alignment: .center) {
             Spacer(.px72)
@@ -107,6 +134,7 @@ extension ProfileView: ConfigurableView {
     typealias Model = ProfileViewProps
 
     func configure(with model: ProfileViewProps) {
+        refreshControl.endRefreshing()
         self.props = model
         subviews.forEach { $0.removeFromSuperview() }
         body(with: model).embed(in: self)

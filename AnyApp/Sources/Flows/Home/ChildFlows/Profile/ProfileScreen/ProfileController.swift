@@ -38,6 +38,13 @@ final class ProfileController: TemplateViewController<ProfileView> {
         rootView.onSupport = { [weak self] in
             self?.showCallConfirmation()
         }
+        rootView.onEvent = { [weak self] event in
+            switch event {
+            case .loadData:
+                self?.viewModel.handle(.loadData)
+            }
+
+        }
         viewModel.onOutput = { [weak self] output in
             switch output {
             case .content(let props):

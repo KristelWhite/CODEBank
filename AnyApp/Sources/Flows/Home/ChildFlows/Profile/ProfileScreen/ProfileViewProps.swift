@@ -12,4 +12,3 @@ struct ProfileViewProps {
     let image: UIImage = Asset.bitmap.image
     let phone: String
 }
-

@@ -20,6 +20,7 @@ final class AuthOtpView: BackgroundPrimary {
         FlexibleSpacer()
     }
     var errorLabel = Label( foregroundStyle: .indicatorContentError, fontStyle: .caption1)
+
     // MARK: - Timer
 
     var countdownTimer: Timer?
@@ -54,6 +55,7 @@ final class AuthOtpView: BackgroundPrimary {
     func handle(input: Input) {
         switch input {
         case .errorCondition(let count):
+
             for textFild in codeTextFields {
                 textFild.foregroundStyle(.indicatorContentError)
             }
@@ -125,47 +127,25 @@ final class AuthOtpView: BackgroundPrimary {
         (0..<6).forEach { _ in
             let textField = CodeTextField()
                 .size(CGSize(width: 40, height: 48))
-                .onTap {
-                    print("нажали на textfield")
-                }
-            textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
             textField.delegate = self
-            textField.onDeleteBackward = {
+            textField.onDeleteBackward = { [weak self] in
                 print("delete")
+                self?.previousTextField(textField)
             }
             textField.clearsOnBeginEditing = true
             codeTextFields.append(textField)
         }
-    }
-    
-    @objc func textFieldDidChange(textField: UITextField) {
-        
     }
 }
 
 extension AuthOtpView: UITextFieldDelegate {
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-
-        if string.isEmpty {
-            if range.length == 1, let currentText = textField.text, currentText.isEmpty {
-                previousTextField(textField)
-            } else {
-                textField.text = ""
-            }
-            return false
-        }
-
-        if range.length == 0, let currentText = textField.text, currentText.count >= 1 {
-            return false
-        }
-
         if string.count == 1 {
             textField.text = string
             nextTextField(textField)
             return false
         }
-
         return true
     }
 
@@ -183,17 +163,50 @@ extension AuthOtpView: UITextFieldDelegate {
         } else {
             textField.resignFirstResponder()
 
-//            sendOTPToServer()
+            self.onOtpFilled?(codeTextFields.compactMap({ field in
+                field.text
+            }).joined())
         }
     }
-
-    
-}
-
-extension Int {
-    func minutesAndSeconds() -> String {
-        let minutes = self / 60
-        let seconds = self % 60
-        return String(format: "%02d:%02d", minutes, seconds)
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        let firstEmptyField = codeTextFields.first(where: { $0.text?.isEmpty ?? true })
+        if let emptyField = firstEmptyField {
+            if textField == emptyField {
+                return true
+            } else {
+                emptyField.becomeFirstResponder()
+                return false
+            }
+        } else {
+            if textField == codeTextFields.last {
+                return true
+            } else {
+                codeTextFields.last?.becomeFirstResponder()
+                return false
+            }
+        }
     }
+//    func textFieldDidBeginEditing(_ textField: UITextField)
+//        {
+//            let firstEmptyField = codeTextFields.first(where: { $0.text?.isEmpty ?? true })
+//            if let emptyField = firstEmptyField {
+//                if textField == emptyField {
+//                    textField.becomeFirstResponder()
+//                } else {
+//                    textField.resignFirstResponder()
+//                    emptyField.becomeFirstResponder()
+//
+//                }
+//            } else {
+//                if textField == codeTextFields.last {
+//                    textField.becomeFirstResponder()
+//                } else {
+//                    textField.resignFirstResponder()
+//                    codeTextFields.last?.becomeFirstResponder()
+//
+//                }
+//            }
+//    }
 }
+
+
