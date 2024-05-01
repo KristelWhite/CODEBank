@@ -23,17 +23,3 @@ final class TemplateShimmerView: BackgroundPrimary {
         .height(52)
     }
 }
-//
-//extension TemplateShimmerView: ConfigurableView {
-//
-//    typealias Model = Props
-//
-//    struct Props {
-//        let height: CGFloat
-//    }
-//
-//    func configure(with model: Props) {
-//        subviews.forEach { $0.removeFromSuperview() }
-//        body(props: model).embed(in: self)
-//    }
-//}

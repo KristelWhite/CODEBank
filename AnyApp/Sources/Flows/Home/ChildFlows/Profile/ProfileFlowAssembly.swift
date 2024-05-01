@@ -38,14 +38,12 @@ final class ProfileFlowAssembly: Assembly, Identifiable {
             let viewModel = ProfileViewModel(appSession: resolver ~> AppSession.self, coreRequestManager: (resolver ~> NetworkFactory.self).makeCoreRequestManager())
             return ProfileController(viewModel: viewModel)
         }
-        
+
         container.register(AboutAppController.self) { resolver in
-            let viewModel = AboutAppViewModel()
-            return AboutAppController(viewModel: viewModel)
+            return AboutAppController()
         }
         container.register(ThemeController.self) { resolver in
-            let viewModel = ThemeViewModel()
-            return ThemeController(viewModel: viewModel)
+            return ThemeController()
         }
     }
 
@@ -53,4 +51,3 @@ final class ProfileFlowAssembly: Assembly, Identifiable {
         Logger().debug(id, Common.isLoaded)
     }
 }
-

@@ -15,25 +15,14 @@ final class CardInfoView: BackgroundPrimary {
     }
     var onEvent: ((Event) -> Void)?
 
-
     private let tableView = BaseTableView()
-    private lazy var dataSource = CardDataSource(tableView: tableView)
     private var refreshControl = UIRefreshControl()
-
+    private lazy var dataSource = CardDataSource(tableView: tableView)
 
     override func setup() {
         super.setup()
         body().embed(in: self)
         setupRefreshController()
-    }
-    private func setupRefreshController() {
-        refreshControl.attributedTitle = NSAttributedString(string: Common.pullToUpdate)
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-        tableView.refreshControl = refreshControl
-    }
-
-    @objc func refreshData() {
-        onEvent?(.loadData)
     }
 
     private func body() -> UIView {
@@ -41,6 +30,16 @@ final class CardInfoView: BackgroundPrimary {
             tableView
         }
         .layoutMargins(.make(hInsets: 16))
+    }
+
+    private func setupRefreshController() {
+        refreshControl.attributedTitle = NSAttributedString(string: Common.pullToUpdate)
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+
+    @objc private func refreshData() {
+        onEvent?(.loadData)
     }
 }
 

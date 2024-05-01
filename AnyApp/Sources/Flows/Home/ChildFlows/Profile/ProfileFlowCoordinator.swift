@@ -14,17 +14,13 @@ import SwinjectAutoregistration
 final class ProfileFlowCoordinator: Coordinator {
     
     var finishFlow: DefaultFinishHandler?
-    
-    
-    
+
     // MARK: - Private Properties
-    
+
     private let appSession: AppSession = resolver ~> AppSession.self
-    
     private let innerRouter: RouterAbstract
-    
+
     // MARK: - ProfileFlowCoordinator
-    
 
     public init(
         rootRouter: RouterAbstract,
@@ -37,10 +33,10 @@ final class ProfileFlowCoordinator: Coordinator {
     required init(router: any RouterAbstract) {
         fatalError("init(router:) has not been implemented")
     }
-    
+
     func profileController() -> UIViewController? {
         let controller = resolver ~> ProfileController.self
-        
+
         controller.onEvent = { [weak self] event in
             switch event {
             case .aboutApp:
@@ -52,18 +48,16 @@ final class ProfileFlowCoordinator: Coordinator {
         innerRouter.setRootModule(controller)
         return innerRouter.rootController
     }
-    
+
     func showAboutApp() {
         let controller = resolver ~> (AboutAppController.self)
         controller.hidesBottomBarWhenPushed = true
         innerRouter.push(controller)
     }
-    
+
     func showTheme() {
         let controller = resolver ~> (ThemeController.self)
         controller.hidesBottomBarWhenPushed = true
         innerRouter.push(controller)
-        
     }
 }
-

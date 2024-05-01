@@ -46,7 +46,7 @@ final class DepositDataSource {
         tableView.contentInsets(.init(top: 0, left: 0, bottom: 92, right: 0))
         tableView.registerTemplateCell(forView: TemplateShimmerView.self)
         tableView.registerTemplateCell(forView: TemplateHistoryView.self)
-        tableView.registerTemplateCell(forView: TemplateHeaderView.self)
+        tableView.registerTemplateCell(forView: HeaderView.self)
         tableView.registerTemplateCell(forView: TemplatePaymentView.self)
         tableView.registerTemplateCell(forView: TemplateActionView.self)
         tableView.registerTemplateCell(forView: SwitchView.self)
@@ -65,7 +65,7 @@ final class DepositDataSource {
             case .payment(let props):
                 return cellFactory.makeTemplatePaymentCell(for: indexPath, with: props)
             case .switchView(let props):
-                return cellFactory.makeSwitchCell(for: indexPath, with: props)  
+                return cellFactory.makeSwitchCell(for: indexPath, with: props)
             case .depositHeader(let props):
                 return cellFactory.makeTemplateDepositHeaderCell(for: indexPath, with: props)
             case .shimmerDepositHeader:

@@ -20,7 +20,7 @@ struct MainViewProps {
         case shimmerHeader(_ identifier: String = UUID().uuidString)
         case shimmerDeposit(_ identifier: String = UUID().uuidString)
         case shimmerCard(_ identifier: String = UUID().uuidString)
-        case header(TemplateHeaderView.Props)
+        case header(HeaderView.Props)
         case account(TemplateAccountView.Props)
         case card(TemplateCardView.Props)
         case deposit(TemplateDepositView.Props)

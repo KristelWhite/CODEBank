@@ -61,7 +61,6 @@ final class TemplateActionView: BackgroundPrimary {
             accessoryImage
                 .foregroundStyle(.textTertiary)
                     .isHidden(!props.isAccesory)
-
         }
         .layoutMargins(.make(vInsets: 16))
         .onTap { [weak self] in
@@ -75,15 +74,15 @@ final class TemplateActionView: BackgroundPrimary {
 extension TemplateActionView: ConfigurableView {
 
     typealias Model = Props
-    
+
     struct Props: Hashable {
         let id: String
         let title: String
         let image: UIImage
         let isAccesory: Bool
-        
+
         var onTap: StringHandler?
-        
+
         public static func == (lhs: TemplateActionView.Props, rhs: TemplateActionView.Props) -> Bool {
             lhs.hashValue == rhs.hashValue
         }
@@ -102,4 +101,3 @@ extension TemplateActionView: ConfigurableView {
         body(with: model).embed(in: self)
     }
 }
-

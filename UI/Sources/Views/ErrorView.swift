@@ -81,4 +81,3 @@ extension ErrorView: ConfigurableView {
         body(with: model).embed(in: self)
     }
 }
-

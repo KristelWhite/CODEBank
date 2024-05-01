@@ -42,7 +42,6 @@ final class HeaderDepositView: BackgroundPrimary {
         .layoutMargins(.make(vInsets: 16))
     }
 
-
     private func body(with props: Props) -> UIView {
         VStack( alignment: .center, distribution: .fill ) {
             BackgroundView {
@@ -69,22 +68,22 @@ final class HeaderDepositView: BackgroundPrimary {
 // MARK: - Configurable
 
 extension HeaderDepositView: ConfigurableView {
-    
+
     typealias Model = Props
-    
+
     struct Props: Hashable {
         let id: Int
         let name: String
         let cardNumber: String
         let currency: Currency
         let value: Double
-        
+
         var onTap: StringHandler?
-        
+
         public static func == (lhs: HeaderDepositView.Props, rhs: HeaderDepositView.Props) -> Bool {
             lhs.hashValue == rhs.hashValue
         }
-        
+
         public func hash(into hasher: inout Hasher) {
             hasher.combine(id)
             hasher.combine(name)
@@ -93,7 +92,7 @@ extension HeaderDepositView: ConfigurableView {
             hasher.combine(value)
         }
     }
-    
+
     func configure(with model: Props) {
         self.props = model
         subviews.forEach { $0.removeFromSuperview() }

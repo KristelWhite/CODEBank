@@ -15,7 +15,7 @@ final class TemplatePaymentView: BackgroundPrimary {
 
     private let titleLabel = Label(foregroundStyle: .textPrimary, fontStyle: .body2)
     private let image = ImageView(foregroundStyle: .contentAccentPrimary)
-    
+
     private var props: Props?
 
     // MARK: - Public methods
@@ -41,8 +41,7 @@ final class TemplatePaymentView: BackgroundPrimary {
         }
         .layoutMargins(.make(vInsets: 14))
     }
-    
-    
+
     private func body(with props: Props) -> UIView {
         HStack(alignment: .center, spacing: 16) {
             BackgroundView(padding: 8) {
@@ -70,16 +69,16 @@ final class TemplatePaymentView: BackgroundPrimary {
 // MARK: - Configurable
 
 extension TemplatePaymentView: ConfigurableView {
-    
+
     typealias Model = Props
-    
+
     struct Props: Hashable {
         let id: String
         let title: String
         let image: UIImage
-        
+
         var onTap: StringHandler?
-        
+
         public static func == (lhs: TemplatePaymentView.Props, rhs: TemplatePaymentView.Props) -> Bool {
             lhs.hashValue == rhs.hashValue
         }
@@ -97,4 +96,3 @@ extension TemplatePaymentView: ConfigurableView {
         body(with: model).embed(in: self)
     }
 }
-

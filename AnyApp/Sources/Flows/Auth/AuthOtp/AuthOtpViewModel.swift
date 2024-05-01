@@ -19,11 +19,11 @@ final class AuthOtpViewModel {
     }
 
     var onOutput: ((Output) -> Void)?
-    var otpAttempts = 5
 
     private var configModel: ConfigModel
     private let authRequestManager: AuthRequestManagerAbstract
     private let appSession: AppSession
+    private var otpAttempts = 5
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -51,7 +51,7 @@ final class AuthOtpViewModel {
     private func login() {
         authRequestManager.authLogin(phone: configModel.phone)
             .sink(
-                receiveCompletion: { [weak self] error in
+                receiveCompletion: { error in
                     guard case let .failure(error) = error else { return }
                     ErrorServerHandler.handle(error)
                     print(error.appError.localizedDescription)
@@ -65,13 +65,12 @@ final class AuthOtpViewModel {
                     )
                 }
             ).store(in: &cancellables)
-
     }
 
     private func confirmOtp(code: String) {
         authRequestManager.authConfirm(otpId: configModel.otpId, phone: configModel.phone, otpCode: code)
             .sink(
-                receiveCompletion: { [weak self] error in
+                receiveCompletion: { error in
                     guard case let .failure(error) = error else { return }
                     ErrorServerHandler.handle(error)
                     print(error.appError.localizedDescription)
@@ -91,8 +90,6 @@ final class AuthOtpViewModel {
                         }
 //                        self?.onOutput?(.userLoggedIn)
                     }
-
-                }
-            ).store(in: &cancellables)
+                }).store(in: &cancellables)
     }
 }

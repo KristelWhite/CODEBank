@@ -164,7 +164,7 @@
 		63E55ED62BCD47D80014FEFC /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55ECA2BCD47D80014FEFC /* MainView.swift */; };
 		63E55ED72BCD47D80014FEFC /* TemplateDepositView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55ECC2BCD47D80014FEFC /* TemplateDepositView.swift */; };
 		63E55ED82BCD47D80014FEFC /* TemplateShimmerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55ECD2BCD47D80014FEFC /* TemplateShimmerCell.swift */; };
-		63E55ED92BCD47D80014FEFC /* TemplateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55ECE2BCD47D80014FEFC /* TemplateHeaderView.swift */; };
+		63E55ED92BCD47D80014FEFC /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55ECE2BCD47D80014FEFC /* HeaderView.swift */; };
 		63E55EDA2BCD47D80014FEFC /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55ECF2BCD47D80014FEFC /* MainFlowCoordinator.swift */; };
 		63E55EDB2BCD47D80014FEFC /* MainFlowAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55ED02BCD47D80014FEFC /* MainFlowAssembly.swift */; };
 		63E55EDD2BCE93950014FEFC /* TemplateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55EDC2BCE93950014FEFC /* TemplateAccountView.swift */; };
@@ -175,10 +175,8 @@
 		63E55EEA2BD13D620014FEFC /* ProfileViewProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55EE92BD13D620014FEFC /* ProfileViewProps.swift */; };
 		63E55EEC2BD2ACF60014FEFC /* AuthOtpConfigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55EEB2BD2ACF60014FEFC /* AuthOtpConfigModel.swift */; };
 		63E55EEF2BD512530014FEFC /* AboutAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55EEE2BD512530014FEFC /* AboutAppView.swift */; };
-		63E55EF12BD5126D0014FEFC /* AboutAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55EF02BD5126C0014FEFC /* AboutAppViewModel.swift */; };
 		63E55EF32BD5128B0014FEFC /* AboutAppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55EF22BD5128B0014FEFC /* AboutAppController.swift */; };
 		63E55EF72BD586FD0014FEFC /* ThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55EF62BD586FD0014FEFC /* ThemeView.swift */; };
-		63E55EF92BD5870D0014FEFC /* ThemeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55EF82BD5870D0014FEFC /* ThemeViewModel.swift */; };
 		63E55EFB2BD5871B0014FEFC /* ThemeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55EFA2BD5871B0014FEFC /* ThemeController.swift */; };
 		63E55EFD2BD5C36C0014FEFC /* TemplateThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E55EFC2BD5C36C0014FEFC /* TemplateThemeView.swift */; };
 		69BE3B199496A8D3B21485D0 /* Spacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8A40B7022E3714A90360F1 /* Spacer.swift */; };
@@ -577,7 +575,7 @@
 		63E55ECA2BCD47D80014FEFC /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		63E55ECC2BCD47D80014FEFC /* TemplateDepositView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateDepositView.swift; sourceTree = "<group>"; };
 		63E55ECD2BCD47D80014FEFC /* TemplateShimmerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateShimmerCell.swift; sourceTree = "<group>"; };
-		63E55ECE2BCD47D80014FEFC /* TemplateHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateHeaderView.swift; sourceTree = "<group>"; };
+		63E55ECE2BCD47D80014FEFC /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		63E55ECF2BCD47D80014FEFC /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
 		63E55ED02BCD47D80014FEFC /* MainFlowAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainFlowAssembly.swift; sourceTree = "<group>"; };
 		63E55EDC2BCE93950014FEFC /* TemplateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAccountView.swift; sourceTree = "<group>"; };
@@ -588,10 +586,8 @@
 		63E55EE92BD13D620014FEFC /* ProfileViewProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewProps.swift; sourceTree = "<group>"; };
 		63E55EEB2BD2ACF60014FEFC /* AuthOtpConfigModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthOtpConfigModel.swift; sourceTree = "<group>"; };
 		63E55EEE2BD512530014FEFC /* AboutAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppView.swift; sourceTree = "<group>"; };
-		63E55EF02BD5126C0014FEFC /* AboutAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewModel.swift; sourceTree = "<group>"; };
 		63E55EF22BD5128B0014FEFC /* AboutAppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppController.swift; sourceTree = "<group>"; };
 		63E55EF62BD586FD0014FEFC /* ThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeView.swift; sourceTree = "<group>"; };
-		63E55EF82BD5870D0014FEFC /* ThemeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewModel.swift; sourceTree = "<group>"; };
 		63E55EFA2BD5871B0014FEFC /* ThemeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeController.swift; sourceTree = "<group>"; };
 		63E55EFC2BD5C36C0014FEFC /* TemplateThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateThemeView.swift; sourceTree = "<group>"; };
 		65596380188E4DFEB200C6A1 /* UIStackView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Helpers.swift"; sourceTree = "<group>"; };
@@ -1468,7 +1464,7 @@
 			isa = PBXGroup;
 			children = (
 				63E55ECD2BCD47D80014FEFC /* TemplateShimmerCell.swift */,
-				63E55ECE2BCD47D80014FEFC /* TemplateHeaderView.swift */,
+				63E55ECE2BCD47D80014FEFC /* HeaderView.swift */,
 				63E55ECC2BCD47D80014FEFC /* TemplateDepositView.swift */,
 				63E55EDC2BCE93950014FEFC /* TemplateAccountView.swift */,
 				63E55EDE2BCE93B10014FEFC /* TemplateCardView.swift */,
@@ -1508,7 +1504,6 @@
 		63E55EF42BD515B40014FEFC /* AboutApp */ = {
 			isa = PBXGroup;
 			children = (
-				63E55EF02BD5126C0014FEFC /* AboutAppViewModel.swift */,
 				63E55EF22BD5128B0014FEFC /* AboutAppController.swift */,
 				63E55EEE2BD512530014FEFC /* AboutAppView.swift */,
 			);
@@ -1520,7 +1515,6 @@
 			children = (
 				63E55EFE2BD5C65B0014FEFC /* View */,
 				63E55EF62BD586FD0014FEFC /* ThemeView.swift */,
-				63E55EF82BD5870D0014FEFC /* ThemeViewModel.swift */,
 				63E55EFA2BD5871B0014FEFC /* ThemeController.swift */,
 			);
 			path = Theme;
@@ -2521,7 +2515,6 @@
 				63E55EE12BD02C030014FEFC /* ProfileFlowCoordinator.swift in Sources */,
 				AB77ED43D50E241EEC4A4BCC /* AppCoordinator.swift in Sources */,
 				96D4E3BDD923E897058D1118 /* AppDelegate.swift in Sources */,
-				63E55EF12BD5126D0014FEFC /* AboutAppViewModel.swift in Sources */,
 				10E588222BC0577A00D05347 /* AuthOtpView.swift in Sources */,
 				10E588092BC049D300D05347 /* HomeFlowAssembly.swift in Sources */,
 				63E55EDA2BCD47D80014FEFC /* MainFlowCoordinator.swift in Sources */,
@@ -2546,7 +2539,6 @@
 				631348942BE0F8B5009EE942 /* ErrorHandlers.swift in Sources */,
 				63E55EE72BD121430014FEFC /* TemplateSettingsView.swift in Sources */,
 				631348B02BE17F9D009EE942 /* HeaderCardView.swift in Sources */,
-				63E55EF92BD5870D0014FEFC /* ThemeViewModel.swift in Sources */,
 				63E55EDF2BCE93B10014FEFC /* TemplateCardView.swift in Sources */,
 				63E55ED32BCD47D80014FEFC /* MainCellFactory.swift in Sources */,
 				63E55ED12BCD47D80014FEFC /* MainViewProps.swift in Sources */,
@@ -2560,7 +2552,7 @@
 				81EE6CA3925BD588AB50E959 /* Common.swift in Sources */,
 				63E55EEA2BD13D620014FEFC /* ProfileViewProps.swift in Sources */,
 				10E588142BC04FED00D05347 /* AuthPhoneView.swift in Sources */,
-				63E55ED92BCD47D80014FEFC /* TemplateHeaderView.swift in Sources */,
+				63E55ED92BCD47D80014FEFC /* HeaderView.swift in Sources */,
 				AB2425DA903786858771197E /* HomeFlowCoordinator.swift in Sources */,
 				63E55ED82BCD47D80014FEFC /* TemplateShimmerCell.swift in Sources */,
 				63DA7A7D2BDBEA4000C42069 /* HeaderDepositeView.swift in Sources */,

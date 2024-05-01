@@ -26,14 +26,12 @@ final class CardInfoViewModel {
 
     var onOutput: ((Output) -> Void)?
 
-    var response: CardInfoResponse?
-    var selectedTab: SwitchView.State?
-
-
-    private var cancellables = Set<AnyCancellable>()
-
+    private var response: CardInfoResponse?
+    private var selectedTab: SwitchView.State?
     private var cardId: String
     private var coreRequestManager: CoreRequestManagerAbstract
+
+    private var cancellables = Set<AnyCancellable>()
 
     init(cardId: String, coreRequestManager: CoreRequestManagerAbstract) {
         self.cardId = cardId
@@ -48,7 +46,6 @@ final class CardInfoViewModel {
     }
     private func loadData() {
         addShimmer()
-        print(cardId)
         coreRequestManager.cardInfo(cardId: cardId)
             .sink { [weak self] error in
                 guard case let .failure(error) = error else { return }
@@ -59,29 +56,28 @@ final class CardInfoViewModel {
                 self?.onOutput?(.error(errorProps))
                 print(error.appError.localizedDescription)
             } receiveValue: { [weak self] response in
-                print(" responce \(response)")
                 self?.response = response
                 self?.handleReceivedData(with: response, selectedTab: self?.selectedTab ?? .history)
             }.store(in: &cancellables)
     }
 
-    func addShimmer() {
+    private func addShimmer() {
         onOutput?(.content(.init(sections: [
             .top([
                 .shimmerCardHeader(),
-                .shimerSwitch()] ),
+                .shimerSwitch() ] ),
             .bottom(
-                (0...6).map {_ in .shimmerHistory()}
-                )] )))
+                (0...6).map { _ in .shimmerHistory() }
+                )])))
     }
 
-    func changeSelectedTab(selectedTab: SwitchView.State) {
+    private func changeSelectedTab(selectedTab: SwitchView.State) {
         self.selectedTab = selectedTab
         guard let response = response else { return }
         handleReceivedData(with: response, selectedTab: selectedTab)
     }
 
-    func handleReceivedData(with response: CardInfoResponse, selectedTab: SwitchView.State ) {
+    private func handleReceivedData(with response: CardInfoResponse, selectedTab: SwitchView.State ) {
         var section: [Props.Section] = []
         var items: [Props.Item] = []
         items.append(.cardHeader(.init(id: response.id, name: response.name, cardNumber: response.number, currency: .rub, value: 234543, date: response.expiredAt, paymentSystem: response.paymentSystem)))
@@ -122,8 +118,7 @@ final class CardInfoViewModel {
                 }),
                 .payment(.init(id: "2", title: Main.intermet, image: Asset._1Internet.image) { _ in
                     SnackCenter.shared.showSnack(withProps: .init(message: Common.duringDevelopment))
-                })
-                ]
+                })]
         }
     }
 }
@@ -136,9 +131,6 @@ extension CardInfoViewModel {
         .history(.init(id: "1", title: "Зачисление зарплаты", date: "25 июня, 17:38", value: "+ 15 000,00 ₽", image: Asset._2CardPay.image, isIncome: true)),
         .history(.init(id: "2", title: "Первод Александру Олеговичу С.", date: "25 июня, 15:13", value: "-6 000,00 ₽", image: Asset._2CardPay.image, isIncome: false)),
         .history(.init(id: "3", title: "Оплата Транспорта", date: "25 июня, 12:01", value: "-33,00 ₽", image: Asset._2AccountPay.image, isIncome: false)),
-        .history(.init(id: "4", title: "Первод Ольге Владимировне Т.", date: "25 июня, 9:47", value: "-15 000,00 ₽", image: Asset._2CardPay.image, isIncome: false)),
+        .history(.init(id: "4", title: "Первод Ольге Владимировне Т.", date: "25 июня, 9:47", value: "-15 000,00 ₽", image: Asset._2CardPay.image, isIncome: false))
     ]}
 }
-
-
-

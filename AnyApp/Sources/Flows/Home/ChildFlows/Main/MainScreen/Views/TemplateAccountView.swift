@@ -18,7 +18,7 @@ final class TemplateAccountView: BackgroundPrimary {
     private let valueLabel = Label(foregroundStyle: .contentAccentPrimary, fontStyle: .body2)
     private let image = ImageView(foregroundStyle: .contentAccentTertiary)
     private let accessoryImage = ImageView(image: Asset.chevronUp.image, foregroundStyle: .contentTertiary)
-    
+
     private var props: Props?
 
     // MARK: - Public methods
@@ -51,8 +51,7 @@ final class TemplateAccountView: BackgroundPrimary {
         }
         .layoutMargins(.make(vInsets: 16))
         }
-    
-    
+
     private func body(with props: Props) -> UIView {
         HStack(spacing: 16) {
             VStack {
@@ -87,8 +86,6 @@ final class TemplateAccountView: BackgroundPrimary {
             self?.props?.onTap?(props.id)
         }
     }
-    
-   
 }
 
 // MARK: - Configurable
@@ -122,4 +119,3 @@ extension TemplateAccountView: ConfigurableView {
         body(with: model).embed(in: self)
     }
 }
-

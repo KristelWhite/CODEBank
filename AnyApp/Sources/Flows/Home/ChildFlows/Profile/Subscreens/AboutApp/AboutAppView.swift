@@ -10,12 +10,12 @@ import UIKit
 import AppIndependent
 
 final class AboutAppView: BackgroundPrimary {
-    
+
     override func setup() {
         super.setup()
         body().embed(in: self)
     }
-    
+
     private func body() -> UIView {
         VStack(alignment: .center, spacing: 16) {
             ImageView(image: Asset.logoLarge.image)

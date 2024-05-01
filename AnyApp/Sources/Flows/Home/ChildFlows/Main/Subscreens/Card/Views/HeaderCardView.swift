@@ -35,9 +35,7 @@ final class HeaderCardView: BackgroundPrimary {
             .size(CGSize(width: 272, height: 158), priority: .required)
         }
         .layoutMargins(.make(vInsets: 16, hInsets: 24))
-
     }
-
 
     private func body(with props: Props) -> UIView {
         ZStack {

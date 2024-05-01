@@ -33,7 +33,6 @@ final class HomeFlowCoordinator: Coordinator {
         profileController.tabBarItem = .init(title: Profile.profile, image: Asset.camera1.image, selectedImage: Asset.camera1.image
         )
 
-
         let controllers = [
             mainController,
             profileController
@@ -51,7 +50,7 @@ private extension HomeFlowCoordinator {
         DIContainer.shared.assemble(assembly: MainFlowAssembly())
 
         let coordinator = resolver ~> (MainFlowCoordinator.self, router)
-        
+
         coordinator.finishFlow = { [weak self, weak coordinator] in
             self?.removeDependency(coordinator)
         }
@@ -62,13 +61,13 @@ private extension HomeFlowCoordinator {
 
     func createProfileController() -> UIViewController? {
         DIContainer.shared.assemble(assembly: ProfileFlowAssembly())
-        
+
         let coordinator = resolver ~> ProfileFlowCoordinator.self
         coordinator.finishFlow = { [weak self, weak coordinator] in
             self?.removeDependency(coordinator)
         }
         addDependency(coordinator)
-        
+
         return coordinator.profileController()
     }
 }

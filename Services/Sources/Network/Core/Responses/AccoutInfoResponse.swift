@@ -14,12 +14,3 @@ public struct AccountInfoResponse: Decodable {
     public let currency: Currency
     public let accountId: Int
 }
-
-
-//{
-//  "number": "0467683482412661",
-//  "status": "Активен",
-//  "balance": 12,
-//  "currency": "RUB",
-//  "accountId": 0
-//}

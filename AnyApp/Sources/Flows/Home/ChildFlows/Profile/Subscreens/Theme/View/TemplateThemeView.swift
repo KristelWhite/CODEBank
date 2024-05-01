@@ -16,7 +16,7 @@ final class TemplateThemeView: BackgroundPrimary {
     private let titleLabel = Label(foregroundStyle: .contentAccentTertiary, fontStyle: .body2)
     private let accessoryImage = ImageView(image: Asset.radioOff.image)
         .size(CGSize(width: 24, height: 24), priority: .required)
-    
+
     private var props: Props?
 
     // MARK: - Public methods
@@ -25,7 +25,7 @@ final class TemplateThemeView: BackgroundPrimary {
         super.setup()
     }
 
-    
+
     override func updateAppearance() {
         super.updateAppearance()
         guard let theme = props?.theme else { return }
@@ -33,8 +33,6 @@ final class TemplateThemeView: BackgroundPrimary {
     }
 
     // MARK: - Private methods
-    
-    
     private func body(with props: Props) -> UIView {
         HStack( spacing: 16) {
             VStack {
@@ -52,27 +50,27 @@ final class TemplateThemeView: BackgroundPrimary {
             self?.props?.onTap?(props.id)
         }
     }
-    
-    func isCurrentTheme(theme: ThemeRaw) -> Bool {
+
+    private func isCurrentTheme(theme: ThemeRaw) -> Bool {
         let currentTheme = AppearanceManager.shared.themeRaw
         return currentTheme == theme
     }
-    
+
 }
 
 // MARK: - Configurable
 
 extension TemplateThemeView: ConfigurableView {
-    
+
     typealias Model = Props
-    
+
     struct Props: Hashable {
         let id: String
         let title: String
         let theme: ThemeRaw
-        
+
         var onTap: StringHandler?
-        
+
         public static func == (lhs: TemplateThemeView.Props, rhs: TemplateThemeView.Props) -> Bool {
             lhs.hashValue == rhs.hashValue
         }
@@ -89,7 +87,4 @@ extension TemplateThemeView: ConfigurableView {
         subviews.forEach { $0.removeFromSuperview() }
         body(with: model).embed(in: self)
     }
-    
 }
-
-

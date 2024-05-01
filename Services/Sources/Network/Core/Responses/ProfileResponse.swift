@@ -15,12 +15,3 @@ public struct ProfileResponse: Decodable {
     public let country: String
     public let phone: String
 }
-
-//{
-//  "id": 0,
-//  "firstName": "Иван",
-//  "middleName": "Иванович",
-//  "lastName": "Иванов",
-//  "country": "Россия",
-//  "phone": "+79123213233"
-//}

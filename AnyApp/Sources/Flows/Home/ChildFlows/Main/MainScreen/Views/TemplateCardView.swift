@@ -20,7 +20,7 @@ final class TemplateCardView: BackgroundPrimary {
         .foregroundStyle(.contentTertiary)
 
     private let stateLabel = Label(foregroundStyle: .textSecondary, fontStyle: .caption1)
-    
+
     private var props: Props?
 
     // MARK: - Public methods
@@ -50,21 +50,17 @@ final class TemplateCardView: BackgroundPrimary {
                 .size(CGSize(width: 40, height: 28), priority: .required)
                 FlexibleGroupedSpacer()
             }
-            .height(40, priority: .required)
+//            .height(40, priority: .required)
             .linkGroupedSpacers()
         }
         .layoutMargins(.make(vInsets: 16))
     }
-    
-    
     private func body(with props: Props) -> UIView {
         HStack {
             Spacer(.px8)
             VStack {
                 FlexibleGroupedSpacer()
-                
                     image
-                
                 FlexibleGroupedSpacer()
             }
             .linkGroupedSpacers()
@@ -94,14 +90,12 @@ final class TemplateCardView: BackgroundPrimary {
             .height(40, priority: .required)
             .linkGroupedSpacers()
         }
-//        .height(72)
         .layoutMargins(.make(vInsets: 16))
         .onTap { [weak self] in
             self?.props?.onTap?(props.id)
         }
     }
 }
-
 
 // MARK: - Configurable
 

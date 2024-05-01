@@ -10,15 +10,6 @@ import UIKit
 
 final class AboutAppController: TemplateViewController<AboutAppView> {
 
-    typealias ViewModel = AboutAppViewModel
-
-    private var viewModel: ViewModel!
-
-    convenience init(viewModel: ViewModel) {
-        self.init()
-        self.viewModel = viewModel
-    }
-
     override func setup() {
         super.setup()
         self.navigationItem.title = Profile.aboutApp

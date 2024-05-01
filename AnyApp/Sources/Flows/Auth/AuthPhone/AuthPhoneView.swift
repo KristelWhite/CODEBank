@@ -4,20 +4,19 @@ import AppIndependent
 import SnapKit
 
 final class AuthPhoneView: BackgroundPrimary {
-    
+
     var onAuth: StringHandler?
 
     private var phoneTextField = TextField(foregroundStyle: .textPrimary, fontStyle: .body2, placeholderForegroundStyle: .textTertiary, placeholderFontStyle: .body2)
     private var image = ImageView(image: Asset.phone.image)
         .foregroundStyle(.contentAccentPrimary)
-    
+
     override func setup() {
         super.setup()
         configureTextField()
         body().embed(in: self)
         moveActionButtonWithKeyboard = true
         actionButton = ButtonPrimary(title: Entrance.enter)
-            .height(52)
             .onTap { [weak self] in
                 guard let self = self, let phone = self.phoneTextField.text else { return }
                 if phone.count == 18 {
@@ -27,24 +26,7 @@ final class AuthPhoneView: BackgroundPrimary {
                 }
             }
     }
-    @objc func changeColor() {
-        phoneTextField.foregroundStyle(.textPrimary)
-        image.foregroundStyle(.contentAccentPrimary)
-    }
 
-    func snackServerError(message: String) {
-        SnackCenter.shared.showSnack(withProps: .init(message: message, style: .error))
-        self.phoneTextField.foregroundStyle(.indicatorContentError)
-        self.image.foregroundStyle(.indicatorContentError)
-        Timer.scheduledTimer(
-            timeInterval: 5,
-            target: self,
-            selector: #selector(self.changeColor),
-            userInfo: nil,
-            repeats: false
-        )
-    }
-    
     private func body() -> UIView {
         VStack {
             Spacer(.px16)
@@ -69,16 +51,32 @@ final class AuthPhoneView: BackgroundPrimary {
             .backgroundStyle(.contentSecondary)
             .cornerRadius(20)
             .height(52)
-            
             FlexibleSpacer()
         }
         .layoutMargins(.make(hInsets: 16))
     }
 
-    func configureTextField() {
+    private func configureTextField() {
         phoneTextField.delegate = self
     }
 
+    private func snackServerError(message: String) {
+        SnackCenter.shared.showSnack(withProps: .init(message: message, style: .error))
+        self.phoneTextField.foregroundStyle(.indicatorContentError)
+        self.image.foregroundStyle(.indicatorContentError)
+        Timer.scheduledTimer(
+            timeInterval: 5,
+            target: self,
+            selector: #selector(self.changeColor),
+            userInfo: nil,
+            repeats: false
+        )
+    }
+
+    @objc private func changeColor() {
+        phoneTextField.foregroundStyle(.textPrimary)
+        image.foregroundStyle(.contentAccentPrimary)
+    }
 }
 // MARK: - UITextFieldDelegate
 
@@ -86,17 +84,15 @@ extension AuthPhoneView: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let fullString = (textField.text ?? "") as NSString
         let updatedString = fullString.replacingCharacters(in: range, with: string)
-        print(updatedString)
 
         let digitsOnly = updatedString.digits
-        print(digitsOnly)
 
         textField.text = applyPhoneMask(to: digitsOnly)
 
         return false
     }
 
-    func applyPhoneMask(to digits: String) -> String {
+    private func applyPhoneMask(to digits: String) -> String {
         var result = ""
         var index = digits.startIndex
 
@@ -110,10 +106,6 @@ extension AuthPhoneView: UITextFieldDelegate {
                 result.append(ch)
             }
         }
-
         return result
     }
 }
-
-
-

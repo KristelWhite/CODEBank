@@ -9,7 +9,7 @@ import UI
 import Core
 import AppIndependent
 
-public struct ErrorUIHandler {
+public enum ErrorUIHandler {
     static func handle(_ error: ErrorWithContext, onTap: @escaping VoidHandler) -> ErrorView.Props {
         switch error.appError.kind {
         case .network:
@@ -32,7 +32,7 @@ public struct ErrorUIHandler {
     }
 }
 
-public struct ErrorServerHandler {
+public enum ErrorServerHandler {
     static func handle(_ error: ErrorWithContext) {
         switch error.appError.kind {
         case .network:
@@ -42,4 +42,3 @@ public struct ErrorServerHandler {
         }
     }
 }
-

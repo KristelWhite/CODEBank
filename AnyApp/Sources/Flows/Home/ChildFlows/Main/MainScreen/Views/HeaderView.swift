@@ -2,7 +2,7 @@ import UIKit
 import UI
 import AppIndependent
 
-final class TemplateHeaderView: BackgroundPrimary {
+final class HeaderView: BackgroundPrimary {
 
     // MARK: - Private Properties
 
@@ -20,11 +20,10 @@ final class TemplateHeaderView: BackgroundPrimary {
     // MARK: - Private methods
     private func body() -> UIView {
         VStack {
-            HStack{
+            HStack {
                 Shimmer()
                     .size(CGSize(width: 100, height: 20))
                 FlexibleSpacer()
-
             }
         }
         .layoutMargins(.init(top: 17, left: 0, bottom: 15, right: 0))
@@ -41,14 +40,14 @@ final class TemplateHeaderView: BackgroundPrimary {
 
 // MARK: - Configurable
 
-extension TemplateHeaderView: ConfigurableView {
+extension HeaderView: ConfigurableView {
 
     typealias Model = Props
 
     struct Props: Hashable {
         var title: String
 
-        public static func == (lhs: TemplateHeaderView.Props, rhs: TemplateHeaderView.Props) -> Bool {
+        public static func == (lhs: HeaderView.Props, rhs: HeaderView.Props) -> Bool {
             lhs.hashValue == rhs.hashValue
         }
 

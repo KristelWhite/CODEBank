@@ -58,11 +58,10 @@ final class CardCellFactory {
 
     func makeHeaderShimmer(for indexPath: IndexPath) -> UITableViewCell {
         tableView.dequeueTemplateCell(
-            forView: TemplateHeaderView.self,
+            forView: HeaderView.self,
             for: indexPath
         )
     }
-
 
     // MARK: - Cells
 
@@ -102,10 +101,10 @@ final class CardCellFactory {
 
     func makeTemplateHeaderCell(
         for indexPath: IndexPath,
-        with props: TemplateHeaderView.Props
+        with props: HeaderView.Props
     ) -> UITableViewCell {
         tableView.dequeueTemplateCell(
-            forView: TemplateHeaderView.self,
+            forView: HeaderView.self,
             for: indexPath
         ) { view, _ in
             view.configure(with: props)
@@ -135,5 +134,3 @@ final class CardCellFactory {
         }
     }
 }
-
-

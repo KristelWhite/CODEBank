@@ -8,7 +8,6 @@ final class AuthOtpController: TemplateViewController<AuthOtpView>, NavigationBa
 
     enum Event {
         case userLoggedIn
-
     }
 
     var onEvent: ((Event) -> Void)?
@@ -33,7 +32,6 @@ final class AuthOtpController: TemplateViewController<AuthOtpView>, NavigationBa
             switch event {
             case .refreshOtp:
                 self?.viewModel.handle(.refreshOtp)
-
             }
         }
 
@@ -53,7 +51,7 @@ final class AuthOtpController: TemplateViewController<AuthOtpView>, NavigationBa
 extension AuthOtpController {
     func showExitConfirmation() {
         let alertController = UIAlertController(title: Common.Error.wrongFiveTimes, message: Common.Error.finishSession, preferredStyle: .alert)
-        let exitAction = UIAlertAction(title: Common.quit1, style: .cancel) { [weak self] action in
+        let exitAction = UIAlertAction(title: Common.quit1, style: .cancel) { [weak self] _ in
             self?.viewModel.handle(.closeSession)
         }
         alertController.addAction(exitAction)

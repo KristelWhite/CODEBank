@@ -39,4 +39,3 @@ final class CoreRequestManager: NetworkRequestManager, CoreRequestManagerAbstrac
         request(path: CorePath.profile)
     }
 }
-

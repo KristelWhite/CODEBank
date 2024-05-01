@@ -11,14 +11,6 @@ import UIKit
 final class DepositController: TemplateViewController<DepositView> {
 
     typealias ViewModel = DepositViewModel
-    
-    enum Event {
-       
-
-    }
-
-    var onEvent: ((Event) -> Void)?
-
 
     private var viewModel: ViewModel!
 
@@ -43,7 +35,6 @@ final class DepositController: TemplateViewController<DepositView> {
             switch output {
             case .content(let props):
                 self?.rootView.configure(with: props)
-                print("configure with \(props)")
             case .error(let errorProps):
                 self?.setAdditionState(.error(errorProps))
             case .removeState:
@@ -58,4 +49,3 @@ final class DepositController: TemplateViewController<DepositView> {
         }
     }
 }
-

@@ -10,11 +10,7 @@ import UI
 import AppIndependent
 
 final class SwitchView: BackgroundPrimary {
-    
-    // MARK: - Private Properties
 
-    var props: Props?
-    
     enum State {
         case history, action, payment
     }
@@ -22,15 +18,16 @@ final class SwitchView: BackgroundPrimary {
     enum Event {
         case changeStateOn(state: State)
     }
-    
+
     var onEvent: ((Event) -> Void)?
-    
+
+    var props: Props?
+
     // MARK: - Public methods
-    
+
     override public func setup() {
         super.setup()
         body().embed(in: self)
-
     }
     // MARK: - Private methods
 
@@ -48,7 +45,7 @@ final class SwitchView: BackgroundPrimary {
         .linkGroupedSpacers()
         .layoutMargins(.make(vInsets: 16))
     }
-    
+
     private func body(with props: Props) -> UIView {
         HStack(alignment: .center, distribution: .fill, spacing: 40) {
             FlexibleGroupedSpacer()
@@ -91,7 +88,7 @@ extension SwitchView: ConfigurableView {
 
     struct Props: Hashable {
         let state: State
-        
+
         var onTap: ((State) -> Void)?
 
         public static func == (lhs: SwitchView.Props, rhs: SwitchView.Props) -> Bool {

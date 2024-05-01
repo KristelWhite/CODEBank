@@ -12,7 +12,7 @@ final class TemplateDepositView: BackgroundPrimary {
     private let dateLabel = Label(foregroundStyle: .textTertiary, fontStyle: .caption2)
     private let valueLabel = Label(foregroundStyle: .contentAccentPrimary, fontStyle: .body2)
     private let image = ImageView(foregroundStyle: .contentAccentTertiary)
-    
+
     private var props: Props?
 
     override public func setup() {
@@ -50,8 +50,7 @@ final class TemplateDepositView: BackgroundPrimary {
         .height(72)
         .layoutMargins(.make(vInsets: 14, hInsets: 0))
     }
-    
-    
+
     private func body(with props: Props) -> UIView {
         HStack(spacing: 16) {
             VStack {
@@ -88,8 +87,6 @@ final class TemplateDepositView: BackgroundPrimary {
             self?.props?.onTap?(props.id)
         }
     }
-    
-   
 }
 
 // MARK: - Configurable

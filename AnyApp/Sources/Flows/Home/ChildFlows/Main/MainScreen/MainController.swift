@@ -4,14 +4,13 @@ import UIKit
 final class MainController: TemplateViewController<MainView> {
 
     typealias ViewModel = MainViewModel
-    
+
     enum Event {
         case selectCard(with: String)
         case selectAccount(with: Int)
     }
 
     var onEvent: ((Event) -> Void)?
-
 
     private var viewModel: ViewModel!
 
@@ -28,11 +27,7 @@ final class MainController: TemplateViewController<MainView> {
     }
 
     private func configureNavigationItem() {
-//        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = Main.main
-//        navigationController?.navigationBar.barTintColor = Palette.Surface.backgroundPrimary
-//        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Palette.Text.primary]
-        
     }
 
     private func setupBindings() {
@@ -53,7 +48,6 @@ final class MainController: TemplateViewController<MainView> {
             case .showActionButton:
                 self?.rootView.handle(input: .showButton)
             }
-
         }
 
         rootView.onEvent = { [weak self] event in
@@ -63,7 +57,7 @@ final class MainController: TemplateViewController<MainView> {
             }
         }
 
-        rootView.onNewProduct = { [weak self] in
+        rootView.onNewProduct = {
             SnackCenter.shared.showSnack(withProps: .init(message: Common.duringDevelopment))
         }
     }

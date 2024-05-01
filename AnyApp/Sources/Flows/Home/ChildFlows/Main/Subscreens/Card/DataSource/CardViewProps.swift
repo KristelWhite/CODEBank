@@ -28,7 +28,7 @@ struct CardViewProps {
         case shimmerPayment(_ identifier: String = UUID().uuidString)
         case shimmerHistory(_ identifier: String = UUID().uuidString)
         case shimmerHeader(_ identifier: String = UUID().uuidString)
-        case header(TemplateHeaderView.Props)
+        case header(HeaderView.Props)
         case action(TemplateActionView.Props)
         case history(TemplateHistoryView.Props)
         case payment(TemplatePaymentView.Props)
@@ -36,7 +36,4 @@ struct CardViewProps {
         case cardHeader(HeaderCardView.Props)
     }
     let sections: [Section]
-
 }
-
-

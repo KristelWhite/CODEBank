@@ -28,6 +28,6 @@ final class AuthFlowAssembly: Assembly, Identifiable {
     }
 
     func loaded(resolver: Resolver) {
-        Logger().debug(id, "is loaded")
+        Logger().debug(id, Common.isLoaded)
     }
 }

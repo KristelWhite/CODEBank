@@ -10,11 +10,11 @@ import UIKit
 import AppIndependent
 
 final class CodeTextField: TextField {
-    private var bottomLine = UIView()
 
+    private var bottomLine = UIView()
+    private let inactiveLineColor = UIColor.clear
     private var activeLineColor = UIColor { _ in
         Palette.Content.accentPrimary }
-    private let inactiveLineColor = UIColor.clear
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,11 +31,11 @@ final class CodeTextField: TextField {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func setActiveLineColor(_ color: UIColor){
-        self.activeLineColor = color
-        bottomLine.backgroundColor = activeLineColor
 
-    }
+//    func setActiveLineColor(_ color: UIColor) {
+//        self.activeLineColor = color
+//        bottomLine.backgroundColor = activeLineColor
+//    }
 
     private func setupAppearance() {
         self.cornerRadius(14)
@@ -67,6 +67,7 @@ final class CodeTextField: TextField {
         }
         return becomingActive
     }
+
     override func resignFirstResponder() -> Bool {
         let resigningActive = super.resignFirstResponder()
         if resigningActive {

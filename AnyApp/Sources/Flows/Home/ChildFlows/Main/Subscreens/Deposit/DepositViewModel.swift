@@ -21,19 +21,16 @@ final class DepositViewModel {
 
     enum Input {
         case loadData
-
     }
 
     var onOutput: ((Output) -> Void)?
 
     var response: AccountInfoResponse?
     var selectedTab: SwitchView.State = .history
-
-
-    private var cancellables = Set<AnyCancellable>()
-
     private var id: Int
     private var coreRequestManager: CoreRequestManagerAbstract
+
+    private var cancellables = Set<AnyCancellable>()
 
     init(id: Int, coreRequestManager: CoreRequestManagerAbstract) {
         self.id = id
@@ -48,7 +45,6 @@ final class DepositViewModel {
     }
     private func loadData() {
         addShimmer()
-        print(id)
         coreRequestManager.accountInfo(accountId: id)
             .sink { [weak self] error in
                 guard case let .failure(error) = error else { return }
@@ -59,29 +55,29 @@ final class DepositViewModel {
                 self?.onOutput?(.error(errorProps))
                 print(error.appError.localizedDescription)
             } receiveValue: { [weak self] response in
-                print(" responce \(response)")
                 self?.response = response
                 self?.handleReceivedData(with: response)
             }.store(in: &cancellables)
     }
 
-    func addShimmer() {
+    private func addShimmer() {
         onOutput?(.content(.init(sections: [
             .top([
                 .shimmerDepositHeader(),
-                .shimerSwitch()]),
+                .shimerSwitch()
+            ]),
             .bottom(
-                (0...6).map{_ in .shimmerHistory()}
+                (0...6).map{ _ in .shimmerHistory() }
                 )])))
     }
 
-    func changeSelectedTab(selectedTab: SwitchView.State) {
+    private func  changeSelectedTab(selectedTab: SwitchView.State) {
         self.selectedTab = selectedTab
         guard let response = response else { return }
         handleReceivedData(with: response, selectedTab: selectedTab)
     }
 
-    func handleReceivedData(with response: AccountInfoResponse, selectedTab: SwitchView.State = .history) {
+    private func handleReceivedData(with response: AccountInfoResponse, selectedTab: SwitchView.State = .history) {
         var section: [Props.Section] = []
         var items: [Props.Item] = []
         items.append(.depositHeader(.init(id: response.accountId, name: "Счет расчетный", cardNumber: response.number, currency: response.currency, value: response.balance)))
@@ -110,8 +106,7 @@ final class DepositViewModel {
                 }),
                 .action(.init(id: "3", title: Main.closeDeposit, image: Asset.bankAccount.image, isAccesory: false) { _ in
                     SnackCenter.shared.showSnack(withProps: .init(message: Common.duringDevelopment))
-                })
-                ]
+                })]
         case .payment:
             return [
                 .payment(.init(id: "0", title: Main.mobile, image: Asset._1Mobile.image) { _ in
@@ -122,8 +117,7 @@ final class DepositViewModel {
                 }),
                 .payment(.init(id: "2", title: Main.intermet, image: Asset._1Internet.image) { _ in
                     SnackCenter.shared.showSnack(withProps: .init(message: Common.duringDevelopment))
-                })
-                ]
+                })]
         }
     }
 }
@@ -136,8 +130,6 @@ extension DepositViewModel {
         .history(.init(id: "1", title: "Зачисление зарплаты", date: "25 июня, 17:38", value: "+ 15 000,00 ₽", image: Asset._2CardPay.image, isIncome: true)),
         .history(.init(id: "2", title: "Первод Александру Олеговичу С.", date: "25 июня, 15:13", value: "-6 000,00 ₽", image: Asset._2CardPay.image, isIncome: false)),
         .history(.init(id: "3", title: "Оплата Транспорта", date: "25 июня, 12:01", value: "-33,00 ₽", image: Asset._2AccountPay.image, isIncome: false)),
-        .history(.init(id: "4", title: "Первод Ольге Владимировне Т.", date: "25 июня, 9:47", value: "-15 000,00 ₽", image: Asset._2CardPay.image, isIncome: false)),
+        .history(.init(id: "4", title: "Первод Ольге Владимировне Т.", date: "25 июня, 9:47", value: "-15 000,00 ₽", image: Asset._2CardPay.image, isIncome: false))
     ]}
 }
-
-

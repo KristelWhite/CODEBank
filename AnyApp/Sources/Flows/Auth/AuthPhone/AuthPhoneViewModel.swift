@@ -8,7 +8,6 @@ final class AuthPhoneViewModel {
 
     enum Output {
         case otp(AuthOtpConfigModel)
-//        case error(ErrorView.Props)
     }
 
     enum Input {
@@ -35,7 +34,7 @@ final class AuthPhoneViewModel {
     private func login(phone: String) {
         authRequestManager.authLogin(phone: phone)
             .sink(
-                receiveCompletion: { [weak self] error in
+                receiveCompletion: { error in
                     guard case let .failure(error) = error else { return }
                     ErrorServerHandler.handle(error)
                     print(error.appError.localizedDescription)
@@ -52,4 +51,3 @@ final class AuthPhoneViewModel {
             ).store(in: &cancellables)
     }
 }
-

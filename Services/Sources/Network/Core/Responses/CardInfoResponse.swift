@@ -16,12 +16,3 @@ public struct CardInfoResponse: Decodable {
     public let expiredAt: String //Date
     public let paymentSystem: PaymentSystem
 }
-//{
-//  "id": 0,
-//  "name": "test",
-//  "number": "2323200814106608",
-//  "status": "Активна",
-//  "accountId": 0,
-//  "expiredAt": "2022-04-21T00:00:00Z",
-//  "paymentSystem": "VISA"
-//}

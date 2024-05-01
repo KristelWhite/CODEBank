@@ -15,11 +15,9 @@ final class DepositView: BackgroundPrimary {
     }
     var onEvent: ((Event) -> Void)?
 
-
     private let tableView = BaseTableView()
     private lazy var dataSource = DepositDataSource(tableView: tableView)
     private var refreshControl = UIRefreshControl()
-
 
     override func setup() {
         super.setup()
@@ -32,7 +30,7 @@ final class DepositView: BackgroundPrimary {
         tableView.refreshControl = refreshControl
     }
 
-    @objc func refreshData() {
+    @objc private func refreshData() {
         onEvent?(.loadData)
     }
 
@@ -52,4 +50,3 @@ extension DepositView: ConfigurableView {
         refreshControl.endRefreshing()
     }
 }
-

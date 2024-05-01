@@ -18,7 +18,7 @@ final class TemplateHistoryView: BackgroundPrimary {
     private let dateLabel = Label(foregroundStyle: .textTertiary, fontStyle: .caption1)
     private let valueLabel = Label(foregroundStyle: .indicatorcontentDone, fontStyle: .body2)
     private let image = ImageView(foregroundStyle: .contentAccentPrimary)
-    
+
     private var props: Props?
 
     // MARK: - Public methods
@@ -39,16 +39,14 @@ final class TemplateHistoryView: BackgroundPrimary {
                         .size(CGSize(width: 150, height: 16))
                     Shimmer()
                         .size(CGSize(width: 100, height: 20))
-
                 }
                 Shimmer()
                     .size(CGSize(width: 100, height: 20))
             }
-
         }
         .layoutMargins(.make(vInsets: 14, hInsets: 0))
     }
-    
+
     private func body(with props: Props) -> UIView {
         HStack(spacing: 16) {
             BackgroundView {
@@ -71,15 +69,12 @@ final class TemplateHistoryView: BackgroundPrimary {
                 titleLabel
                     .text(props.title)
             }
-            
         }
         .layoutMargins(.make(vInsets: 14, hInsets: 0))
         .onTap { [weak self] in
             self?.props?.onTap?(props.id)
         }
     }
-    
-   
 }
 
 // MARK: - Configurable
@@ -118,4 +113,3 @@ extension TemplateHistoryView: ConfigurableView {
         body(with: model).embed(in: self)
     }
 }
-

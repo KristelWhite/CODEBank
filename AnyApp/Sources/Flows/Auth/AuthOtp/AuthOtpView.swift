@@ -7,57 +7,33 @@ final class AuthOtpView: BackgroundPrimary {
     enum Event {
         case refreshOtp
     }
-    var onOutput: ((Event) -> Void)?
+
     enum Input {
         case errorCondition(Int)
     }
 
+    var onOutput: ((Event) -> Void)?
     var onOtpFilled: StringHandler?
+
     
-    var timerLabel = Label(foregroundStyle: .textSecondary, fontStyle: .caption1)
-    lazy var timerButton = HStack(spacing: 16) {
+    private var timerLabel = Label(foregroundStyle: .textSecondary, fontStyle: .caption1)
+    private var errorLabel = Label( foregroundStyle: .indicatorContentError, fontStyle: .caption1)
+    private lazy var timerButton = HStack(spacing: 16) {
         ImageView(image: Asset.repay.image, foregroundStyle: .contentAccentPrimary)
         Label(text: Entrance.repeatCode, foregroundStyle: .textPrimary, fontStyle: .caption1)
         FlexibleSpacer()
     }
-    var errorLabel = Label( foregroundStyle: .indicatorContentError, fontStyle: .caption1)
 
+    private var codeTextFields: [CodeTextField] = []
 
-    // MARK: - Timer
+    private var countdownTimer: Timer?
+    private var errorTimer: Timer?
+    private let totalTime = 7
+    private lazy var timeLeft = totalTime
 
-    var countdownTimer: Timer?
-    var errorTimer: Timer?
-
-    let totalTime = 7
-    var timeLeft = 7
-
-    func startTimer() {
-        countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
-        timeLeft = totalTime
-        timerLabel.text(Entrance.timer("\(timeLeft.minutesAndSeconds())"))
-        timerButton.isHidden(true)
-        timerLabel.isHidden(false)
-    }
-
-    @objc func updateTimer() {
-        timeLeft -= 1
-        timerLabel.text(Entrance.timer("\(timeLeft.minutesAndSeconds())"))
-        if errorTimer == nil {
-            timerLabel.isHidden(false)
-        }
-            if timeLeft <= 0 {
-                countdownTimer?.invalidate()
-                countdownTimer = nil
-                if errorTimer == nil {
-                    timerLabel.isHidden(true)
-                    timerButton.isHidden(false)
-                }
-            }
-    }
     func handle(input: Input) {
         switch input {
         case .errorCondition(let attempts):
-
             for textFild in codeTextFields {
                 textFild.foregroundStyle(.indicatorContentError)
                 textFild.tintColor(.clear)
@@ -71,28 +47,6 @@ final class AuthOtpView: BackgroundPrimary {
         }
     }
 
-    @objc func finishErrorCondition() {
-        print("end timer")
-        errorTimer?.invalidate()
-        errorTimer = nil
-        for textFild in codeTextFields {
-            textFild.foregroundStyle(.textPrimary)
-            textFild.tintColor(.clear)
-        }
-
-        if countdownTimer == nil {
-            timerButton.isHidden(false)
-        } else {
-            timerLabel.isHidden(false)
-        }
-        errorLabel
-            .isHidden(true)
-
-    }
-
-
-    var codeTextFields: [CodeTextField] = []
-    
     override func setup() {
         super.setup()
         setupTextFields()
@@ -130,24 +84,64 @@ final class AuthOtpView: BackgroundPrimary {
             FlexibleSpacer()
         }.layoutMargins(.make(vInsets: 16, hInsets: 16))
     }
-    
-    func setupTextFields() {
+
+    private func setupTextFields() {
         (0..<6).forEach { _ in
             let textField = CodeTextField()
                 .size(CGSize(width: 40, height: 48))
             textField.delegate = self
             textField.onDeleteBackward = { [weak self] in
-                print("delete")
                 self?.previousTextField(textField)
             }
             textField.clearsOnBeginEditing = true
             codeTextFields.append(textField)
         }
     }
+
+    @objc private func finishErrorCondition() {
+        errorTimer?.invalidate()
+        errorTimer = nil
+        for textFild in codeTextFields {
+            textFild.foregroundStyle(.textPrimary)
+            textFild.tintColor(.clear)
+        }
+        if countdownTimer == nil {
+            timerButton.isHidden(false)
+        } else {
+            timerLabel.isHidden(false)
+        }
+        errorLabel
+            .isHidden(true)
+    }
+
+    // MARK: - Timer
+    private func startTimer() {
+        countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
+        timeLeft = totalTime
+        timerLabel.text(Entrance.timer("\(timeLeft.minutesAndSeconds())"))
+        timerButton.isHidden(true)
+        timerLabel.isHidden(false)
+    }
+
+    @objc private func updateTimer() {
+        timeLeft -= 1
+        timerLabel.text(Entrance.timer("\(timeLeft.minutesAndSeconds())"))
+        if errorTimer == nil {
+            timerLabel.isHidden(false)
+        }
+            if timeLeft <= 0 {
+                countdownTimer?.invalidate()
+                countdownTimer = nil
+                if errorTimer == nil {
+                    timerLabel.isHidden(true)
+                    timerButton.isHidden(false)
+                }
+            }
+    }
 }
 
+// MARK: - UITextFieldDelegate
 extension AuthOtpView: UITextFieldDelegate {
-
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if string.count == 1 {
             textField.text = string
@@ -155,6 +149,25 @@ extension AuthOtpView: UITextFieldDelegate {
             return false
         }
         return true
+    }
+
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        let firstEmptyField = codeTextFields.first(where: { $0.text?.isEmpty ?? true })
+        if let emptyField = firstEmptyField {
+            if textField == emptyField {
+                return true
+            } else {
+                emptyField.becomeFirstResponder()
+                return false
+            }
+        } else {
+            if textField == codeTextFields.last {
+                return true
+            } else {
+                codeTextFields.last?.becomeFirstResponder()
+                return false
+            }
+        }
     }
 
     private func previousTextField(_ textField: UITextField) {
@@ -176,45 +189,4 @@ extension AuthOtpView: UITextFieldDelegate {
             }).joined())
         }
     }
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        let firstEmptyField = codeTextFields.first(where: { $0.text?.isEmpty ?? true })
-        if let emptyField = firstEmptyField {
-            if textField == emptyField {
-                return true
-            } else {
-                emptyField.becomeFirstResponder()
-                return false
-            }
-        } else {
-            if textField == codeTextFields.last {
-                return true
-            } else {
-                codeTextFields.last?.becomeFirstResponder()
-                return false
-            }
-        }
-    }
-//    func textFieldDidBeginEditing(_ textField: UITextField)
-//        {
-//            let firstEmptyField = codeTextFields.first(where: { $0.text?.isEmpty ?? true })
-//            if let emptyField = firstEmptyField {
-//                if textField == emptyField {
-//                    textField.becomeFirstResponder()
-//                } else {
-//                    textField.resignFirstResponder()
-//                    emptyField.becomeFirstResponder()
-//
-//                }
-//            } else {
-//                if textField == codeTextFields.last {
-//                    textField.becomeFirstResponder()
-//                } else {
-//                    textField.resignFirstResponder()
-//                    codeTextFields.last?.becomeFirstResponder()
-//
-//                }
-//            }
-//    }
 }
-
-

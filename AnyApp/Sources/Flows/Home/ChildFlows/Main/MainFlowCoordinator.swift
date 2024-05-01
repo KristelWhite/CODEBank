@@ -53,5 +53,4 @@ final class MainFlowCoordinator: Coordinator {
         controller.hidesBottomBarWhenPushed = true
         innerRouter.push(controller)
     }
-    
 }

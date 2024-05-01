@@ -12,14 +12,6 @@ final class CardInfoController: TemplateViewController<CardInfoView> {
 
     typealias ViewModel = CardInfoViewModel
 
-    enum Event {
-
-
-    }
-
-    var onEvent: ((Event) -> Void)?
-
-
     private var viewModel: ViewModel!
 
     convenience init(viewModel: ViewModel) {
@@ -43,7 +35,6 @@ final class CardInfoController: TemplateViewController<CardInfoView> {
             switch output {
             case .content(let props):
                 self?.rootView.configure(with: props)
-                print("configure with \(props)")
             case .error(let errorProps):
                 self?.setAdditionState(.error(errorProps))
             case .removeState:
@@ -58,4 +49,3 @@ final class CardInfoController: TemplateViewController<CardInfoView> {
         }
     }
 }
-

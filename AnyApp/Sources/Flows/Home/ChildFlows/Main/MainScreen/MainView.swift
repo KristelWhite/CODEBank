@@ -14,14 +14,12 @@ final class MainView: BackgroundPrimary {
     }
 
     var onEvent: ((Event) -> Void)?
-
     var onNewProduct: VoidHandler?
 
     private let tableView = BaseTableView()
-
     private let button = ButtonPrimary(title: Main.newProgect)
+    private var refreshControl = UIRefreshControl()
     private lazy var dataSource = MainDataSource(tableView: tableView)
-    var refreshControl = UIRefreshControl()
 
     func handle(input: Input) {
         switch input {
@@ -51,7 +49,7 @@ final class MainView: BackgroundPrimary {
         tableView.refreshControl = refreshControl
     }
 
-    @objc func refreshData() {
+    @objc private func refreshData() {
         onEvent?(.loadData)
     }
 
@@ -68,20 +66,9 @@ final class MainView: BackgroundPrimary {
             self?.onNewProduct?()
         }
     }
-
-//    ScrollView {
-//        VStack {
-//            HStack {
-//                profileAvatarHeaderView
-//                Spacer(.px20)
-//                ForEach(collection: settings, spacing: 30) {
-//                    Label(text: $0.rawValue)
-//                }
-//            }
-//        }
-//    }
 }
 
+// MARK: - ConfigurableView
 extension MainView: ConfigurableView {
     typealias Model = MainViewProps
 

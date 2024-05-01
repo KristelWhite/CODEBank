@@ -10,16 +10,16 @@ import UIKit
 import AppIndependent
 
 final class ThemeView: BackgroundPrimary {
-    
+
     var onChangeTheme: ((ThemeRaw) -> Void)?
-    
-    var themes: [ThemeRaw] = [.auto, .dark, .light]
-    
-    func isCurrentTheme(theme: ThemeRaw) -> Bool {
-        let currentTheme = AppearanceManager.shared.themeRaw
-        return currentTheme == theme
+
+    private let themes: [ThemeRaw] = [.auto, .dark, .light]
+
+    override func setup() {
+        super.setup()
+        body().embed(in: self)
     }
-    
+
     func handle(with theme: ThemeRaw) -> TemplateThemeView.Props {
         switch theme {
         case .auto:
@@ -36,12 +36,7 @@ final class ThemeView: BackgroundPrimary {
             }
         }
     }
-    
-    override func setup() {
-        super.setup()
-        body().embed(in: self)
-    }
-    
+
     private func body() -> UIView {
         ScrollView {
             VStack {
@@ -53,5 +48,10 @@ final class ThemeView: BackgroundPrimary {
             }
 //            .layoutMargins(.all(16))
         }
+    }
+
+    private func isCurrentTheme(theme: ThemeRaw) -> Bool {
+        let currentTheme = AppearanceManager.shared.themeRaw
+        return currentTheme == theme
     }
 }

@@ -17,7 +17,6 @@ enum CorePath: String, Path, CaseIterable {
     var version: String {
         "6096726/api/"
     }
-   
 
     var id: String {
         switch self {
@@ -62,8 +61,7 @@ enum CorePath: String, Path, CaseIterable {
         case .accountInfo:
             return .core(.accountInfo)
         case .cardInfo:
-            return .core(.cardInfo) 
+            return .core(.cardInfo)
         }
     }
 }
-
