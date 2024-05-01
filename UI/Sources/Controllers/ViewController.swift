@@ -15,6 +15,10 @@ open class ViewController: BaseController, Themeable {
 
     private let loadingView = UIView()
     private let errorView = ErrorView()
+    private let spinner = LargeSpinner()
+    private lazy var loadView = BackgroundView {
+        spinner
+    }
 
     override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -54,7 +58,6 @@ open class ViewController: BaseController, Themeable {
         case .none:
             break
         case .loading:
-            // TODO: Impl
             break
         case .error(let props):
             view.embed(subview: errorView)

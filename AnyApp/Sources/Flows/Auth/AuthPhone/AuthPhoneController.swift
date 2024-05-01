@@ -26,6 +26,7 @@ final class AuthPhoneController: TemplateViewController<AuthPhoneView> {
 
     private func setupBindings() {
         rootView.onAuth = { [weak self] phone in
+            self?.rootView.handle(input: .startLoading)
             self?.viewModel.handle(.phoneEntered(phone))
         }
 
@@ -33,6 +34,7 @@ final class AuthPhoneController: TemplateViewController<AuthPhoneView> {
             switch output {
             case .otp(let configModel):
                 self?.onEvent?(.otp(configModel))
+                self?.rootView.handle(input: .finishLoading)
             }
         }
     }

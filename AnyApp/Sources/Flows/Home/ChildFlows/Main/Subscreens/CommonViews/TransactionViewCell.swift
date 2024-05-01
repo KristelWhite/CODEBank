@@ -9,7 +9,7 @@ import UIKit
 import UI
 import AppIndependent
 
-final class TemplateHistoryView: BackgroundPrimary {
+final class TransactionViewCell: BackgroundPrimary {
 
     // MARK: - Private Properties
 
@@ -79,7 +79,7 @@ final class TemplateHistoryView: BackgroundPrimary {
 
 // MARK: - Configurable
 
-extension TemplateHistoryView: ConfigurableView {
+extension TransactionViewCell: ConfigurableView {
 
     typealias Model = Props
 
@@ -93,7 +93,7 @@ extension TemplateHistoryView: ConfigurableView {
 
         var onTap: StringHandler?
 
-        public static func == (lhs: TemplateHistoryView.Props, rhs: TemplateHistoryView.Props) -> Bool {
+        public static func == (lhs: TransactionViewCell.Props, rhs: TransactionViewCell.Props) -> Bool {
             lhs.hashValue == rhs.hashValue
         }
 

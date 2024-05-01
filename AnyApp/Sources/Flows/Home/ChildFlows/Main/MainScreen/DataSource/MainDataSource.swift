@@ -37,10 +37,10 @@ final class MainDataSource {
 
     private func setup() {
         tableView.contentInsets(.init(top: 0, left: 0, bottom: 92, right: 0))
-        tableView.registerTemplateCell(forView: TemplateDepositView.self)
-        tableView.registerTemplateCell(forView: HeaderView.self)
-        tableView.registerTemplateCell(forView: TemplateCardView.self)
-        tableView.registerTemplateCell(forView: TemplateAccountView.self)
+        tableView.registerTemplateCell(forView: DepositViewCell.self)
+        tableView.registerTemplateCell(forView: HeaderViewCell.self)
+        tableView.registerTemplateCell(forView: CardViewCell.self)
+        tableView.registerTemplateCell(forView: AccountViewCell.self)
     }
 
     private func configure() {

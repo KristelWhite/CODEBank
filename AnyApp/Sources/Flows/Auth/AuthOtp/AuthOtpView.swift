@@ -43,7 +43,7 @@ final class AuthOtpView: BackgroundPrimary {
             errorLabel
                 .text("Неверный код. У вас осталось \(attempts) попытки")
                 .isHidden(false)
-            errorTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(finishErrorCondition), userInfo: nil, repeats: false)
+            errorTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(finishErrorCondition), userInfo: nil, repeats: false)
         }
     }
 
@@ -51,12 +51,12 @@ final class AuthOtpView: BackgroundPrimary {
         super.setup()
         setupTextFields()
         body().embed(in: self)
-        actionButton = ButtonPrimary(title: Entrance.login)
-            .onTap { [weak self] in
-                //input otp from textfilds
-                self?.onOtpFilled?("")
-            }
-        moveActionButtonWithKeyboard = true
+//        actionButton = ButtonPrimary(title: Entrance.login)
+//            .onTap { [weak self] in
+//                //input otp from textfilds
+//                self?.onOtpFilled?("")
+//            }
+//        moveActionButtonWithKeyboard = true
         startTimer()
     }
 
@@ -96,6 +96,7 @@ final class AuthOtpView: BackgroundPrimary {
             textField.clearsOnBeginEditing = true
             codeTextFields.append(textField)
         }
+        codeTextFields.first?.becomeFirstResponder()
     }
 
     @objc private func finishErrorCondition() {
@@ -112,6 +113,7 @@ final class AuthOtpView: BackgroundPrimary {
         }
         errorLabel
             .isHidden(true)
+        codeTextFields.last?.becomeFirstResponder()
     }
 
     // MARK: - Timer

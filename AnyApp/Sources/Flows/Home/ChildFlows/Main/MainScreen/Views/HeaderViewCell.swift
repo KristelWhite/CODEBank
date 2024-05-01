@@ -2,7 +2,7 @@ import UIKit
 import UI
 import AppIndependent
 
-final class HeaderView: BackgroundPrimary {
+final class HeaderViewCell: BackgroundPrimary {
 
     // MARK: - Private Properties
 
@@ -40,14 +40,14 @@ final class HeaderView: BackgroundPrimary {
 
 // MARK: - Configurable
 
-extension HeaderView: ConfigurableView {
+extension HeaderViewCell: ConfigurableView {
 
     typealias Model = Props
 
     struct Props: Hashable {
         var title: String
 
-        public static func == (lhs: HeaderView.Props, rhs: HeaderView.Props) -> Bool {
+        public static func == (lhs: HeaderViewCell.Props, rhs: HeaderViewCell.Props) -> Bool {
             lhs.hashValue == rhs.hashValue
         }
 

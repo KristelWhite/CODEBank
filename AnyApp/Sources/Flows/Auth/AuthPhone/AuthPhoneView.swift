@@ -4,11 +4,17 @@ import AppIndependent
 import SnapKit
 
 final class AuthPhoneView: BackgroundPrimary {
+    enum Input {
+        case startLoading
+        case finishLoading
+    }
 
     var onAuth: StringHandler?
 
     private var phoneTextField = TextField(foregroundStyle: .textPrimary, fontStyle: .body2, placeholderForegroundStyle: .textTertiary, placeholderFontStyle: .body2)
     private var image = ImageView(image: Asset.phone.image)
+        .foregroundStyle(.contentAccentPrimary)
+    private var spinner = MediumSpinner()
         .foregroundStyle(.contentAccentPrimary)
 
     override func setup() {
@@ -25,6 +31,15 @@ final class AuthPhoneView: BackgroundPrimary {
                     self.snackServerError(message: Common.Error.cheakNumber)
                 }
             }
+    }
+
+    func handle(input: Input) {
+        switch input {
+        case .startLoading:
+            spinner.start()
+        case .finishLoading:
+            spinner.stop()
+        }
     }
 
     private func body() -> UIView {
@@ -45,6 +60,8 @@ final class AuthPhoneView: BackgroundPrimary {
                             Palette.Content.accentPrimary})
                         .placeholder(Entrance.phone)
                         .keyboardType(.numberPad)
+                    FlexibleSpacer()
+                    spinner
                     Spacer(.px16)
                 }
             }

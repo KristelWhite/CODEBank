@@ -31,20 +31,20 @@ final class CardCellFactory {
 
     func makeActionShimmer(for indexPath: IndexPath) -> UITableViewCell {
         tableView.dequeueTemplateCell(
-            forView: TemplateActionView.self,
+            forView: ActionViewCell.self,
             for: indexPath
         )
     }
 
     func makePaymentShimmer(for indexPath: IndexPath) -> UITableViewCell {
         tableView.dequeueTemplateCell(
-            forView: TemplatePaymentView.self,
+            forView: PaymentViewCell.self,
             for: indexPath
         )
     }
     func makeHistoryShimmer(for indexPath: IndexPath) -> UITableViewCell {
         tableView.dequeueTemplateCell(
-            forView: TemplateHistoryView.self,
+            forView: TransactionViewCell.self,
             for: indexPath
         )
     }
@@ -58,7 +58,7 @@ final class CardCellFactory {
 
     func makeHeaderShimmer(for indexPath: IndexPath) -> UITableViewCell {
         tableView.dequeueTemplateCell(
-            forView: HeaderView.self,
+            forView: HeaderViewCell.self,
             for: indexPath
         )
     }
@@ -67,10 +67,10 @@ final class CardCellFactory {
 
     func makeTemplateActionCell(
         for indexPath: IndexPath,
-        with props: TemplateActionView.Props
+        with props: ActionViewCell.Props
     ) -> UITableViewCell {
         tableView.dequeueTemplateCell(
-            forView: TemplateActionView.self,
+            forView: ActionViewCell.self,
             for: indexPath
         ) { view, _ in
             view.configure(with: props)
@@ -78,10 +78,10 @@ final class CardCellFactory {
     }
     func makeTemplatePaymentCell(
         for indexPath: IndexPath,
-        with props: TemplatePaymentView.Props
+        with props: PaymentViewCell.Props
     ) -> UITableViewCell {
         tableView.dequeueTemplateCell(
-            forView: TemplatePaymentView.self,
+            forView: PaymentViewCell.self,
             for: indexPath
         ) { view, _ in
             view.configure(with: props)
@@ -89,10 +89,10 @@ final class CardCellFactory {
     }
     func makeTemplateHistoryCell(
         for indexPath: IndexPath,
-        with props: TemplateHistoryView.Props
+        with props: TransactionViewCell.Props
     ) -> UITableViewCell {
         tableView.dequeueTemplateCell(
-            forView: TemplateHistoryView.self,
+            forView: TransactionViewCell.self,
             for: indexPath
         ) { view, _ in
             view.configure(with: props)
@@ -101,10 +101,10 @@ final class CardCellFactory {
 
     func makeTemplateHeaderCell(
         for indexPath: IndexPath,
-        with props: HeaderView.Props
+        with props: HeaderViewCell.Props
     ) -> UITableViewCell {
         tableView.dequeueTemplateCell(
-            forView: HeaderView.self,
+            forView: HeaderViewCell.self,
             for: indexPath
         ) { view, _ in
             view.configure(with: props)

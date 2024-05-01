@@ -1,5 +1,5 @@
 //
-//  TemplatePaymentView.swift
+//  TemplateActionView.swift
 //  AnyApp
 //
 //  Created by Кристина Пастухова on 24.04.2024.
@@ -9,12 +9,13 @@ import UIKit
 import UI
 import AppIndependent
 
-final class TemplatePaymentView: BackgroundPrimary {
+final class ActionViewCell: BackgroundPrimary {
 
     // MARK: - Private Properties
 
-    private let titleLabel = Label(foregroundStyle: .textPrimary, fontStyle: .body2)
-    private let image = ImageView(foregroundStyle: .contentAccentPrimary)
+    private let titleLabel = Label(foregroundStyle: .textSecondary, fontStyle: .body2)
+    private let image = ImageView().size(CGSize(width: 24, height: 24), priority: .required)
+    private let accessoryImage = ImageView(image: Asset.chevronDown.image).size(CGSize(width: 24, height: 24), priority: .required)
 
     private var props: Props?
 
@@ -25,12 +26,10 @@ final class TemplatePaymentView: BackgroundPrimary {
         body().embed(in: self)
     }
 
-    // MARK: - Private methods
-
     private func body() -> UIView {
-        HStack(alignment: .center, spacing: 16) {
+        HStack(spacing: 16) {
             Shimmer()
-            .size(CGSize(width: 40, height: 40), priority: .required)
+                .size(CGSize(width: 24, height: 24))
             VStack {
                 FlexibleGroupedSpacer()
                 Shimmer()
@@ -39,18 +38,18 @@ final class TemplatePaymentView: BackgroundPrimary {
             }
             .linkGroupedSpacers()
         }
-        .layoutMargins(.make(vInsets: 14))
+        .layoutMargins(.make(vInsets: 16))
     }
 
+    // MARK: - Private methods
+
     private func body(with props: Props) -> UIView {
-        HStack(alignment: .center, spacing: 16) {
-            BackgroundView(padding: 8) {
-                image
-                    .image(props.image)
-            }
-            .backgroundStyle(.contentSecondary)
-            .cornerRadius(20)
-            .size(CGSize(width: 40, height: 40), priority: .required)
+        HStack(spacing: 16) {
+
+            image
+                .image(props.image)
+                .foregroundStyle(.textTertiary)
+
             VStack {
                 FlexibleGroupedSpacer()
                 titleLabel
@@ -58,8 +57,12 @@ final class TemplatePaymentView: BackgroundPrimary {
                 FlexibleGroupedSpacer()
             }
             .linkGroupedSpacers()
+
+            accessoryImage
+                .foregroundStyle(.textTertiary)
+                    .isHidden(!props.isAccesory)
         }
-        .layoutMargins(.make(vInsets: 14))
+        .layoutMargins(.make(vInsets: 16))
         .onTap { [weak self] in
             self?.props?.onTap?(props.id)
         }
@@ -68,7 +71,7 @@ final class TemplatePaymentView: BackgroundPrimary {
 
 // MARK: - Configurable
 
-extension TemplatePaymentView: ConfigurableView {
+extension ActionViewCell: ConfigurableView {
 
     typealias Model = Props
 
@@ -76,10 +79,11 @@ extension TemplatePaymentView: ConfigurableView {
         let id: String
         let title: String
         let image: UIImage
+        let isAccesory: Bool
 
         var onTap: StringHandler?
 
-        public static func == (lhs: TemplatePaymentView.Props, rhs: TemplatePaymentView.Props) -> Bool {
+        public static func == (lhs: ActionViewCell.Props, rhs: ActionViewCell.Props) -> Bool {
             lhs.hashValue == rhs.hashValue
         }
 
@@ -87,6 +91,7 @@ extension TemplatePaymentView: ConfigurableView {
             hasher.combine(id)
             hasher.combine(title)
             hasher.combine(image)
+            hasher.combine(isAccesory)
         }
     }
 

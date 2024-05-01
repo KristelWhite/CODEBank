@@ -20,10 +20,10 @@ struct MainViewProps {
         case shimmerHeader(_ identifier: String = UUID().uuidString)
         case shimmerDeposit(_ identifier: String = UUID().uuidString)
         case shimmerCard(_ identifier: String = UUID().uuidString)
-        case header(HeaderView.Props)
-        case account(TemplateAccountView.Props)
-        case card(TemplateCardView.Props)
-        case deposit(TemplateDepositView.Props)
+        case header(HeaderViewCell.Props)
+        case account(AccountViewCell.Props)
+        case card(CardViewCell.Props)
+        case deposit(DepositViewCell.Props)
     }
 
     let sections: [Section]

@@ -27,6 +27,7 @@ final class AuthOtpController: TemplateViewController<AuthOtpView>, NavigationBa
     private func setupBindings() {
         rootView.onOtpFilled = { [weak self] code in
             self?.viewModel.handle(.otpEntered(code))
+            
         }
         rootView.onOutput = {[weak self] event in
             switch event {

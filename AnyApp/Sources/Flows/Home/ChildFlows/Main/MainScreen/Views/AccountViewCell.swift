@@ -10,7 +10,7 @@ import UI
 import AppIndependent
 import Services
 
-final class TemplateAccountView: BackgroundPrimary {
+final class AccountViewCell: BackgroundPrimary {
 
     // MARK: - Private Properties
 
@@ -89,7 +89,7 @@ final class TemplateAccountView: BackgroundPrimary {
 }
 
 // MARK: - Configurable
-extension TemplateAccountView: ConfigurableView {
+extension AccountViewCell: ConfigurableView {
 
     typealias Model = Props
 
@@ -101,7 +101,7 @@ extension TemplateAccountView: ConfigurableView {
 
         var onTap: IntHandler?
 
-        public static func == (lhs: TemplateAccountView.Props, rhs: TemplateAccountView.Props) -> Bool {
+        public static func == (lhs: AccountViewCell.Props, rhs: AccountViewCell.Props) -> Bool {
             lhs.hashValue == rhs.hashValue
         }
 

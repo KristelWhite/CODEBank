@@ -3,7 +3,7 @@ import Services
 import UI
 import AppIndependent
 
-final class TemplateDepositView: BackgroundPrimary {
+final class DepositViewCell: BackgroundPrimary {
 
     // MARK: - Private Properties
 
@@ -91,7 +91,7 @@ final class TemplateDepositView: BackgroundPrimary {
 
 // MARK: - Configurable
 
-extension TemplateDepositView: ConfigurableView {
+extension DepositViewCell: ConfigurableView {
 
     typealias Model = Props
 
@@ -105,7 +105,7 @@ extension TemplateDepositView: ConfigurableView {
 
         var onTap: IntHandler?
 
-        public static func == (lhs: TemplateDepositView.Props, rhs: TemplateDepositView.Props) -> Bool {
+        public static func == (lhs: DepositViewCell.Props, rhs: DepositViewCell.Props) -> Bool {
             lhs.hashValue == rhs.hashValue
         }
 

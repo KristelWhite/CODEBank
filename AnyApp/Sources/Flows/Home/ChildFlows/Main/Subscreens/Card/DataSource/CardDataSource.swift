@@ -45,10 +45,10 @@ final class CardDataSource {
     private func setup() {
         tableView.contentInsets(.init(top: 0, left: 0, bottom: 92, right: 0))
         tableView.registerTemplateCell(forView: TemplateShimmerView.self)
-        tableView.registerTemplateCell(forView: TemplateHistoryView.self)
-        tableView.registerTemplateCell(forView: HeaderView.self)
-        tableView.registerTemplateCell(forView: TemplatePaymentView.self)
-        tableView.registerTemplateCell(forView: TemplateActionView.self)
+        tableView.registerTemplateCell(forView: TransactionViewCell.self)
+        tableView.registerTemplateCell(forView: HeaderViewCell.self)
+        tableView.registerTemplateCell(forView: PaymentViewCell.self)
+        tableView.registerTemplateCell(forView: ActionViewCell.self)
         tableView.registerTemplateCell(forView: SwitchView.self)
         tableView.registerTemplateCell(forView: HeaderCardView.self)
     }

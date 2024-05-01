@@ -10,7 +10,7 @@ import UI
 import AppIndependent
 import Services
 
-final class TemplateCardView: BackgroundPrimary {
+final class CardViewCell: BackgroundPrimary {
 
     // MARK: - Private Properties
 
@@ -99,7 +99,7 @@ final class TemplateCardView: BackgroundPrimary {
 
 // MARK: - Configurable
 
-extension TemplateCardView: ConfigurableView {
+extension CardViewCell: ConfigurableView {
 
     typealias Model = Props
 
@@ -112,7 +112,7 @@ extension TemplateCardView: ConfigurableView {
 
         var onTap: StringHandler?
 
-        public static func == (lhs: TemplateCardView.Props, rhs: TemplateCardView.Props) -> Bool {
+        public static func == (lhs: CardViewCell.Props, rhs: CardViewCell.Props) -> Bool {
             lhs.hashValue == rhs.hashValue
         }
 
