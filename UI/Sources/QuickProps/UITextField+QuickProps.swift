@@ -54,9 +54,9 @@ public extension UITextField {
 
     @discardableResult
     func textStyle(_ textStyle: TextStyle?) -> Self {
-        if let alignment = textStyle?.alignment {
-            textAlignment(alignment)
-        }
+//        if let alignment = textStyle?.alignment {
+//            textAlignment(alignment)
+//        }
         font(textStyle?.font)
         return self
     }

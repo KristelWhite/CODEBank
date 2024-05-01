@@ -58,6 +58,7 @@ final class AuthOtpView: BackgroundPrimary {
 
             for textFild in codeTextFields {
                 textFild.foregroundStyle(.indicatorContentError)
+                textFild.tintColor(.clear)
             }
             timerLabel.isHidden(true)
             timerButton.isHidden(true)
@@ -72,6 +73,11 @@ final class AuthOtpView: BackgroundPrimary {
         print("end timer")
         errorTimer?.invalidate()
         errorTimer = nil
+        for textFild in codeTextFields {
+            textFild.foregroundStyle(.textPrimary)
+            textFild.tintColor(.clear)
+        }
+
         if countdownTimer == nil {
             timerButton.isHidden(false)
         } else {

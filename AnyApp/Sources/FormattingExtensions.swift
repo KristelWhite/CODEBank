@@ -22,6 +22,10 @@ extension Double {
 }
 
 extension String {
+    var digits: String {
+        return components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+    }
+
     var lastFourCharacters: String {
         return String(self.suffix(4))
     }

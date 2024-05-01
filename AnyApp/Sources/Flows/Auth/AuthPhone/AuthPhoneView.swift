@@ -59,6 +59,8 @@ final class AuthPhoneView: BackgroundPrimary {
                         .size(CGSize(width: 24, height: 24))
                     Spacer(.px16)
                     phoneTextField
+                        .tintColor(UIColor {_ in
+                            Palette.Content.accentPrimary})
                         .placeholder("Телефон")
                         .keyboardType(.numberPad)
                     Spacer(.px16)
@@ -113,10 +115,5 @@ extension AuthPhoneView: UITextFieldDelegate {
     }
 }
 
-//MARK: - extension String
-extension String {
-    var digits: String {
-        return components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-    }
-}
+
 
