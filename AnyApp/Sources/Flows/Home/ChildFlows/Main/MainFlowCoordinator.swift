@@ -48,7 +48,8 @@ final class MainFlowCoordinator: Coordinator {
     }
 
     func showCard(with id: String) {
-        let controller = resolver ~> (CardController.self, id)
+//        let controller = DIContainer.shared.resolver.resolve(CardInfoController.self, argument: id)
+        let controller = resolver ~> CardInfoController.self
         controller.hidesBottomBarWhenPushed = true
         innerRouter.push(controller)
     }

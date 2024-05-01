@@ -9,7 +9,7 @@ import Services
 import Combine
 import UI
 
-final class CardViewModel {
+final class CardInfoViewModel {
 
     typealias Props = CardViewProps
 
@@ -32,11 +32,11 @@ final class CardViewModel {
 
     private var cancellables = Set<AnyCancellable>()
 
-    private var id: String
+    private var cardId: String
     private var coreRequestManager: CoreRequestManagerAbstract
 
-    init(id: String, coreRequestManager: CoreRequestManagerAbstract) {
-        self.id = id
+    init(cardId: String, coreRequestManager: CoreRequestManagerAbstract) {
+        self.cardId = cardId
         self.coreRequestManager = coreRequestManager
     }
 
@@ -48,8 +48,8 @@ final class CardViewModel {
     }
     private func loadData() {
         addShimmer()
-        print(id)
-        coreRequestManager.cardInfo(cardId: id)
+        print(cardId)
+        coreRequestManager.cardInfo(cardId: cardId)
             .sink { [weak self] error in
                 guard case let .failure(error) = error else { return }
                 let errorProps = ErrorUIHandler.handle(error) { [weak self] in
@@ -115,7 +115,7 @@ final class CardViewModel {
 }
 
 // MARK: - MOCKS
-extension CardViewModel {
+extension CardInfoViewModel {
     var accountMocks: [Props.Item] {[
         .header(.init(title: "Июнь 2021")),
         .history(.init(id: "0", title: "Оплата OOO \"Янтарь энерго\" ", date: "25 июня, 18:52", value: "-1 500,00 ₽", image: Asset.yantar.image, isIncome: false)),

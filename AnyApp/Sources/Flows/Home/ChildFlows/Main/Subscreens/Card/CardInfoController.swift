@@ -8,9 +8,9 @@
 import UI
 import UIKit
 
-final class CardController: TemplateViewController<CardView> {
+final class CardInfoController: TemplateViewController<CardInfoView> {
 
-    typealias ViewModel = CardViewModel
+    typealias ViewModel = CardInfoViewModel
 
     enum Event {
 

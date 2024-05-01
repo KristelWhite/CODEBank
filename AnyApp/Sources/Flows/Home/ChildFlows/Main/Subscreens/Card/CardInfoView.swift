@@ -9,7 +9,7 @@ import UI
 import UIKit
 import AppIndependent
 
-final class CardView: BackgroundPrimary {
+final class CardInfoView: BackgroundPrimary {
     enum Event {
         case loadData
     }
@@ -44,7 +44,7 @@ final class CardView: BackgroundPrimary {
     }
 }
 
-extension CardView: ConfigurableView {
+extension CardInfoView: ConfigurableView {
     typealias Model = CardViewProps
 
     func configure(with model: CardViewProps) {
