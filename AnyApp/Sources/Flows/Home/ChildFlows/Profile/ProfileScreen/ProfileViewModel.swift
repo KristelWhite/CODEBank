@@ -35,7 +35,7 @@ final class ProfileViewModel {
     func handle(_ input: Input) {
         switch input {
         case .logout:
-            appSession.handle(.logout(.init(needFlush: true, alert: .snack(message: "Вы разлогинились"))))
+            appSession.handle(.logout(.init(needFlush: true, alert: .snack(message: Profile.logout))))
         case .loadData:
             loadData()
         }

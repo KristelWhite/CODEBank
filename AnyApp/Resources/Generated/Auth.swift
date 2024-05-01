@@ -10,10 +10,16 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 public enum Entrance {
+  /// На ваш номер отправлено SMS с кодом подтверждения
+  public static let checkSMS = Entrance.tr("Auth", "checkSMS", fallback: "На ваш номер отправлено SMS с кодом подтверждения")
   /// Войти
   public static let enter = Entrance.tr("Auth", "enter", fallback: "Войти")
+  /// Авторизоваться
+  public static let login = Entrance.tr("Auth", "login", fallback: "Авторизоваться")
   /// Телефон
   public static let phone = Entrance.tr("Auth", "phone", fallback: "Телефон")
+  /// Выслать код повторно
+  public static let repeatCode = Entrance.tr("Auth", "repeatCode", fallback: "Выслать код повторно")
   /// Повторить через %@
   public static func timer(_ p1: Any) -> String {
     return Entrance.tr("Auth", "timer", String(describing: p1), fallback: "Повторить через %@")

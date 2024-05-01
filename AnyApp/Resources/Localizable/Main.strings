@@ -1,0 +1,22 @@
+/* 
+  Main.strings
+  AnyApp
+
+  Created by Кристина Пастухова on 01.05.2024.
+  
+*/
+
+"main" = "Главная";
+"newProgect" = "Открыть новый счет или продукт";
+"cards" = "Карты";
+"deposits" = "Счета";
+"activeCards" = "Привязанные карты";
+"renameDeposit" = "Переименовать счет";
+"depositInfo" = "Реквизиты счета";
+"closeDeposit" = "Закрыть счет";
+"mobile" = "Мобильная связь";
+"houseHold" = "ЖКХ";
+"intermet" = "Интернет";
+
+
+

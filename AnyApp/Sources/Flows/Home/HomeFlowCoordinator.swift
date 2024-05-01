@@ -22,15 +22,15 @@ final class HomeFlowCoordinator: Coordinator {
             fatalError("Error during initialization of MainController")
         }
         mainController.tabBarItem = .init(
-            title: "Главная",
-            image: UIImage(systemName: "star"),
-            selectedImage: UIImage(systemName: "star")
+            title: Main.main,
+            image: Asset.star.image,
+            selectedImage: Asset.star.image
         )
 
         guard let profileController = createProfileController() else {
             fatalError("Error during initialization of ProfileController")
         }
-        profileController.tabBarItem = .init(title: "Профиль", image: UIImage(systemName: "star"), selectedImage: UIImage(systemName: "star")
+        profileController.tabBarItem = .init(title: Profile.profile, image: Asset.camera1.image, selectedImage: Asset.camera1.image
         )
 
 

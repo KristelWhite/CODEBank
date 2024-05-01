@@ -52,8 +52,8 @@ final class AuthOtpController: TemplateViewController<AuthOtpView>, NavigationBa
 
 extension AuthOtpController {
     func showExitConfirmation() {
-        let alertController = UIAlertController(title: "Вы ввели неверно код 5 раз", message: "Данная сессия авторизации будет завершена!", preferredStyle: .alert)
-        let exitAction = UIAlertAction(title: "Выход", style: .cancel) { [weak self] action in
+        let alertController = UIAlertController(title: Common.Error.wrongFiveTimes, message: Common.Error.finishSession, preferredStyle: .alert)
+        let exitAction = UIAlertAction(title: Common.quit1, style: .cancel) { [weak self] action in
             self?.viewModel.handle(.closeSession)
         }
         alertController.addAction(exitAction)

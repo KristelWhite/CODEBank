@@ -23,7 +23,7 @@ final class ThemeController: TemplateViewController<ThemeView> {
 
     override func setup() {
         super.setup()
-        self.navigationItem.title = "Тема приложения"
+        self.navigationItem.title = Profile.theme
         setupBindings()
     }
     

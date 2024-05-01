@@ -34,20 +34,20 @@ final class ProfileView: BackgroundPrimary {
     func handle(with settings: Settings) -> TemplateSettingsView.Props {
         switch settings {
         case .aboutApp:
-            return .init(id: "1", title: "О приложении", image: Asset.settings.image, isAccesory: true) { [weak self] _ in
+            return .init(id: "1", title: Profile.aboutApp, image: Asset.settings.image, isAccesory: true) { [weak self] _ in
                 self?.onAboutApp?()
             }
         case .theme:
-            return .init(id: "2", title: "Тема приложения", image: Asset.moonStars.image, isAccesory: true) { [weak self] _ in
+            return .init(id: "2", title: Profile.theme, image: Asset.moonStars.image, isAccesory: true) { [weak self] _ in
                 self?.onTheme?()
                 
             }
         case .support:
-            return .init(id: "3", title: "Служба поддержки", image: Asset.phoneCall.image, isAccesory: false) { [weak self] _ in
+            return .init(id: "3", title: Profile.support, image: Asset.phoneCall.image, isAccesory: false) { [weak self] _ in
                 self?.onSupport?()
             }
         case .exit:
-            return .init(id: "4", title: "Выход", image: Asset.accountOut.image, isAccesory: false) { [weak self] _ in
+            return .init(id: "4", title: Profile.exitButton, image: Asset.accountOut.image, isAccesory: false) { [weak self] _ in
                 self?.onLogout?()
             }
         }
@@ -59,7 +59,7 @@ final class ProfileView: BackgroundPrimary {
     }
 
     private func setupRefreshController() {
-        refreshControl.attributedTitle = NSAttributedString(string: "Потяните, чтобы обновить")
+        refreshControl.attributedTitle = NSAttributedString(string: Common.pullToUpdate)
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
 
     }

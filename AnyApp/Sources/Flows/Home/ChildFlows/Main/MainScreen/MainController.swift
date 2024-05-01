@@ -29,7 +29,7 @@ final class MainController: TemplateViewController<MainView> {
 
     private func configureNavigationItem() {
 //        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "Главная"
+        navigationItem.title = Main.main
 //        navigationController?.navigationBar.barTintColor = Palette.Surface.backgroundPrimary
 //        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Palette.Text.primary]
         
@@ -64,7 +64,7 @@ final class MainController: TemplateViewController<MainView> {
         }
 
         rootView.onNewProduct = { [weak self] in
-            SnackCenter.shared.showSnack(withProps: .init(message: "Данный функционал в разработке"))
+            SnackCenter.shared.showSnack(withProps: .init(message: Common.duringDevelopment))
         }
     }
 }

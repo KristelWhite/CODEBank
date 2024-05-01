@@ -21,6 +21,6 @@ final class AboutAppController: TemplateViewController<AboutAppView> {
 
     override func setup() {
         super.setup()
-        self.navigationItem.title = "О приложении"
+        self.navigationItem.title = Profile.aboutApp
     }
 }

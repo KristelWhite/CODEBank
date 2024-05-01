@@ -62,12 +62,12 @@ final class ProfileController: TemplateViewController<ProfileView> {
 extension ProfileController {
     
     func showCallConfirmation() {
-        let phone = "8 (800) 000-00-00"
-        let actionSheet = UIAlertController(title: "Звонок в службу поддержки", message: nil, preferredStyle: .actionSheet)
+        let phone = Profile.phone
+        let actionSheet = UIAlertController(title: Profile.call, message: nil, preferredStyle: .actionSheet)
         let callAction = UIAlertAction(title: "\(phone)", style: .default) { (action) in
             self.makeCall(to: phone)
         }
-        let cancelAction = UIAlertAction(title: "Отменить", style: .cancel)
+        let cancelAction = UIAlertAction(title: Common.cancel, style: .cancel)
 //        callAction.setValue( UIColor.black, forKey: "titleTextColor")
 //        cancelAction.setValue( UIColor.black, forKey: "titleTextColor")
         
@@ -89,11 +89,11 @@ extension ProfileController {
 extension ProfileController {
     
     func showExitConfirmation() {
-        let alertController = UIAlertController(title: "Вы точно хотите выйти?", message: nil, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel) { action in
+        let alertController = UIAlertController(title: Profile.exit, message: nil, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: Common.cancel, style: .cancel) { action in
         }
 
-        let exitAction = UIAlertAction(title: "Выйти", style: .destructive) { [weak self] action in
+        let exitAction = UIAlertAction(title: Common.quit, style: .destructive) { [weak self] action in
             self?.viewModel.handle(.logout)
         }
     

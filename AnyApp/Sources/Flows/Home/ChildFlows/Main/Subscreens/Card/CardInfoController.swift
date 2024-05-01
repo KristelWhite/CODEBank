@@ -35,7 +35,7 @@ final class CardInfoController: TemplateViewController<CardInfoView> {
     }
 
     private func configureNavigationItem() {
-        navigationItem.title = "Карты"
+        navigationItem.title = Main.cards
     }
 
     private func setupBindings() {

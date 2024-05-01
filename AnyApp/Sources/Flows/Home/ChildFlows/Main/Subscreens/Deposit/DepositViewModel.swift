@@ -99,16 +99,30 @@ final class DepositViewModel {
             return accountMocks
         case .action:
             return [
-                .action(.init(id: "0", title: "Привязанные карты", image: Asset.cardWhite.image, isAccesory: true)),
-                .action(.init(id: "1", title: "Переименовать счет", image: Asset.rename.image, isAccesory: false)),
-                .action(.init(id: "2", title: "Реквизиты счета", image: Asset.requisites.image, isAccesory: false)),
-                .action(.init(id: "3", title: "Закрыть счет", image: Asset.bankAccount.image, isAccesory: false))
+                .action(.init(id: "0", title: Main.activeCards, image: Asset.cardWhite.image, isAccesory: true) { _ in
+                    SnackCenter.shared.showSnack(withProps: .init(message: Common.duringDevelopment))
+                }),
+                .action(.init(id: "1", title: Main.renameDeposit, image: Asset.rename.image, isAccesory: false) { _ in
+                    SnackCenter.shared.showSnack(withProps: .init(message: Common.duringDevelopment))
+                }),
+                .action(.init(id: "2", title: Main.depositInfo, image: Asset.requisites.image, isAccesory: false) { _ in
+                    SnackCenter.shared.showSnack(withProps: .init(message: Common.duringDevelopment))
+                }),
+                .action(.init(id: "3", title: Main.closeDeposit, image: Asset.bankAccount.image, isAccesory: false) { _ in
+                    SnackCenter.shared.showSnack(withProps: .init(message: Common.duringDevelopment))
+                })
                 ]
         case .payment:
             return [
-                .payment(.init(id: "0", title: "Мобильная связь", image: Asset._1Mobile.image)),
-                .payment(.init(id: "1", title: "ЖКХ", image: Asset._1Jkh.image)),
-                .payment(.init(id: "2", title: "Интернет", image: Asset._1Internet.image))
+                .payment(.init(id: "0", title: Main.mobile, image: Asset._1Mobile.image) { _ in
+                    SnackCenter.shared.showSnack(withProps: .init(message: Common.duringDevelopment))
+                }),
+                .payment(.init(id: "1", title: Main.houseHold, image: Asset._1Jkh.image) { _ in
+                    SnackCenter.shared.showSnack(withProps: .init(message: Common.duringDevelopment))
+                }),
+                .payment(.init(id: "2", title: Main.intermet, image: Asset._1Internet.image) { _ in
+                    SnackCenter.shared.showSnack(withProps: .init(message: Common.duringDevelopment))
+                })
                 ]
         }
     }

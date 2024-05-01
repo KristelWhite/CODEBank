@@ -21,7 +21,7 @@ final class AboutAppView: BackgroundPrimary {
             ImageView(image: Asset.logoLarge.image)
                 .foregroundStyle(.contentAccentTertiary)
 //                .size(CGSize(width: 171 , height: 192))
-            Label(text: "Версия 0.0.1 beta", foregroundStyle: .contentAccentSecondary, fontStyle: .caption2)
+            Label(text: Profile.aboutApp, foregroundStyle: .contentAccentSecondary, fontStyle: .caption2)
             FlexibleSpacer()
         }
         .layoutMargins(.make(vInsets: 99))

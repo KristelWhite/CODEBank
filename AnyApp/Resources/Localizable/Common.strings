@@ -10,6 +10,7 @@
 "cancel" = "Отменить";
 "refresh" = "Обновить";
 "quit" = "Выйти";
+"quit1" = "Выход";
 "repeat" = "Повторить";
 "apply" = "Применить";
 "close" = "Закрыть";
@@ -17,7 +18,11 @@
 "delete" = "Удалить";
 "skip" = "Пропустить";
 "allow" = "Разрешить";
+"atention" = "Внимание";
 
+"pullToUpdate" ="Потяните, чтобы обновить";
+"duringDevelopment" = "Данный функционал будет добавлен позже";
+"isLoaded"= "Данный функционал будет добавлен позже";
 // MARK: - Errors
 
 "error.emptyField" = "Заполните поле";
@@ -35,3 +40,13 @@
 "error.defaultMessagePity" = "К сожалению, что-то пошло не так";
 
 "error.dataRequestFailMessage" = "Не удалось загрузить данные";
+"error.cheakNumber " = "Пожалуйста, убедитесь, что вы правильно ввели номер телефона";
+"error.wrongFiveTimes" = "Вы ввели неверно код 5 раз";
+"error.finishSession" = "Данная сессия авторизации будет завершена!";
+"error.networkingError" = "Вероятно, соединение с интрнетом прервано";
+"error.snakNetworkingError" = "Соединение с интернетом потеряно";
+"error.defaultSnak" = "Возникла какая-то ошибка";
+
+
+
+

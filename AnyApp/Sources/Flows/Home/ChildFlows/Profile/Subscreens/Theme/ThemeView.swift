@@ -23,15 +23,15 @@ final class ThemeView: BackgroundPrimary {
     func handle(with theme: ThemeRaw) -> TemplateThemeView.Props {
         switch theme {
         case .auto:
-            return .init(id: "1", title: "Как в системе", theme: .auto) { [weak self] _ in
+            return .init(id: "1", title: Profile.Theme.auto, theme: .auto) { [weak self] _ in
                 self?.onChangeTheme?(.auto)
             }
         case .light:
-            return .init(id: "2", title: "Светлая", theme: .light) { [weak self] _ in
+            return .init(id: "2", title: Profile.Theme.light, theme: .light) { [weak self] _ in
                 self?.onChangeTheme?(.light)
             }
         case .dark:
-            return .init(id: "3", title: "Темная", theme: .dark) { [weak self] _ in
+            return .init(id: "3", title: Profile.Theme.dark, theme: .dark) { [weak self] _ in
                 self?.onChangeTheme?(.dark)
             }
         }

@@ -127,7 +127,7 @@ final class MainViewModel {
         depositItems.append(.header(.init(title: "Вклады")))
         deposits.deposits.forEach {
             depositItems.append(.deposit(.init(id: $0.depositId, title: $0.name ?? "Безымянный", rate: "Ставка 7.65%", date: "до 31.08.2024", value: $0.balance, currency: $0.currency, onTap: { _ in
-                SnackCenter.shared.showSnack(withProps: .init(message: "Данный функционал будет добавлен позже"))
+                SnackCenter.shared.showSnack(withProps: .init(message: Common.duringDevelopment))
             })))
         }
 
@@ -146,25 +146,3 @@ extension MainViewModel {
         []
     }
 }
-
-struct MainResponse {
-    struct Account {
-        let id: String
-        let name: String
-        let cards: [Card]
-    }
-    
-    struct Card {
-        let id: String
-    }
-    
-    let accounts: [Account]
-}
-
-
-let mainResponse = MainResponse(accounts: [
-    .init(id: "1", name: "name", cards: [
-        .init(id: "1"),
-        .init(id: "2")
-    ])
-])

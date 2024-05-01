@@ -3,6 +3,7 @@ import UIKit
 import AppIndependent
 
 final class AuthOtpView: BackgroundPrimary {
+
     enum Event {
         case refreshOtp
     }
@@ -16,10 +17,11 @@ final class AuthOtpView: BackgroundPrimary {
     var timerLabel = Label(foregroundStyle: .textSecondary, fontStyle: .caption1)
     lazy var timerButton = HStack(spacing: 16) {
         ImageView(image: Asset.repay.image, foregroundStyle: .contentAccentPrimary)
-        Label(text: "Выслать код повторно", foregroundStyle: .textPrimary, fontStyle: .caption1)
+        Label(text: Entrance.repeatCode, foregroundStyle: .textPrimary, fontStyle: .caption1)
         FlexibleSpacer()
     }
     var errorLabel = Label( foregroundStyle: .indicatorContentError, fontStyle: .caption1)
+
 
     // MARK: - Timer
 
@@ -54,7 +56,7 @@ final class AuthOtpView: BackgroundPrimary {
     }
     func handle(input: Input) {
         switch input {
-        case .errorCondition(let count):
+        case .errorCondition(let attempts):
 
             for textFild in codeTextFields {
                 textFild.foregroundStyle(.indicatorContentError)
@@ -63,7 +65,7 @@ final class AuthOtpView: BackgroundPrimary {
             timerLabel.isHidden(true)
             timerButton.isHidden(true)
             errorLabel
-                .text("Неверный код. У вас осталось \(count) попытки")
+                .text("Неверный код. У вас осталось \(attempts) попытки")
                 .isHidden(false)
             errorTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(finishErrorCondition), userInfo: nil, repeats: false)
         }
@@ -95,7 +97,7 @@ final class AuthOtpView: BackgroundPrimary {
         super.setup()
         setupTextFields()
         body().embed(in: self)
-        actionButton = ButtonPrimary(title: "Авторизоваться")
+        actionButton = ButtonPrimary(title: Entrance.login)
             .onTap { [weak self] in
                 //input otp from textfilds
                 self?.onOtpFilled?("")
@@ -106,7 +108,7 @@ final class AuthOtpView: BackgroundPrimary {
 
     private func body() -> UIView {
         VStack(spacing: 24) {
-            Label(text: "На ваш номер отправлено SMS с кодом подтверждения", foregroundStyle: .textPrimary, fontStyle: .body2)
+            Label(text: Entrance.checkSMS, foregroundStyle: .textPrimary, fontStyle: .body2)
                 .multiline()
             HStack(alignment: .center, spacing: 6) {
                 ForEach(collection: codeTextFields[0...2], spacing: 6, axis: .horizontal) {$0}

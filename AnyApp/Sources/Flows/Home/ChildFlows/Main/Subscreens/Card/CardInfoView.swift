@@ -27,7 +27,7 @@ final class CardInfoView: BackgroundPrimary {
         setupRefreshController()
     }
     private func setupRefreshController() {
-        refreshControl.attributedTitle = NSAttributedString(string: "Потяните, чтобы обновить")
+        refreshControl.attributedTitle = NSAttributedString(string: Common.pullToUpdate)
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         tableView.refreshControl = refreshControl
     }

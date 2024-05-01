@@ -23,7 +23,7 @@ final class AuthPhoneView: BackgroundPrimary {
                 if phone.count == 18 {
                     self.onAuth?(phone)
                 } else {
-                    self.snackServerError(message: "Пожалуйста, убедитесь, что вы правильно ввели номер телефона")
+                    self.snackServerError(message: Common.Error.cheakNumber)
                 }
             }
     }
@@ -61,7 +61,7 @@ final class AuthPhoneView: BackgroundPrimary {
                     phoneTextField
                         .tintColor(UIColor {_ in
                             Palette.Content.accentPrimary})
-                        .placeholder("Телефон")
+                        .placeholder(Entrance.phone)
                         .keyboardType(.numberPad)
                     Spacer(.px16)
                 }

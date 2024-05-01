@@ -19,7 +19,7 @@ final class MainView: BackgroundPrimary {
 
     private let tableView = BaseTableView()
 
-    private let button = ButtonPrimary(title: "Открыть новый счет или продукт")
+    private let button = ButtonPrimary(title: Main.newProgect)
     private lazy var dataSource = MainDataSource(tableView: tableView)
     var refreshControl = UIRefreshControl()
 
@@ -46,7 +46,7 @@ final class MainView: BackgroundPrimary {
     }
 
     private func setupRefreshController() {
-        refreshControl.attributedTitle = NSAttributedString(string: "Потяните, чтобы обновить")
+        refreshControl.attributedTitle = NSAttributedString(string: Common.pullToUpdate)
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         tableView.refreshControl = refreshControl
     }

@@ -35,7 +35,7 @@ final class DepositController: TemplateViewController<DepositView> {
     }
 
     private func configureNavigationItem() {
-        navigationItem.title = "Счета"
+        navigationItem.title = Main.deposits
     }
 
     private func setupBindings() {

@@ -14,10 +14,10 @@ public struct ErrorUIHandler {
         switch error.appError.kind {
         case .network:
             return ErrorView.Props(
-                title: "Внимание",
-                message: "Вероятно, соединение с интрнетом прервано",
+                title: Common.atention,
+                message: Common.Error.networkingError,
                 image: Asset.bigIlustrtionNotWiFi.image,
-                buttonTitle: "Повторить",
+                buttonTitle: Common.repeat,
                 onTap: onTap
             )
         default:
@@ -25,7 +25,7 @@ public struct ErrorUIHandler {
                 title: Common.Error.defaultTitle,
                 message: Common.Error.defaultMessagePity,
                 image: Asset.bigIlustrtion1.image,
-                buttonTitle: "Повторить",
+                buttonTitle: Common.repeat,
                 onTap: onTap
             )
         }
@@ -36,9 +36,9 @@ public struct ErrorServerHandler {
     static func handle(_ error: ErrorWithContext) {
         switch error.appError.kind {
         case .network:
-            SnackCenter.shared.showSnack(withProps: .init(message: "Соединение с интернетом потеряно", style: .error))
+            SnackCenter.shared.showSnack(withProps: .init(message: Common.Error.snakNetworkingError, style: .error))
         default:
-            SnackCenter.shared.showSnack(withProps: .init(message: "Возникла какая-то ошибка", style: .error))
+            SnackCenter.shared.showSnack(withProps: .init(message: Common.Error.defaultSnak, style: .error))
         }
     }
 }
